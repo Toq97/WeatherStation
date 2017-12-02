@@ -78,7 +78,10 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
 	 * @type {[type]}
 	 */
 	var allCollapsibleContainer = $('#container');
-
+    /**
+     * div that contain the header and the body
+     * @type {[type]}
+     */
 	var collapse = $('<div></div>').addClass('collapse');
 
 	/**
@@ -135,6 +138,9 @@ function getFlagNation(detectedDataForSinglelocation){
 		case "Svizzera":
 			var imageSwiss = $("<img></img>").attr('src',"img/flag_swiss.jpg").addClass("flagIcon");
 			return imageSwiss;
+		default:
+			var defaultImage = $("<img></img>").attr('src',"img/flag_default.svg").addClass("flagIcon");
+			return defaultImage;
 	}
 }
 /*****************************************************************/
