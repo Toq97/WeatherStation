@@ -30,3 +30,5 @@ $.ajax({
 	 */
 //	var timer = setTimeout(myFunction, 30000);
 }
+
+aja
