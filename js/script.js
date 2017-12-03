@@ -16,7 +16,7 @@ $.ajax({
 	$("#container").empty();
 	createAllCollapsiblePanel(allDetectionData);
 	assignCollapsibleClick();
-    addEventListenerToCollapse();
+  addEventListenerToCollapse();
 
 
 
@@ -71,9 +71,22 @@ for (var item in collapsibleOpenedIndex) {
  * [addEventListenerToCollapse function that retrive index of clicked collapse]
  */
 function addEventListenerToCollapse() {
+	var flag = null;
 	$('.collapse').click(function (e){
-	     collapsibleOpenedIndex.push($(this).index('.collapse'));
-	});
+	for (var item in collapsibleOpenedIndex) {
+		if(collapsibleOpenedIndex[item] == $(this).index('.collapse'))
+		{
+			flag = item;
+		}
+    }
+	if (flag == null){
+		collapsibleOpenedIndex.push($(this).index('.collapse'));
+	} else {
+		collapsibleOpenedIndex.splice(flag,1);
+	}
+
+});
+
 }
 
 
