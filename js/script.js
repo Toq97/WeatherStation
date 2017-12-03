@@ -2,6 +2,8 @@
  * [getApiData get all json weather Data from API]
  * @return {[type]} [description]
  */
+
+ //toq puzza
 function getApiData() {
 $.ajax({
 	url: 'https://www.torinometeo.org/api/v1/realtime/data/',
