@@ -1,5 +1,14 @@
 "use strict";
 /**
+ * @Author: stefanotortone
+ * @Date:   2017-12-03T11:46:15+01:00
+ * @Last modified by:   stefanotortone
+ * @Last modified time: 2017-12-04T13:56:49+01:00
+ */
+
+
+
+/**
  * [getApiData get all json weather Data from API]
  * @return {[type]} [description]
  */
@@ -183,9 +192,32 @@ function createTemperatureBox(temperature,urlIcon) {
  * @param  {[type]} detectedDataForSinglelocation [contain all the data for a single location]
  * @return {[type]} [description]
  */
+<<<<<<< HEAD
+function createPanelBody(detectedDataForSinglelocation){
+	var divPanelCollapsibleBody = $('<div></div>').addClass("panelCollapsibleBody");
+
+  //title with the name of the place
+	var collapsibleBodytitle = $('<h3></h3>');
+ 	collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
+=======
 function createPanelBody(detectedDataForSinglelocation , divPanelHeader){
 	var divPanelCollapsibleBody = $('<div></div>').addClass("panelCollapsibleBody").html(detectedDataForSinglelocation.station.name +" Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dosto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? [33] At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat");
+>>>>>>> ddb6c845acde22536b85569278372eb0fb54c15a
 
+  //image of the place
+  var collapsibleBodyImage = $('<img></img>');
+	collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
+  collapsibleBodyImage.addClass("collapsibleImageStyle");
+
+
+	//link to maps
+	var collapsibleBodyMapsLink = $('<a></a>');
+	collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
+	collapsibleBodyMapsLink.append(collapsibleBodyImage);
+
+
+  divPanelCollapsibleBody.append(collapsibleBodytitle);
+	divPanelCollapsibleBody.append(collapsibleBodyMapsLink);
 	return divPanelCollapsibleBody;
 }
 /**
@@ -210,6 +242,33 @@ function getFlagNation(detectedDataForSinglelocation){
 	}
 }
 
+<<<<<<< HEAD
+
+
+
+/**
+ * function that create the url of google maps
+ * @param  {[type]} nameofLocation
+ * @return {[type]}                [description]
+ */
+
+var createLinkforMaps = function(nameofLocation){
+
+    var finalResult = "";
+    var mapsBaseLink = "https://www.google.it/maps/place/";
+
+    var changename = nameofLocation.replace(" ","+");
+    changename = changename.replace(" ","+");
+
+    finalResult=mapsBaseLink+changename;
+
+    //the link of the maps
+    return finalResult;
+ }
+
+
+=======
+>>>>>>> ddb6c845acde22536b85569278372eb0fb54c15a
 /*****************************************************************/
                          /*MAIN*/
 /*****************************************************************/

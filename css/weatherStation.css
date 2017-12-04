@@ -1,3 +1,12 @@
+/**
+ * @Author: stefanotortone
+ * @Date:   2017-12-03T11:46:15+01:00
+ * @Last modified by:   stefanotortone
+ * @Last modified time: 2017-12-04T13:56:59+01:00
+ */
+
+
+
 /* css inutile*/
 * {
     -moz-box-sizing: border-box;
@@ -91,6 +100,13 @@ div.panelCollapsibleBody {
     height: 50px;
 }
 
+<<<<<<< HEAD
+
+.collapsibleImageStyle{
+  height: 300px;
+  width: 300px;
+}
+=======
 .temperature-box {
     float: right;
     border-radius: 10px;
@@ -116,3 +132,4 @@ div.panelCollapsibleBody {
 			drop-shadow(1px -1px 0 white)
 			drop-shadow(-1px -1px 0 white);
 }
+>>>>>>> ddb6c845acde22536b85569278372eb0fb54c15a
