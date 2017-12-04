@@ -146,12 +146,37 @@ function createPanelHeader(detectedDataForSinglelocation){
 										  + detectedDataForSinglelocation.station.city +
 										  " | Temperature: "+ detectedDataForSinglelocation.temperature)
 										  .append(getFlagNation(detectedDataForSinglelocation));
+ /** 
+  * Gian: a me la riga successiva dà un errore e spacca tutto. Credo sia dovuto al fatto che nextElementSibling è
+  * una proprietà degli elementi del DOM e non degli oggetti JQuery
+  * Sostituendolo con next() dovrebbe sistemarsi.
+  * Un altro errore credo sia dovuto al fatto che panel non è globale e quindi non sa chi sia
+  */
+  //divPanelHeader.next().style.maxHeight = panel.scrollHeight + "px";
+
+	divPanelHeader.append(
+		createTemperatureBox(detectedDataForSinglelocation.temperature,
+							detectedDataForSinglelocation.weather_icon.icon));
   //divPanelHeader[0].style.maxHeight = divPanelHeader[0].scrollHeight + "px";
 
 
     return divPanelHeader;
 
 }
+/**
+ * create the colored box showing the temperature
+ */
+function createTemperatureBox(temperature,urlIcon) {
+	var $weatherIcon = $('<img>').attr('src', urlIcon)
+								.addClass('weather-icon');
+	return $('<div>').addClass('temperature-box')
+									//.html(temperature + '°')
+									.css({'background-color': (
+										'rgb' + temperatureColorUtilities.temperatureToRGB(temperature)),
+										})
+									.append($weatherIcon);
+}
+
 /**
  * [create the body of each collapsible panel]
  * @param  {[type]} detectedDataForSinglelocation [contain all the data for a single location]
