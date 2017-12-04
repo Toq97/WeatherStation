@@ -58,12 +58,11 @@ function assignCollapsibleClick(){
 	        	panel.style.maxHeight = panel.scrollHeight + "px";
 	        }
      	}
-for (var item in collapsibleOpenedIndex) {
-	if (item == i) {
-		acc[i].onclick();
-	}
-}
-
+		for (var item in collapsibleOpenedIndex) {
+			if (item == i) {
+				acc[i].onclick();
+			}
+		}
 	}
 }
 
