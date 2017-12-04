@@ -100,8 +100,36 @@ div.panelCollapsibleBody {
     height: 50px;
 }
 
+<<<<<<< HEAD
 
 .collapsibleImageStyle{
   height: 300px;
   width: 300px;
 }
+=======
+.temperature-box {
+    float: right;
+    border-radius: 10px;
+    border: solid 2px #fff;
+    width: 50px;
+    height: 40px;
+    color: #fff;
+    text-align: center;
+    padding-top: 10px;
+    font-weight: 600;
+}
+
+.weather-icon {
+	position: relative;
+	top: -10px;
+	-webkit-filter: drop-shadow(1px 1px 0 white)
+					drop-shadow(-1px 1px 0 white)
+					drop-shadow(1px -1px 0 white)
+		 			drop-shadow(-1px -1px 0 white);
+
+	filter: drop-shadow(1px 1px 0 white) 
+			drop-shadow(-1px 1px 0 white)
+			drop-shadow(1px -1px 0 white)
+			drop-shadow(-1px -1px 0 white);
+}
+>>>>>>> ddb6c845acde22536b85569278372eb0fb54c15a
