@@ -1,3 +1,4 @@
+"use strict";
 /**
  * [getApiData get all json weather Data from API]
  * @return {[type]} [description]
@@ -146,7 +147,7 @@ function createPanelHeader(detectedDataForSinglelocation){
 										  + detectedDataForSinglelocation.station.city +
 										  " | Temperature: "+ detectedDataForSinglelocation.temperature)
 										  .append(getFlagNation(detectedDataForSinglelocation));
- /** 
+ /**
   * Gian: a me la riga successiva dà un errore e spacca tutto. Credo sia dovuto al fatto che nextElementSibling è
   * una proprietà degli elementi del DOM e non degli oggetti JQuery
   * Sostituendolo con next() dovrebbe sistemarsi.
