@@ -1,8 +1,9 @@
+"use strict";
 /**
  * @Author: stefanotortone
  * @Date:   2017-12-03T11:46:15+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-05T09:45:01+01:00
+ * @Last modified time: 2017-12-05T10:00:27+01:00
  */
 
 
@@ -25,8 +26,8 @@ $.ajax({
 	$("#container").empty();
 	createAllCollapsiblePanel(allDetectionData);
 	assignCollapsibleClick();
-  addEventListenerToCollapse();
-
+    addEventListenerToCollapse();
+    console.log(collapsibleOpenedIndex);
 
 
 })
@@ -67,12 +68,11 @@ function assignCollapsibleClick(){
 	        	panel.style.maxHeight = panel.scrollHeight + "px";
 	        }
      	}
-for (var item in collapsibleOpenedIndex) {
-	if (item == i) {
-		acc[i].onclick();
-	}
-}
-
+		for (var item in collapsibleOpenedIndex) {
+			if (collapsibleOpenedIndex[item] == i) {
+				acc[i].onclick();
+			}
+		}
 	}
 }
 
@@ -80,20 +80,25 @@ for (var item in collapsibleOpenedIndex) {
  * [addEventListenerToCollapse function that retrive index of clicked collapse]
  */
 function addEventListenerToCollapse() {
-	var flag = null;
-	$('.collapse').click(function (e){
-	for (var item in collapsibleOpenedIndex) {
-		if(collapsibleOpenedIndex[item] == $(this).index('.collapse'))
-		{
-			flag = item;
-		}
-    }
-	if (flag == null){
-		collapsibleOpenedIndex.push($(this).index('.collapse'));
-	} else {
-		collapsibleOpenedIndex.splice(flag,1);
-	}
 
+	$('.collapse').click(function (e){
+	var flag = null;
+	for (var item in collapsibleOpenedIndex) {
+		if (collapsibleOpenedIndex.hasOwnProperty(item)) {
+			if(collapsibleOpenedIndex[item] == $(this).index('.collapse'))
+			{
+				flag = collapsibleOpenedIndex[item];
+
+			}
+	    }
+    }
+
+	if (flag == null){
+		collapsibleOpenedIndex[$(this).index('.collapse')] = ($(this).index('.collapse'));
+	} else {
+		collapsibleOpenedIndex[$(this).index('.collapse')] = null;
+	}
+ console.log(collapsibleOpenedIndex);
 });
 
 }
@@ -111,9 +116,7 @@ function createAllCollapsiblePanel(allDetectionData) {
 			createCollapsiblePanel(allDetectionData[item]);
 		}
 	}
-}/**
- * [addEventListenerToCollapse description]
- */
+}
 
 /**
  * [this function will create the single collapsible panel]
@@ -156,18 +159,9 @@ function createPanelHeader(detectedDataForSinglelocation){
 										  + detectedDataForSinglelocation.station.city +
 										  " | Temperature: "+ detectedDataForSinglelocation.temperature)
 										  .append(getFlagNation(detectedDataForSinglelocation));
- /**
-  * Gian: a me la riga successiva dà un errore e spacca tutto. Credo sia dovuto al fatto che nextElementSibling è
-  * una proprietà degli elementi del DOM e non degli oggetti JQuery
-  * Sostituendolo con next() dovrebbe sistemarsi.
-  * Un altro errore credo sia dovuto al fatto che panel non è globale e quindi non sa chi sia
-  */
-  //divPanelHeader.next().style.maxHeight = panel.scrollHeight + "px";
-
-	divPanelHeader.append(
+	/*divPanelHeader.append(
 		createTemperatureBox(detectedDataForSinglelocation.temperature,
-							detectedDataForSinglelocation.weather_icon.icon));
-  //divPanelHeader[0].style.maxHeight = divPanelHeader[0].scrollHeight + "px";
+							detectedDataForSinglelocation.weather_icon.icon));*/
 
 
     return divPanelHeader;
@@ -206,12 +200,11 @@ function createPanelBody(detectedDataForSinglelocation){
 
 
 	//link to maps
-	var collapsibleBodyMapsLink = $('<a></a>');
+var collapsibleBodyMapsLink = $('<a></a>');
 	collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
 	collapsibleBodyMapsLink.append(collapsibleBodyImage);
 
-
-  divPanelCollapsibleBody.append(collapsibleBodytitle);
+    divPanelCollapsibleBody.append(collapsibleBodytitle);
 	divPanelCollapsibleBody.append(collapsibleBodyMapsLink);
 	return divPanelCollapsibleBody;
 }
@@ -236,10 +229,6 @@ function getFlagNation(detectedDataForSinglelocation){
 			return defaultImage;
 	}
 }
-
-
-
-
 /**
  * function that create the url of google maps
  * @param  {[type]} nameofLocation
@@ -265,10 +254,3 @@ var createLinkforMaps = function(nameofLocation){
                          /*MAIN*/
 /*****************************************************************/
 getApiData();
-
-/*$( "#input-station-name" ).change(function() {
-  var str = "";
-	str += $(this.text());
-
-});*/
-//window.setTimeout(refreshPage, 30000);
