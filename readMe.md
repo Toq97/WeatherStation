@@ -60,5 +60,5 @@ All notable changes to this project will be documented in this file.
 - getFlagNation: Toqir 2/12/2018
 
 ### Changed
--getApiData: aggiunto il refresh del dom ogni 30 secondi( da perferzionare).
+
 ### Removed

@@ -7,7 +7,7 @@
  */
 
 
-
+var allData = [];
 /**
  * [getApiData get all json weather Data from API]
  * @return {[type]} [description]
@@ -23,6 +23,10 @@ $.ajax({
 .done(function(allDetectionData) {
 	console.log("success");
 	console.log(allDetectionData);
+	for(var i=0; i < allDetectionData.length ; i++)
+	{
+		allData[i] = allDetectionData[i];
+	}
 	$("#container").empty();
 	createAllCollapsiblePanel(allDetectionData);
 	assignCollapsibleClick();
@@ -255,3 +259,36 @@ var createLinkforMaps = function(nameofLocation){
                          /*MAIN*/
 /*****************************************************************/
 getApiData();
+
+/**
+ * filter
+ */
+
+//search filter
+
+ $(document).ready(function(){
+   $("#input-station-name").on("keyup", function() {
+     var value = $(this).val().toLowerCase();
+     $("#container *").filter(function() {
+       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+     });
+   });
+ });
+
+//select filter
+/*
+ $(document).ready(function(){
+	 $("#select-country").on("change", function() {
+		 var value = $(this).val().toLowerCase();
+		 for(var i=0;i<allData.length;i++)
+		 {
+		 if(value == allData[i].station.nation.name)
+		 {
+		 $("#container *").filter(function() {
+			 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		 });
+	 }
+	 }
+	 });
+ });
+ */
