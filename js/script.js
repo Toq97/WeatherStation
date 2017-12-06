@@ -23,17 +23,12 @@ $.ajax({
 .done(function(allDetectionData) {
 	console.log("success");
 	console.log(allDetectionData);
-	for(var i=0; i < allDetectionData.length ; i++)
-	{
-		allData[i] = allDetectionData[i];
-	}
 	$("#container").empty();
 	createAllCollapsiblePanel(allDetectionData);
 	assignCollapsibleClick();
     addEventListenerToCollapse();
     console.log(collapsibleOpenedIndex);
-
-
+		getSelectedValue(allDetectionData);
 })
 .fail(function(error) {
 	console.log(error);
@@ -48,7 +43,7 @@ $.ajax({
 	 * [timer call the setTimeout for looping the GetApiData() function every 30 seconds]
 	 * @type {[type]}
 	 */
-	 var timeOut = setTimeout(getApiData, 10000);
+	 var timeOut = setTimeout(getApiData, 30000);
 }
 
 /**
@@ -253,20 +248,68 @@ var createLinkforMaps = function(nameofLocation){
     //the link of the maps
     return finalResult;
  }
+/**
+ * function that take the selected nation
+ * @param  {[type]} allDetectionData [description]
+ * @return {[type]}                  [description]
+ */
+function getSelectedValue(allDetectionData)
+{
+	$(document).ready(function(){
+		 $("#select-country").on("change", function() {
+			 $("#container").empty();
+			 var value = $(this).val();
+			 for (var i in allDetectionData) {
+			 	if (allDetectionData.hasOwnProperty(i)) {
+					if(value == allDetectionData[i].station.nation.name || value == "")
+					{
+						//console.log(value);
+						getSelectNation(allDetectionData[i]);
+					}
+			 	}
+			 }
+
+		 });
+	 });
+}
 
 
+ /**
+  * function that control what nation is selected and create all the collapse
+  * of that nation
+  * @param  {[type]} detectedDataForSinglelocation [description]
+  * @return {[type]}                               [description]
+  */
+ function getSelectNation(detectedDataForSinglelocation){
+ 	switch(detectedDataForSinglelocation.station.nation.name){
+ 		case "Italia":
+ 		  createCollapsiblePanel(detectedDataForSinglelocation);
+ 			assignCollapsibleClick();
+			break;
+ 		case "Francia":
+ 			createCollapsiblePanel(detectedDataForSinglelocation);
+ 			assignCollapsibleClick();
+			break;
+ 		case "Svizzera":
+ 			createCollapsiblePanel(detectedDataForSinglelocation);
+ 			assignCollapsibleClick();
+			break;
+ 		case "undefined":
+ 			createAllCollapsiblePanel();
+ 			assignCollapsibleClick();
+			break;
+ 		}
+ }
 /*****************************************************************/
                          /*MAIN*/
 /*****************************************************************/
 getApiData();
 
 /**
- * filter
+ * Search filter
+ * @return {[type]} [description]
  */
-
-//search filter
-
- $(document).ready(function(){
+$(document).ready(function(){
    $("#input-station-name").on("keyup", function() {
      var value = $(this).val().toLowerCase();
      $("#container *").filter(function() {
@@ -274,21 +317,3 @@ getApiData();
      });
    });
  });
-
-//select filter
-/*
- $(document).ready(function(){
-	 $("#select-country").on("change", function() {
-		 var value = $(this).val().toLowerCase();
-		 for(var i=0;i<allData.length;i++)
-		 {
-		 if(value == allData[i].station.nation.name)
-		 {
-		 $("#container *").filter(function() {
-			 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-		 });
-	 }
-	 }
-	 });
- });
- */
