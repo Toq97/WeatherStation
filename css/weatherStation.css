@@ -100,13 +100,11 @@ div.panelCollapsibleBody {
     height: 50px;
 }
 
-<<<<<<< HEAD
-
 .collapsibleImageStyle{
   height: 300px;
   width: 300px;
 }
-=======
+
 .temperature-box {
     float: right;
     border-radius: 10px;
@@ -127,9 +125,8 @@ div.panelCollapsibleBody {
 					drop-shadow(1px -1px 0 white)
 		 			drop-shadow(-1px -1px 0 white);
 
-	filter: drop-shadow(1px 1px 0 white) 
+	filter: drop-shadow(1px 1px 0 white)
 			drop-shadow(-1px 1px 0 white)
 			drop-shadow(1px -1px 0 white)
 			drop-shadow(-1px -1px 0 white);
 }
->>>>>>> ddb6c845acde22536b85569278372eb0fb54c15a

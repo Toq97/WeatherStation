@@ -1,4 +1,4 @@
-"use strict";
+//"use strict";
 /**
  * @Author: stefanotortone
  * @Date:   2017-12-03T11:46:15+01:00
@@ -15,24 +15,16 @@ var manager = {
 	collapsibleOpenedIndex : []
 }
 
-<<<<<<< HEAD
 var allData = [];
 /**
  * [getApiData get all json weather Data from API]
  * @return {[type]} [description]
  */
 var collapsibleOpenedIndex = [];
-<<<<<<< HEAD
+
 
 var countimage = 0;
 
-
-
-=======
-//palle
->>>>>>> 9ef867f1074d0b5520690a9e2b7db650f69cf41a
-=======
->>>>>>> f78d93059e91992252d3d6e5444b6f2511a63c7d
 function getApiData() {
 $.ajax({
 	url: 'https://www.torinometeo.org/api/v1/realtime/data/',
@@ -45,24 +37,21 @@ $.ajax({
 
 	loadDataOnDOM(allDetectionData);
 
-<<<<<<< HEAD
-=======
-=======
+
 	$("#container").empty();
 	createAllCollapsiblePanel(allDetectionData);
-<<<<<<< HEAD
+
 	assignCollapsibleClick(allDetectionData);
   addEventListenerToCollapse();
   console.log(collapsibleOpenedIndex);
 
 
-=======
+
 	assignCollapsibleClick();
     addEventListenerToCollapse();
     console.log(collapsibleOpenedIndex);
 		getSelectedValue(allDetectionData);
->>>>>>> 9ef867f1074d0b5520690a9e2b7db650f69cf41a
->>>>>>> ea8f7153d26e9fbc79ea594fd2e0202ad8daa78c
+
 })
 .fail(function(error) {
 	console.log(error);
@@ -87,7 +76,6 @@ $.ajax({
 * @param {Object} data - the data to be shown
 */
 function loadDataOnDOM(data) {
-	console.log('palle')
 	manager.allData = data;
 	console.log(manager.allData);
 	$("#container").empty();
@@ -145,14 +133,8 @@ singleobject.station.id =
 					}
 
      	}
-<<<<<<< HEAD
-
-		for (var item in collapsibleOpenedIndex) {
-			if (collapsibleOpenedIndex[item] == i) {
-=======
 		for (var item in manager.collapsibleOpenedIndex) {
 			if (manager.collapsibleOpenedIndex[item] == i) {
->>>>>>> f78d93059e91992252d3d6e5444b6f2511a63c7d
 				acc[i].onclick();
 			}
 		}
@@ -244,9 +226,14 @@ function createPanelHeader(detectedDataForSinglelocation){
 										  + detectedDataForSinglelocation.station.city +
 										  " | Temperature: "+ detectedDataForSinglelocation.temperature)
 										  .append(getFlagNation(detectedDataForSinglelocation));
-	/*divPanelHeader.append(
-		createTemperatureBox(detectedDataForSinglelocation.temperature,
-							detectedDataForSinglelocation.weather_icon.icon));*/
+	if(detectedDataForSinglelocation.weather_icon){
+		divPanelHeader.append(
+			createTemperatureBox(detectedDataForSinglelocation.temperature,
+								detectedDataForSinglelocation.weather_icon.icon));
+	} else {
+		createTemperatureBox(detectedDataForSinglelocation.temperature);
+	}
+
 
    divPanelHeader.attr("id",'#'+detectedDataForSinglelocation.station.id+"updateimageheader");
 
@@ -257,10 +244,15 @@ function createPanelHeader(detectedDataForSinglelocation){
  * create the colored box showing the temperature
  */
 function createTemperatureBox(temperature,urlIcon) {
-	var $weatherIcon = $('<img>').attr('src', urlIcon)
-								.addClass('weather-icon');
+	var $weatherIcon = $('<img>').addClass('weather-icon');
+	if(urlIcon) {
+		$weatherIcon.attr('src', urlIcon);
+	} else {
+		$weatherIcon.attr('src', 'img/provv.png');
+		console.log($weatherIcon)
+	}
 	return $('<div>').addClass('temperature-box')
-									//.html(temperature + '°')
+									.html(temperature + '°')
 									.css({'background-color': (
 										'rgb' + temperatureColorUtilities.temperatureToRGB(temperature)),
 										})
@@ -349,7 +341,6 @@ function getSelectedValue(allDetectionData)
 }
 
 
-<<<<<<< HEAD
 
 
 
@@ -408,34 +399,33 @@ function getSelectedValue(allDetectionData)
 
 */
 }
-=======
- /**
-  * function that control what nation is selected and create all the collapse
-  * of that nation
-  * @param  {[type]} detectedDataForSinglelocation [description]
-  * @return {[type]}                               [description]
-  */
- function getSelectNation(detectedDataForSinglelocation){
- 	switch(detectedDataForSinglelocation.station.nation.name){
- 		case "Italia":
- 		  createCollapsiblePanel(detectedDataForSinglelocation);
- 			assignCollapsibleClick();
-			break;
- 		case "Francia":
- 			createCollapsiblePanel(detectedDataForSinglelocation);
- 			assignCollapsibleClick();
-			break;
- 		case "Svizzera":
- 			createCollapsiblePanel(detectedDataForSinglelocation);
- 			assignCollapsibleClick();
-			break;
- 		case "undefined":
- 			createAllCollapsiblePanel();
- 			assignCollapsibleClick();
-			break;
- 		}
- }
->>>>>>> 9ef867f1074d0b5520690a9e2b7db650f69cf41a
+
+/**
+ * function that control what nation is selected and create all the collapse
+ * of that nation
+ * @param  {[type]} detectedDataForSinglelocation [description]
+ * @return {[type]}                               [description]
+ */
+function getSelectNation(detectedDataForSinglelocation){
+ switch(detectedDataForSinglelocation.station.nation.name){
+	 case "Italia":
+		 createCollapsiblePanel(detectedDataForSinglelocation);
+		 assignCollapsibleClick();
+		 break;
+	 case "Francia":
+		 createCollapsiblePanel(detectedDataForSinglelocation);
+		 assignCollapsibleClick();
+		 break;
+	 case "Svizzera":
+		 createCollapsiblePanel(detectedDataForSinglelocation);
+		 assignCollapsibleClick();
+		 break;
+	 case "undefined":
+		 createAllCollapsiblePanel();
+		 assignCollapsibleClick();
+		 break;
+	 }
+}
 /*****************************************************************/
                          /*MAIN*/
 /*****************************************************************/
