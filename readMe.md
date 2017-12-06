@@ -39,6 +39,9 @@ descrizione mangaer
         - createPanelHeader: Toqir
         - createPanelBody: Toqir
         - getFlagNation: Toqir
+        - loadDataOnDOM: Gianluca/Toqir
+        - getDataFromJSONBlob: Gianluca
+        - uploadJSONBlob: Gianluca
 
 
 
