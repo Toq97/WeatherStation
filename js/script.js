@@ -15,24 +15,18 @@ var manager = {
 	collapsibleOpenedIndex : []
 }
 
-<<<<<<< HEAD
 var allData = [];
 /**
  * [getApiData get all json weather Data from API]
  * @return {[type]} [description]
  */
 var collapsibleOpenedIndex = [];
-<<<<<<< HEAD
+
 
 var countimage = 0;
 
 
 
-=======
-//palle
->>>>>>> 9ef867f1074d0b5520690a9e2b7db650f69cf41a
-=======
->>>>>>> f78d93059e91992252d3d6e5444b6f2511a63c7d
 function getApiData() {
 $.ajax({
 	url: 'https://www.torinometeo.org/api/v1/realtime/data/',
@@ -42,25 +36,14 @@ $.ajax({
   .done(function(allDetectionData) {
 	console.log("success");
 	console.log(allDetectionData);
-<<<<<<< HEAD
-
 	loadDataOnDOM(allDetectionData);
-
-=======
 	$("#container").empty();
 	createAllCollapsiblePanel(allDetectionData);
-<<<<<<< HEAD
 	assignCollapsibleClick(allDetectionData);
   addEventListenerToCollapse();
   console.log(collapsibleOpenedIndex);
+	getSelectedValue(allDetectionData);
 
-
-=======
-	assignCollapsibleClick();
-    addEventListenerToCollapse();
-    console.log(collapsibleOpenedIndex);
-		getSelectedValue(allDetectionData);
->>>>>>> 9ef867f1074d0b5520690a9e2b7db650f69cf41a
 })
 .fail(function(error) {
 	console.log(error);
@@ -143,14 +126,13 @@ singleobject.station.id =
 					}
 
      	}
-<<<<<<< HEAD
+
 
 		for (var item in collapsibleOpenedIndex) {
 			if (collapsibleOpenedIndex[item] == i) {
-=======
+
 		for (var item in manager.collapsibleOpenedIndex) {
 			if (manager.collapsibleOpenedIndex[item] == i) {
->>>>>>> f78d93059e91992252d3d6e5444b6f2511a63c7d
 				acc[i].onclick();
 			}
 		}
@@ -347,7 +329,7 @@ function getSelectedValue(allDetectionData)
 }
 
 
-<<<<<<< HEAD
+
 
 
 
@@ -406,7 +388,7 @@ function getSelectedValue(allDetectionData)
 
 */
 }
-=======
+
  /**
   * function that control what nation is selected and create all the collapse
   * of that nation
@@ -433,7 +415,7 @@ function getSelectedValue(allDetectionData)
 			break;
  		}
  }
->>>>>>> 9ef867f1074d0b5520690a9e2b7db650f69cf41a
+
 /*****************************************************************/
                          /*MAIN*/
 /*****************************************************************/
@@ -443,6 +425,7 @@ getApiData();
  * Search filter
  * @return {[type]} [description]
  */
+/*
 $(document).ready(function(){
    $("#input-station-name").on("keyup", function() {
      var value = $(this).val().toLowerCase();
@@ -450,4 +433,4 @@ $(document).ready(function(){
        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
      });
    });
- });
+ });*/
