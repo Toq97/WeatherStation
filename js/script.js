@@ -6,7 +6,16 @@
  * @Last modified time: 2017-12-06T17:32:14+01:00
  */
 
+var manager = {
+	allData : [],
+	/**
+	 * [getApiData get all json weather Data from API]
+	 * @return {[type]} [description]
+	 */
+	collapsibleOpenedIndex : []
+}
 
+<<<<<<< HEAD
 var allData = [];
 /**
  * [getApiData get all json weather Data from API]
@@ -22,6 +31,8 @@ var countimage = 0;
 =======
 //palle
 >>>>>>> 9ef867f1074d0b5520690a9e2b7db650f69cf41a
+=======
+>>>>>>> f78d93059e91992252d3d6e5444b6f2511a63c7d
 function getApiData() {
 $.ajax({
 	url: 'https://www.torinometeo.org/api/v1/realtime/data/',
@@ -31,6 +42,11 @@ $.ajax({
   .done(function(allDetectionData) {
 	console.log("success");
 	console.log(allDetectionData);
+<<<<<<< HEAD
+
+	loadDataOnDOM(allDetectionData);
+
+=======
 	$("#container").empty();
 	createAllCollapsiblePanel(allDetectionData);
 <<<<<<< HEAD
@@ -51,15 +67,32 @@ $.ajax({
 	console.log(error.status);
 	console.log(error.statusText);
 	//display the error data into page
+	getDataFromJSONBlob();
 })
 .always(function() {
 	console.log("ajax call complete");
+	console.log(manager.allData);
 });
 	/**
 	 * [timer call the setTimeout for looping the GetApiData() function every 30 seconds]
 	 * @type {[type]}
 	 */
 	 var timeOut = setTimeout(getApiData, 30000);
+}
+
+/**
+* Load the json data on the page
+* @param {Object} data - the data to be shown
+*/
+function loadDataOnDOM(data) {
+	console.log('palle')
+	manager.allData = data;
+	console.log(manager.allData);
+	$("#container").empty();
+	createAllCollapsiblePanel(data);
+	assignCollapsibleClick();
+  addEventListenerToCollapse();
+  console.log(manager.collapsibleOpenedIndex);
 }
 
 /**
@@ -110,9 +143,14 @@ singleobject.station.id =
 					}
 
      	}
+<<<<<<< HEAD
 
 		for (var item in collapsibleOpenedIndex) {
 			if (collapsibleOpenedIndex[item] == i) {
+=======
+		for (var item in manager.collapsibleOpenedIndex) {
+			if (manager.collapsibleOpenedIndex[item] == i) {
+>>>>>>> f78d93059e91992252d3d6e5444b6f2511a63c7d
 				acc[i].onclick();
 			}
 		}
@@ -126,22 +164,22 @@ function addEventListenerToCollapse() {
 
 	$('.collapse').click(function (e){
 	var flag = null;
-	for (var item in collapsibleOpenedIndex) {
-		if (collapsibleOpenedIndex.hasOwnProperty(item)) {
-			if(collapsibleOpenedIndex[item] == $(this).index('.collapse'))
+	for (var item in manager.collapsibleOpenedIndex) {
+		if (manager.collapsibleOpenedIndex.hasOwnProperty(item)) {
+			if(manager.collapsibleOpenedIndex[item] == $(this).index('.collapse'))
 			{
-				flag = collapsibleOpenedIndex[item];
+				flag = manager.collapsibleOpenedIndex[item];
 
 			}
 	    }
     }
 
 	if (flag == null){
-		collapsibleOpenedIndex[$(this).index('.collapse')] = ($(this).index('.collapse'));
+		manager.collapsibleOpenedIndex[$(this).index('.collapse')] = ($(this).index('.collapse'));
 	} else {
-		collapsibleOpenedIndex[$(this).index('.collapse')] = null;
+		manager.collapsibleOpenedIndex[$(this).index('.collapse')] = null;
 	}
- console.log(collapsibleOpenedIndex);
+ console.log(manager.collapsibleOpenedIndex);
 });
 
 }
