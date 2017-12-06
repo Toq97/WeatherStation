@@ -1,35 +1,14 @@
 //"use strict";
-<<<<<<< HEAD
-/**
- * @Author: stefanotortone
- * @Date:   2017-12-03T11:46:15+01:00
- * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-06T17:32:14+01:00
- */
-=======
->>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 
 var manager = {
 	allData : [],
 	collapsibleOpenedIndex : []
 }
 
-<<<<<<< HEAD
-var allData = [];
-=======
 var countimage = 0;
->>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 /**
  * [function that get the Json Data]
  */
-<<<<<<< HEAD
-var collapsibleOpenedIndex = [];
-
-
-var countimage = 0;
-
-=======
->>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 function getApiData() {
 $.ajax({
 	url: 'https://www.torinometeo.org/api/v1/realtime/data/',
@@ -38,29 +17,7 @@ $.ajax({
 })
 .done(function(allDetectionData) {
 	console.log("success");
-<<<<<<< HEAD
-	console.log(allDetectionData);
-
-	loadDataOnDOM(allDetectionData);
-
-
-	$("#container").empty();
-	createAllCollapsiblePanel(allDetectionData);
-
-	assignCollapsibleClick(allDetectionData);
-  addEventListenerToCollapse();
-  console.log(collapsibleOpenedIndex);
-
-
-
-	assignCollapsibleClick();
-    addEventListenerToCollapse();
-    console.log(collapsibleOpenedIndex);
-		getSelectedValue(allDetectionData);
-
-=======
     loadDataOnDOM(allDetectionData);
->>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 })
 .fail(function(error) {
 	console.log(error);
@@ -112,21 +69,6 @@ function assignCollapsibleClick(allDetectionData){
 	        } else {
 	        	panel.style.maxHeight = panel.scrollHeight + "px";
 	        }
-<<<<<<< HEAD
-
-
-					if(countimage == 0){
-						updateImageApi(allDetectionData);
-						countimage = 1;
-					}else {
-						countimage = 0;
-					}
-
-     	}
-		for (var item in manager.collapsibleOpenedIndex) {
-			if (manager.collapsibleOpenedIndex[item] == i) {
-				acc[i].onclick();
-=======
 	/*
            ste questa cosa mettila in funzione,
 		   solo che count image non ti va come variabile singola,
@@ -139,7 +81,6 @@ function assignCollapsibleClick(allDetectionData){
 				countimage = 1;
 			} else {
 				countimage = 0;
->>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 			}
 	*/
        callOnClickEventOnCollapse(acc,i);
@@ -239,14 +180,15 @@ function createPanelHeader(detectedDataForSinglelocation){
 										  + detectedDataForSinglelocation.station.city +
 										  " | Temperature: "+ detectedDataForSinglelocation.temperature)
 										  .append(getFlagNation(detectedDataForSinglelocation));
+
 	if(detectedDataForSinglelocation.weather_icon){
 		divPanelHeader.append(
 			createTemperatureBox(detectedDataForSinglelocation.temperature,
 								detectedDataForSinglelocation.weather_icon.icon));
 	} else {
-		createTemperatureBox(detectedDataForSinglelocation.temperature);
+		divPanelHeader.append(
+			createTemperatureBox(detectedDataForSinglelocation.temperature));
 	}
-
 
    divPanelHeader.attr("id",'#'+detectedDataForSinglelocation.station.id+"updateimageheader");
 
@@ -257,24 +199,21 @@ function createPanelHeader(detectedDataForSinglelocation){
  * create the colored box showing the temperature
  */
 function createTemperatureBox(temperature,urlIcon) {
-<<<<<<< HEAD
-	var $weatherIcon = $('<img>').addClass('weather-icon');
-	if(urlIcon) {
-		$weatherIcon.attr('src', urlIcon);
-	} else {
-		$weatherIcon.attr('src', 'img/provv.png');
-		console.log($weatherIcon)
-	}
-=======
-	var $weatherIcon = $('<img>').attr('src', urlIcon)
-								 .addClass('weather-icon');
->>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
-	return $('<div>').addClass('temperature-box')
-									.html(temperature + '°')
-									.css({'background-color': (
-										'rgb' + temperatureColorUtilities.temperatureToRGB(temperature)),
-										})
-									.append($weatherIcon);
+
+		var $weatherIcon = $('<img>').addClass('weather-icon');
+		if(urlIcon) {
+			$weatherIcon.attr('src', urlIcon);
+		} else {
+			$weatherIcon.attr('src', 'img/provv.png');
+			console.log($weatherIcon);
+		}
+
+		return $('<div>').addClass('temperature-box')
+										.html(temperature + '°')
+										.css({'background-color': (
+											'rgb' + temperatureColorUtilities.temperatureToRGB(temperature)),
+											})
+										.append($weatherIcon);
 }
 
 /**
@@ -355,33 +294,7 @@ function getSelectedValue(allDetectionData)
 
  function updateImageApi(detectedDataForSinglelocation){
 
-<<<<<<< HEAD
-
-
-
- function updateImageApi(allDetectionData){
-
-/*
- $('.collapse').click(function(event){
- 	//prendere l'id del panel, cioè quello della stazione
-   var falseid = $(this).attr('id');
-   var id = falseid.replace("#","");
- 	console.log(id);
-
- 	$.ajax({
- 		//chiamata con l'id
- 		url: "https://www.torinometeo.org/api/v1/realtime/data/"+id+"/",
- 		type: 'GET',
- 		dataType: 'JSON',
- 	})
- 	  .done(function(detectedDataForSinglelocation) {
-*/
-
-       //var takepanel = document.getElementById(id);
- 			//var divPanelCollapsibleBody = $(".panelCollapsibleBody");
-=======
  	      var divPanelCollapsibleBody = $(".panelCollapsibleBody");
->>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 
  		  //title with the name of the place
  		  var collapsibleBodytitle = $('<h3></h3>');
@@ -434,34 +347,6 @@ function getSelectedValue(allDetectionData)
 */
 }
 
-<<<<<<< HEAD
-/**
- * function that control what nation is selected and create all the collapse
- * of that nation
- * @param  {[type]} detectedDataForSinglelocation [description]
- * @return {[type]}                               [description]
- */
-function getSelectNation(detectedDataForSinglelocation){
- switch(detectedDataForSinglelocation.station.nation.name){
-	 case "Italia":
-		 createCollapsiblePanel(detectedDataForSinglelocation);
-		 assignCollapsibleClick();
-		 break;
-	 case "Francia":
-		 createCollapsiblePanel(detectedDataForSinglelocation);
-		 assignCollapsibleClick();
-		 break;
-	 case "Svizzera":
-		 createCollapsiblePanel(detectedDataForSinglelocation);
-		 assignCollapsibleClick();
-		 break;
-	 case "undefined":
-		 createAllCollapsiblePanel();
-		 assignCollapsibleClick();
-		 break;
-	 }
-}
-=======
  /**
   * function that control what nation is selected and create all the collapse
   * of that nation
@@ -489,7 +374,6 @@ function getSelectNation(detectedDataForSinglelocation){
  		}
  }
 
->>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 /*****************************************************************/
 /*                              MAIN                             */
 /*****************************************************************/
