@@ -1,12 +1,4 @@
 "use strict";
-/**
- * @Author: stefanotortone
- * @Date:   2017-12-03T11:46:15+01:00
- * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-04T13:56:49+01:00
- */
-
-
 
 /**
  * [getApiData get all json weather Data from API]
@@ -172,7 +164,7 @@ function createPanelHeader(detectedDataForSinglelocation){
  */
 function createTemperatureBox(temperature,urlIcon) {
 	var $weatherIcon = $('<img>').attr('src', urlIcon)
-								.addClass('weather-icon');
+								 .addClass('weather-icon');
 	return $('<div>').addClass('temperature-box')
 									//.html(temperature + '°')
 									.css({'background-color': (
@@ -194,18 +186,18 @@ function createPanelBody(detectedDataForSinglelocation){
  	collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
 
   //image of the place
-  /*var collapsibleBodyImage = $('<img></img>');
+ /* var collapsibleBodyImage = $('<img></img>');
 	collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
-  collapsibleBodyImage.addClass("collapsibleImageStyle");*/
+    collapsibleBodyImage.addClass("collapsibleImageStyle");
 
 
 	//link to maps
-/*	var collapsibleBodyMapsLink = $('<a></a>');
+	var collapsibleBodyMapsLink = $('<a></a>');
 	collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
-	collapsibleBodyMapsLink.append(collapsibleBodyImage);
-*/
+	collapsibleBodyMapsLink.append(collapsibleBodyImage);*/
+
     divPanelCollapsibleBody.append(collapsibleBodytitle);
-	//divPanelCollapsibleBody.append(collapsibleBodyMapsLink);
+//	divPanelCollapsibleBody.append(collapsibleBodyMapsLink);
 	return divPanelCollapsibleBody;
 }
 /**
@@ -252,6 +244,6 @@ var createLinkforMaps = function(nameofLocation){
 
 
 /*****************************************************************/
-                         /*MAIN*/
+/*                              MAIN                             */
 /*****************************************************************/
 getApiData();
