@@ -3,7 +3,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-03T11:46:15+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-04T13:56:49+01:00
+ * @Last modified time: 2017-12-06T17:32:14+01:00
  */
 
 var manager = {
@@ -15,18 +15,54 @@ var manager = {
 	collapsibleOpenedIndex : []
 }
 
+<<<<<<< HEAD
+var allData = [];
+/**
+ * [getApiData get all json weather Data from API]
+ * @return {[type]} [description]
+ */
+var collapsibleOpenedIndex = [];
+<<<<<<< HEAD
+
+var countimage = 0;
+
+
+
+=======
+//palle
+>>>>>>> 9ef867f1074d0b5520690a9e2b7db650f69cf41a
+=======
+>>>>>>> f78d93059e91992252d3d6e5444b6f2511a63c7d
 function getApiData() {
 $.ajax({
 	url: 'https://www.torinometeo.org/api/v1/realtime/data/',
 	type: 'GET',
 	dataType: 'JSON',
 })
-.done(function(allDetectionData) {
+  .done(function(allDetectionData) {
 	console.log("success");
 	console.log(allDetectionData);
 
 	loadDataOnDOM(allDetectionData);
 
+<<<<<<< HEAD
+=======
+=======
+	$("#container").empty();
+	createAllCollapsiblePanel(allDetectionData);
+<<<<<<< HEAD
+	assignCollapsibleClick(allDetectionData);
+  addEventListenerToCollapse();
+  console.log(collapsibleOpenedIndex);
+
+
+=======
+	assignCollapsibleClick();
+    addEventListenerToCollapse();
+    console.log(collapsibleOpenedIndex);
+		getSelectedValue(allDetectionData);
+>>>>>>> 9ef867f1074d0b5520690a9e2b7db650f69cf41a
+>>>>>>> ea8f7153d26e9fbc79ea594fd2e0202ad8daa78c
 })
 .fail(function(error) {
 	console.log(error);
@@ -65,7 +101,7 @@ function loadDataOnDOM(data) {
  * [function that control the collapsible panel]
  * @return {[type]} [description]
  */
-function assignCollapsibleClick(){
+function assignCollapsibleClick(allDetectionData){
     /**
      * [contain all the divs that contain a collapsible panel]
      * @type {[type]}
@@ -73,17 +109,50 @@ function assignCollapsibleClick(){
 	var acc = document.getElementsByClassName("panelHeader");
 	for (var i = 0; i < acc.length; i++) {
 	//	console.log(acc);
+	console.log($(acc[i]).attr('id'));
+
+/*
+allDetectionData.forEach(function(singleobject){
+
+singleobject.station.id =
+
+
+
+});
+
+*/
+
+
+
+
 		acc[i].onclick = function() {
+
 	    	this.classList.toggle("active");
 	    	var panel = this.nextElementSibling;
 	    	if (panel.style.maxHeight){
 	        	panel.style.maxHeight = null;
 	        } else {
 	        	panel.style.maxHeight = panel.scrollHeight + "px";
+
 	        }
+
+
+					if(countimage == 0){
+						updateImageApi(allDetectionData);
+						countimage = 1;
+					}else {
+						countimage = 0;
+					}
+
      	}
+<<<<<<< HEAD
+
+		for (var item in collapsibleOpenedIndex) {
+			if (collapsibleOpenedIndex[item] == i) {
+=======
 		for (var item in manager.collapsibleOpenedIndex) {
 			if (manager.collapsibleOpenedIndex[item] == i) {
+>>>>>>> f78d93059e91992252d3d6e5444b6f2511a63c7d
 				acc[i].onclick();
 			}
 		}
@@ -147,7 +216,9 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
      * div that contain the header and the body
      * @type {[type]}
      */
-	var collapse = $('<div></div>').addClass('collapse');
+	var collapse = $('<div></div>').addClass('collapse').attr('id', '#'+detectedDataForSinglelocation.station.slug);
+	//aggiungo l'id al pannello per poterlo identificare in seguito
+	//collapse = $('#'+detectedDataForSinglelocation.id);
 
 	/**
 	 * [contain the header of the location]
@@ -177,6 +248,7 @@ function createPanelHeader(detectedDataForSinglelocation){
 		createTemperatureBox(detectedDataForSinglelocation.temperature,
 							detectedDataForSinglelocation.weather_icon.icon));*/
 
+   divPanelHeader.attr("id",'#'+detectedDataForSinglelocation.station.id+"updateimageheader");
 
     return divPanelHeader;
 
@@ -203,23 +275,13 @@ function createTemperatureBox(temperature,urlIcon) {
 function createPanelBody(detectedDataForSinglelocation){
 	var divPanelCollapsibleBody = $('<div></div>').addClass("panelCollapsibleBody");
 
-  //title with the name of the place
-	var collapsibleBodytitle = $('<h3></h3>');
- 	collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
+  //test
+  divPanelCollapsibleBody.html("test");
 
-  //image of the place
-  /*var collapsibleBodyImage = $('<img></img>');
-	collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
-  collapsibleBodyImage.addClass("collapsibleImageStyle");*/
+	//aggiungo l'id al body, con l'id della station
+	divPanelCollapsibleBody.attr("id",detectedDataForSinglelocation.station.id+"updateimage");
 
 
-	//link to maps
-/*	var collapsibleBodyMapsLink = $('<a></a>');
-	collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
-	collapsibleBodyMapsLink.append(collapsibleBodyImage);
-*/
-    divPanelCollapsibleBody.append(collapsibleBodytitle);
-	//divPanelCollapsibleBody.append(collapsibleBodyMapsLink);
 	return divPanelCollapsibleBody;
 }
 /**
@@ -243,13 +305,11 @@ function getFlagNation(detectedDataForSinglelocation){
 			return defaultImage;
 	}
 }
-
 /**
- * function that create the url of google maps
- * @param  {[type]} nameofLocation
- * @return {[type]}                [description]
+ * [function that create the url of google maps]
+ * @param  {[String]} nameofLocation [name of location]
+ * @return {[String]}[url for google maps]
  */
-
 var createLinkforMaps = function(nameofLocation){
 
     var finalResult = "";
@@ -289,6 +349,66 @@ function getSelectedValue(allDetectionData)
 }
 
 
+<<<<<<< HEAD
+
+
+
+ function updateImageApi(allDetectionData){
+
+/*
+ $('.collapse').click(function(event){
+ 	//prendere l'id del panel, cioè quello della stazione
+   var falseid = $(this).attr('id');
+   var id = falseid.replace("#","");
+ 	console.log(id);
+
+ 	$.ajax({
+ 		//chiamata con l'id
+ 		url: "https://www.torinometeo.org/api/v1/realtime/data/"+id+"/",
+ 		type: 'GET',
+ 		dataType: 'JSON',
+ 	})
+ 	  .done(function(detectedDataForSinglelocation) {
+*/
+
+       //var takepanel = document.getElementById(id);
+ 			//var divPanelCollapsibleBody = $(".panelCollapsibleBody");
+
+ 		  //title with the name of the place
+ 		  var collapsibleBodytitle = $('<h3></h3>');
+ 		  collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
+
+ 		  //image of the place
+ 		  var collapsibleBodyImage = $('<img></img>');
+ 		  collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
+ 		  collapsibleBodyImage.addClass("collapsibleImageStyle");
+
+
+ 		  //link to maps
+ 		  var collapsibleBodyMapsLink = $('<a></a>');
+ 		  collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
+ 		  collapsibleBodyMapsLink.append(collapsibleBodyImage);
+
+ 		  $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodytitle);
+ 		  $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
+
+
+/*
+ 	})
+ 	.fail(function(error) {
+ 		console.log(error);
+ 		console.log(error.status);
+ 		console.log(error.statusText);
+ 		//display the error data into page
+ 	})
+ 	.always(function() {
+ 		console.log("ajax call for image complete");
+ 	});
+ });
+
+*/
+}
+=======
  /**
   * function that control what nation is selected and create all the collapse
   * of that nation
@@ -315,6 +435,7 @@ function getSelectedValue(allDetectionData)
 			break;
  		}
  }
+>>>>>>> 9ef867f1074d0b5520690a9e2b7db650f69cf41a
 /*****************************************************************/
                          /*MAIN*/
 /*****************************************************************/
