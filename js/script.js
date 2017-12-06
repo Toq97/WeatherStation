@@ -1,9 +1,14 @@
 "use strict";
 /**
- * @Author: stefanotortone
+ * @Author: Chiarva Pietro
  * @Date:   2017-12-03T11:46:15+01:00
+<<<<<<< HEAD
  * @Last modified by:   stefanotortone
  * @Last modified time: 2017-12-06T17:48:38+01:00
+=======
+ * @Last modified by:   bho
+ * @Last modified time: 2017-12-06T17:32:14+01:00
+>>>>>>> 8667e1cdad05297e3eb8fb6a19da4d2f6d66e70a
  */
 
 var manager = {
@@ -16,6 +21,7 @@ var manager = {
 }
 
 
+<<<<<<< HEAD
 var allData = [];
 /**
  * [getApiData get all json weather Data from API]
@@ -23,13 +29,18 @@ var allData = [];
  */
 var collapsibleOpenedIndex = [];
 
+=======
+>>>>>>> 8667e1cdad05297e3eb8fb6a19da4d2f6d66e70a
 
 var countimage = 0;
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 8667e1cdad05297e3eb8fb6a19da4d2f6d66e70a
 function getApiData() {
 $.ajax({
 	url: 'https://www.torinometeo.org/api/v1/realtime/data/',
@@ -39,8 +50,8 @@ $.ajax({
   .done(function(allDetectionData) {
 	console.log("success");
 	console.log(allDetectionData);
-
 	loadDataOnDOM(allDetectionData);
+<<<<<<< HEAD
 
 
 	$("#container").empty();
@@ -57,6 +68,14 @@ $.ajax({
     console.log(collapsibleOpenedIndex);
 		getSelectedValue(allDetectionData);
 
+=======
+	$("#container").empty();
+	createAllCollapsiblePanel(allDetectionData);
+	assignCollapsibleClick(allDetectionData);
+  addEventListenerToCollapse();
+  console.log(collapsibleOpenedIndex);
+	getSelectedValue(allDetectionData);
+>>>>>>> 8667e1cdad05297e3eb8fb6a19da4d2f6d66e70a
 })
 .fail(function(error) {
 	console.log(error);
@@ -146,7 +165,10 @@ singleobject.station.id =
 
 		for (var item in manager.collapsibleOpenedIndex) {
 			if (manager.collapsibleOpenedIndex[item] == i) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8667e1cdad05297e3eb8fb6a19da4d2f6d66e70a
 				acc[i].onclick();
 			}
 		}
@@ -439,6 +461,7 @@ getApiData();
  * Search filter
  * @return {[type]} [description]
  */
+/*
 $(document).ready(function(){
    $("#input-station-name").on("keyup", function() {
      var value = $(this).val().toLowerCase();
@@ -446,4 +469,4 @@ $(document).ready(function(){
        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
      });
    });
- });
+ });*/
