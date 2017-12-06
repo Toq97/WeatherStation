@@ -61,5 +61,5 @@ All notable changes to this project will be documented in this file.
 - createLinkforMaps: Tortone 4/12/2017
 
 ### Changed
--getApiData: aggiunto il refresh del dom ogni 30 secondi( da perferzionare).
+
 ### Removed
