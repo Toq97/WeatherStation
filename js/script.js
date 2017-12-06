@@ -13,7 +13,7 @@ var allData = [];
  * @return {[type]} [description]
  */
 var collapsibleOpenedIndex = [];
-
+//palle
 function getApiData() {
 $.ajax({
 	url: 'https://www.torinometeo.org/api/v1/realtime/data/',
