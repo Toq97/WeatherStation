@@ -1,8 +1,8 @@
 "use strict";
 /**
- * @Author: stefanotortone
+ * @Author: Chiarva Pietro
  * @Date:   2017-12-03T11:46:15+01:00
- * @Last modified by:   stefanotortone
+ * @Last modified by:   bho
  * @Last modified time: 2017-12-06T17:32:14+01:00
  */
 
@@ -15,12 +15,6 @@ var manager = {
 	collapsibleOpenedIndex : []
 }
 
-var allData = [];
-/**
- * [getApiData get all json weather Data from API]
- * @return {[type]} [description]
- */
-var collapsibleOpenedIndex = [];
 
 
 var countimage = 0;
@@ -36,34 +30,13 @@ $.ajax({
   .done(function(allDetectionData) {
 	console.log("success");
 	console.log(allDetectionData);
-<<<<<<< HEAD
 	loadDataOnDOM(allDetectionData);
-=======
-
-	loadDataOnDOM(allDetectionData);
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> f9909de1a5f37c6d2894ad8e4f09fa8485c925a4
 	$("#container").empty();
 	createAllCollapsiblePanel(allDetectionData);
 	assignCollapsibleClick(allDetectionData);
   addEventListenerToCollapse();
   console.log(collapsibleOpenedIndex);
 	getSelectedValue(allDetectionData);
-
-<<<<<<< HEAD
-=======
-
-=======
-	assignCollapsibleClick();
-    addEventListenerToCollapse();
-    console.log(collapsibleOpenedIndex);
-		getSelectedValue(allDetectionData);
->>>>>>> 9ef867f1074d0b5520690a9e2b7db650f69cf41a
->>>>>>> ea8f7153d26e9fbc79ea594fd2e0202ad8daa78c
->>>>>>> f9909de1a5f37c6d2894ad8e4f09fa8485c925a4
 })
 .fail(function(error) {
 	console.log(error);
