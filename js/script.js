@@ -24,18 +24,9 @@ $.ajax({
 .done(function(allDetectionData) {
 	console.log("success");
 	console.log(allDetectionData);
-<<<<<<< HEAD
 
 	loadDataOnDOM(allDetectionData);
 
-=======
-	$("#container").empty();
-	createAllCollapsiblePanel(allDetectionData);
-	assignCollapsibleClick();
-    addEventListenerToCollapse();
-    console.log(collapsibleOpenedIndex);
-		getSelectedValue(allDetectionData);
->>>>>>> 9ef867f1074d0b5520690a9e2b7db650f69cf41a
 })
 .fail(function(error) {
 	console.log(error);
