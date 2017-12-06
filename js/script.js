@@ -1,10 +1,23 @@
 "use strict";
-
-/**
- * [getApiData get all json weather Data from API]
- * @return {[type]} [description]
  */
-var collapsibleOpenedIndex = [];
+
+var manager = {
+	allData : [],
+	/**
+	 * [getApiData get all json weather Data from API]
+	 * @return {[type]} [description]
+	 */
+	collapsibleOpenedIndex : []
+}
+
+
+
+
+var countimage = 0;
+
+
+
+
 
 function getApiData() {
 $.ajax({
@@ -12,45 +25,52 @@ $.ajax({
 	type: 'GET',
 	dataType: 'JSON',
 })
-.done(function(allDetectionData) {
+  .done(function(allDetectionData) {
 	console.log("success");
-	console.log(allDetectionData);
-	$("#container").empty();
-	createAllCollapsiblePanel(allDetectionData);
-	assignCollapsibleClick();
-    addEventListenerToCollapse();
-    console.log(collapsibleOpenedIndex);
-
-
+	loadDataOnDOM(allDetectionData);
 })
 .fail(function(error) {
 	console.log(error);
 	console.log(error.status);
 	console.log(error.statusText);
 	//display the error data into page
+	getDataFromJSONBlob();
 })
 .always(function() {
 	console.log("ajax call complete");
+	console.log(manager.allData);
 });
 	/**
 	 * [timer call the setTimeout for looping the GetApiData() function every 30 seconds]
 	 * @type {[type]}
 	 */
-	 var timeOut = setTimeout(getApiData, 10000);
+	 var timeOut = setTimeout(getApiData, 30000);
+}
+
+/**
+* Load the json data on the page
+* @param {Object} data - the data to be shown
+*/
+function loadDataOnDOM(data) {
+	manager.allData = data;
+	$("#container").empty();
+	createAllCollapsiblePanel(data);
+	assignCollapsibleClick(data);
+    addEventListenerToCollapse();
+    getSelectedValue(data);
 }
 
 /**
  * [function that control the collapsible panel]
  * @return {[type]} [description]
  */
-function assignCollapsibleClick(){
+function assignCollapsibleClick(allDetectionData){
     /**
      * [contain all the divs that contain a collapsible panel]
      * @type {[type]}
      */
 	var acc = document.getElementsByClassName("panelHeader");
 	for (var i = 0; i < acc.length; i++) {
-	//	console.log(acc);
 		acc[i].onclick = function() {
 	    	this.classList.toggle("active");
 	    	var panel = this.nextElementSibling;
@@ -59,9 +79,20 @@ function assignCollapsibleClick(){
 	        } else {
 	        	panel.style.maxHeight = panel.scrollHeight + "px";
 	        }
+
+			if(countimage == 0){
+				updateImageApi(allDetectionData);
+				countimage = 1;
+			} else {
+				countimage = 0;
+			}
      	}
+
 		for (var item in collapsibleOpenedIndex) {
 			if (collapsibleOpenedIndex[item] == i) {
+
+		for (var item in manager.collapsibleOpenedIndex) {
+			if (manager.collapsibleOpenedIndex[item] == i) {
 				acc[i].onclick();
 			}
 		}
@@ -75,22 +106,22 @@ function addEventListenerToCollapse() {
 
 	$('.collapse').click(function (e){
 	var flag = null;
-	for (var item in collapsibleOpenedIndex) {
-		if (collapsibleOpenedIndex.hasOwnProperty(item)) {
-			if(collapsibleOpenedIndex[item] == $(this).index('.collapse'))
+	for (var item in manager.collapsibleOpenedIndex) {
+		if (manager.collapsibleOpenedIndex.hasOwnProperty(item)) {
+			if(manager.collapsibleOpenedIndex[item] == $(this).index('.collapse'))
 			{
-				flag = collapsibleOpenedIndex[item];
+				flag = manager.collapsibleOpenedIndex[item];
 
 			}
 	    }
     }
 
 	if (flag == null){
-		collapsibleOpenedIndex[$(this).index('.collapse')] = ($(this).index('.collapse'));
+		manager.collapsibleOpenedIndex[$(this).index('.collapse')] = ($(this).index('.collapse'));
 	} else {
-		collapsibleOpenedIndex[$(this).index('.collapse')] = null;
+		manager.collapsibleOpenedIndex[$(this).index('.collapse')] = null;
 	}
- console.log(collapsibleOpenedIndex);
+ console.log(manager.collapsibleOpenedIndex);
 });
 
 }
@@ -125,7 +156,9 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
      * div that contain the header and the body
      * @type {[type]}
      */
-	var collapse = $('<div></div>').addClass('collapse');
+	var collapse = $('<div></div>').addClass('collapse').attr('id', '#'+detectedDataForSinglelocation.station.slug);
+	//aggiungo l'id al pannello per poterlo identificare in seguito
+	//collapse = $('#'+detectedDataForSinglelocation.id);
 
 	/**
 	 * [contain the header of the location]
@@ -155,6 +188,7 @@ function createPanelHeader(detectedDataForSinglelocation){
 		createTemperatureBox(detectedDataForSinglelocation.temperature,
 							detectedDataForSinglelocation.weather_icon.icon));*/
 
+   divPanelHeader.attr("id",'#'+detectedDataForSinglelocation.station.id+"updateimageheader");
 
     return divPanelHeader;
 
@@ -181,9 +215,8 @@ function createTemperatureBox(temperature,urlIcon) {
 function createPanelBody(detectedDataForSinglelocation){
 	var divPanelCollapsibleBody = $('<div></div>').addClass("panelCollapsibleBody");
 
-  //title with the name of the place
-	var collapsibleBodytitle = $('<h3></h3>');
- 	collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
+  //test
+  divPanelCollapsibleBody.html("test");
 
   //image of the place
  /* var collapsibleBodyImage = $('<img></img>');
@@ -197,7 +230,9 @@ function createPanelBody(detectedDataForSinglelocation){
 	collapsibleBodyMapsLink.append(collapsibleBodyImage);*/
 
     divPanelCollapsibleBody.append(collapsibleBodytitle);
-//	divPanelCollapsibleBody.append(collapsibleBodyMapsLink);
+   //	divPanelCollapsibleBody.append(collapsibleBodyMapsLink);
+   //	//aggiungo l'id al body, con l'id della station
+   divPanelCollapsibleBody.attr("id",detectedDataForSinglelocation.station.id+"updateimage");
 	return divPanelCollapsibleBody;
 }
 /**
@@ -221,13 +256,11 @@ function getFlagNation(detectedDataForSinglelocation){
 			return defaultImage;
 	}
 }
-
 /**
- * function that create the url of google maps
- * @param  {[type]} nameofLocation
- * @return {[type]}                [description]
+ * [function that create the url of google maps]
+ * @param  {[String]} nameofLocation [name of location]
+ * @return {[String]}[url for google maps]
  */
-
 var createLinkforMaps = function(nameofLocation){
 
     var finalResult = "";
@@ -241,9 +274,134 @@ var createLinkforMaps = function(nameofLocation){
     //the link of the maps
     return finalResult;
  }
+/**
+ * function that take the selected nation
+ * @param  {[type]} allDetectionData [description]
+ * @return {[type]}                  [description]
+ */
+function getSelectedValue(allDetectionData)
+{
+	$(document).ready(function(){
+		 $("#select-country").on("change", function() {
+			 $("#container").empty();
+			 var value = $(this).val();
+			 for (var i in allDetectionData) {
+			 	if (allDetectionData.hasOwnProperty(i)) {
+					if(value == allDetectionData[i].station.nation.name || value == "")
+					{
+						//console.log(value);
+						getSelectNation(allDetectionData[i]);
+					}
+			 	}
+			 }
 
+		 });
+	 });
+}
+
+
+
+
+
+
+ function updateImageApi(allDetectionData){
+
+/*
+ $('.collapse').click(function(event){
+ 	//prendere l'id del panel, cioè quello della stazione
+   var falseid = $(this).attr('id');
+   var id = falseid.replace("#","");
+ 	console.log(id);
+
+ 	$.ajax({
+ 		//chiamata con l'id
+ 		url: "https://www.torinometeo.org/api/v1/realtime/data/"+id+"/",
+ 		type: 'GET',
+ 		dataType: 'JSON',
+ 	})
+ 	  .done(function(detectedDataForSinglelocation) {
+*/
+
+       //var takepanel = document.getElementById(id);
+ 			//var divPanelCollapsibleBody = $(".panelCollapsibleBody");
+
+ 		  //title with the name of the place
+ 		  var collapsibleBodytitle = $('<h3></h3>');
+ 		  collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
+
+ 		  //image of the place
+ 		  var collapsibleBodyImage = $('<img></img>');
+ 		  collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
+ 		  collapsibleBodyImage.addClass("collapsibleImageStyle");
+
+
+ 		  //link to maps
+ 		  var collapsibleBodyMapsLink = $('<a></a>');
+ 		  collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
+ 		  collapsibleBodyMapsLink.append(collapsibleBodyImage);
+
+ 		  $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodytitle);
+ 		  $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
+
+
+/*
+ 	})
+ 	.fail(function(error) {
+ 		console.log(error);
+ 		console.log(error.status);
+ 		console.log(error.statusText);
+ 		//display the error data into page
+ 	})
+ 	.always(function() {
+ 		console.log("ajax call for image complete");
+ 	});
+ });
+
+*/
+}
+
+ /**
+  * function that control what nation is selected and create all the collapse
+  * of that nation
+  * @param  {[type]} detectedDataForSinglelocation [description]
+  * @return {[type]}                               [description]
+  */
+ function getSelectNation(detectedDataForSinglelocation){
+ 	switch(detectedDataForSinglelocation.station.nation.name){
+ 		case "Italia":
+ 		  createCollapsiblePanel(detectedDataForSinglelocation);
+ 			assignCollapsibleClick();
+			break;
+ 		case "Francia":
+ 			createCollapsiblePanel(detectedDataForSinglelocation);
+ 			assignCollapsibleClick();
+			break;
+ 		case "Svizzera":
+ 			createCollapsiblePanel(detectedDataForSinglelocation);
+ 			assignCollapsibleClick();
+			break;
+ 		case "undefined":
+ 			createAllCollapsiblePanel();
+ 			assignCollapsibleClick();
+			break;
+ 		}
+ }
 
 /*****************************************************************/
 /*                              MAIN                             */
 /*****************************************************************/
 getApiData();
+
+/**
+ * Search filter
+ * @return {[type]} [description]
+ */
+/*
+$(document).ready(function(){
+   $("#input-station-name").on("keyup", function() {
+     var value = $(this).val().toLowerCase();
+     $("#container *").filter(function() {
+       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+     });
+   });
+ });*/

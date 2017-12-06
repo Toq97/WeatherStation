@@ -40,6 +40,15 @@ descrizione mangaer
         - createPanelBody: Toqir
         - getFlagNation: Toqir
 
+        - createLinkforMaps: Tortone
+
+        - loadDataOnDOM: Gianluca/Toqir
+        - getDataFromJSONBlob: Gianluca
+        - uploadJSONBlob: Gianluca
+        - getSelectNation: Pietro
+        - getSelectedValue: Pietro
+        - createLinkforMaps: Tortone
+
 
 
 
@@ -58,7 +67,8 @@ All notable changes to this project will be documented in this file.
 - createPanelHeader: Toqir 2/12/2018
 - createPanelBody: Toqir 2/12/2018
 - getFlagNation: Toqir 2/12/2018
+- createLinkforMaps: Tortone 4/12/2017
 
 ### Changed
--getApiData: aggiunto il refresh del dom ogni 30 secondi( da perferzionare).
+
 ### Removed
