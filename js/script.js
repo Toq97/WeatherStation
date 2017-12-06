@@ -3,7 +3,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-03T11:46:15+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-06T17:48:11+01:00
+ * @Last modified time: 2017-12-06T17:48:38+01:00
  */
 
 var manager = {
