@@ -109,16 +109,17 @@ div.panelCollapsibleBody {
     float: right;
     border-radius: 10px;
     border: solid 2px #fff;
-    width: 50px;
-    height: 40px;
+    width: 150px;
+    height: 60px;
     color: #fff;
-    text-align: center;
-    padding-top: 10px;
+    padding: 20px;
     font-weight: 600;
+    font-size: 20px;
 }
 
 .weather-icon {
 	position: relative;
+  float: right;
 	top: -10px;
 	-webkit-filter: drop-shadow(1px 1px 0 white)
 					drop-shadow(-1px 1px 0 white)
