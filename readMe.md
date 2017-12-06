@@ -39,14 +39,16 @@ descrizione mangaer
         - createPanelHeader: Toqir
         - createPanelBody: Toqir
         - getFlagNation: Toqir
-<<<<<<< HEAD
+
         - createLinkforMaps: Tortone
-=======
+
         - loadDataOnDOM: Gianluca/Toqir
         - getDataFromJSONBlob: Gianluca
         - uploadJSONBlob: Gianluca
+        - getSelectNation: Pietro
+        - getSelectedValue: Pietro
+        - createLinkforMaps: Tortone
 
->>>>>>> f78d93059e91992252d3d6e5444b6f2511a63c7d
 
 
 

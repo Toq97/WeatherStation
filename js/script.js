@@ -1,38 +1,44 @@
 //"use strict";
+<<<<<<< HEAD
 /**
  * @Author: stefanotortone
  * @Date:   2017-12-03T11:46:15+01:00
  * @Last modified by:   stefanotortone
  * @Last modified time: 2017-12-06T17:32:14+01:00
  */
+=======
+>>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 
 var manager = {
 	allData : [],
-	/**
-	 * [getApiData get all json weather Data from API]
-	 * @return {[type]} [description]
-	 */
 	collapsibleOpenedIndex : []
 }
 
+<<<<<<< HEAD
 var allData = [];
+=======
+var countimage = 0;
+>>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 /**
- * [getApiData get all json weather Data from API]
- * @return {[type]} [description]
+ * [function that get the Json Data]
  */
+<<<<<<< HEAD
 var collapsibleOpenedIndex = [];
 
 
 var countimage = 0;
 
+=======
+>>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 function getApiData() {
 $.ajax({
 	url: 'https://www.torinometeo.org/api/v1/realtime/data/',
 	type: 'GET',
 	dataType: 'JSON',
 })
-  .done(function(allDetectionData) {
+.done(function(allDetectionData) {
 	console.log("success");
+<<<<<<< HEAD
 	console.log(allDetectionData);
 
 	loadDataOnDOM(allDetectionData);
@@ -52,6 +58,9 @@ $.ajax({
     console.log(collapsibleOpenedIndex);
 		getSelectedValue(allDetectionData);
 
+=======
+    loadDataOnDOM(allDetectionData);
+>>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 })
 .fail(function(error) {
 	console.log(error);
@@ -77,12 +86,11 @@ $.ajax({
 */
 function loadDataOnDOM(data) {
 	manager.allData = data;
-	console.log(manager.allData);
 	$("#container").empty();
 	createAllCollapsiblePanel(data);
-	assignCollapsibleClick();
-  addEventListenerToCollapse();
-  console.log(manager.collapsibleOpenedIndex);
+	assignCollapsibleClick(data);
+    addEventListenerToCollapse();
+    getSelectedValue(data);
 }
 
 /**
@@ -96,33 +104,15 @@ function assignCollapsibleClick(allDetectionData){
      */
 	var acc = document.getElementsByClassName("panelHeader");
 	for (var i = 0; i < acc.length; i++) {
-	//	console.log(acc);
-	console.log($(acc[i]).attr('id'));
-
-/*
-allDetectionData.forEach(function(singleobject){
-
-singleobject.station.id =
-
-
-
-});
-
-*/
-
-
-
-
 		acc[i].onclick = function() {
-
 	    	this.classList.toggle("active");
 	    	var panel = this.nextElementSibling;
 	    	if (panel.style.maxHeight){
 	        	panel.style.maxHeight = null;
 	        } else {
 	        	panel.style.maxHeight = panel.scrollHeight + "px";
-
 	        }
+<<<<<<< HEAD
 
 
 					if(countimage == 0){
@@ -136,11 +126,37 @@ singleobject.station.id =
 		for (var item in manager.collapsibleOpenedIndex) {
 			if (manager.collapsibleOpenedIndex[item] == i) {
 				acc[i].onclick();
-			}
-		}
-	}
-}
+=======
+	/*
+           ste questa cosa mettila in funzione,
+		   solo che count image non ti va come variabile singola,
+		   ti serve un array che si salvi una cosa del genere per ogni pannello.
+          puoi usare la logica di 'createAllCollapsiblePanel' per richiamare
+		  updateImageAPi(che poi non si chiama piu cosi perche fa altre cose,chiamala in un altro modo in modo che ti renda le sue funzioni )
 
+			if(countimage == 0){
+				updateImageApi(allDetectionData[i]);
+				countimage = 1;
+			} else {
+				countimage = 0;
+>>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
+			}
+	*/
+       callOnClickEventOnCollapse(acc,i);
+     	}
+	}
+
+}
+/**
+ * [fucntion that call the onclick event if the collapse in the previus refresh was opened]
+ */
+function callOnClickEventOnCollapse(acc,i){
+	for (var item in manager.collapsibleOpenedIndex) {
+		if (manager.collapsibleOpenedIndex[item] == i) {
+			acc[i].onclick();
+	    }
+    }
+}
 /**
  * [addEventListenerToCollapse function that retrive index of clicked collapse]
  */
@@ -153,17 +169,15 @@ function addEventListenerToCollapse() {
 			if(manager.collapsibleOpenedIndex[item] == $(this).index('.collapse'))
 			{
 				flag = manager.collapsibleOpenedIndex[item];
-
 			}
 	    }
     }
-
 	if (flag == null){
 		manager.collapsibleOpenedIndex[$(this).index('.collapse')] = ($(this).index('.collapse'));
 	} else {
 		manager.collapsibleOpenedIndex[$(this).index('.collapse')] = null;
 	}
- console.log(manager.collapsibleOpenedIndex);
+    console.log(manager.collapsibleOpenedIndex);
 });
 
 }
@@ -201,7 +215,6 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
 	var collapse = $('<div></div>').addClass('collapse').attr('id', '#'+detectedDataForSinglelocation.station.slug);
 	//aggiungo l'id al pannello per poterlo identificare in seguito
 	//collapse = $('#'+detectedDataForSinglelocation.id);
-
 	/**
 	 * [contain the header of the location]
 	 * @type {[type]}
@@ -244,6 +257,7 @@ function createPanelHeader(detectedDataForSinglelocation){
  * create the colored box showing the temperature
  */
 function createTemperatureBox(temperature,urlIcon) {
+<<<<<<< HEAD
 	var $weatherIcon = $('<img>').addClass('weather-icon');
 	if(urlIcon) {
 		$weatherIcon.attr('src', urlIcon);
@@ -251,6 +265,10 @@ function createTemperatureBox(temperature,urlIcon) {
 		$weatherIcon.attr('src', 'img/provv.png');
 		console.log($weatherIcon)
 	}
+=======
+	var $weatherIcon = $('<img>').attr('src', urlIcon)
+								 .addClass('weather-icon');
+>>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 	return $('<div>').addClass('temperature-box')
 									.html(temperature + '°')
 									.css({'background-color': (
@@ -266,15 +284,10 @@ function createTemperatureBox(temperature,urlIcon) {
  */
 function createPanelBody(detectedDataForSinglelocation){
 	var divPanelCollapsibleBody = $('<div></div>').addClass("panelCollapsibleBody");
-
-  //test
-  divPanelCollapsibleBody.html("test");
-
-	//aggiungo l'id al body, con l'id della station
-	divPanelCollapsibleBody.attr("id",detectedDataForSinglelocation.station.id+"updateimage");
-
-
-	return divPanelCollapsibleBody;
+   //test
+   divPanelCollapsibleBody.html("test");
+   divPanelCollapsibleBody.attr("id",detectedDataForSinglelocation.station.id+"updateimage");
+   return divPanelCollapsibleBody;
 }
 /**
  * [give the flag icon for the respetive state of the location]
@@ -340,7 +353,9 @@ function getSelectedValue(allDetectionData)
 	 });
 }
 
+ function updateImageApi(detectedDataForSinglelocation){
 
+<<<<<<< HEAD
 
 
 
@@ -364,6 +379,9 @@ function getSelectedValue(allDetectionData)
 
        //var takepanel = document.getElementById(id);
  			//var divPanelCollapsibleBody = $(".panelCollapsibleBody");
+=======
+ 	      var divPanelCollapsibleBody = $(".panelCollapsibleBody");
+>>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 
  		  //title with the name of the place
  		  var collapsibleBodytitle = $('<h3></h3>');
@@ -374,7 +392,6 @@ function getSelectedValue(allDetectionData)
  		  collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
  		  collapsibleBodyImage.addClass("collapsibleImageStyle");
 
-
  		  //link to maps
  		  var collapsibleBodyMapsLink = $('<a></a>');
  		  collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
@@ -384,6 +401,23 @@ function getSelectedValue(allDetectionData)
  		  $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
 
 
+
+//commento che serve piu tardi spero non dia fastidio a nessuno
+		  /*
+		   $('.collapse').click(function(event){
+		   	//prendere l'id del panel, cioè quello della stazione
+		     var falseid = $(this).attr('id');
+		     var id = falseid.replace("#","");
+		   	console.log(id);
+
+		   	$.ajax({
+		   		//chiamata con l'id
+		   		url: "https://www.torinometeo.org/api/v1/realtime/data/"+id+"/",
+		   		type: 'GET',
+		   		dataType: 'JSON',
+		   	})
+		   	  .done(function(detectedDataForSinglelocation) {
+		  */
 /*
  	})
  	.fail(function(error) {
@@ -400,6 +434,7 @@ function getSelectedValue(allDetectionData)
 */
 }
 
+<<<<<<< HEAD
 /**
  * function that control what nation is selected and create all the collapse
  * of that nation
@@ -426,8 +461,37 @@ function getSelectNation(detectedDataForSinglelocation){
 		 break;
 	 }
 }
+=======
+ /**
+  * function that control what nation is selected and create all the collapse
+  * of that nation
+  * @param  {[type]} detectedDataForSinglelocation [description]
+  * @return {[type]}                               [description]
+  */
+ function getSelectNation(detectedDataForSinglelocation){
+ 	switch(detectedDataForSinglelocation.station.nation.name){
+ 		case "Italia":
+ 			createCollapsiblePanel(detectedDataForSinglelocation);
+ 			assignCollapsibleClick();
+			break;
+ 		case "Francia":
+ 			createCollapsiblePanel(detectedDataForSinglelocation);
+ 			assignCollapsibleClick();
+			break;
+ 		case "Svizzera":
+ 			createCollapsiblePanel(detectedDataForSinglelocation);
+ 			assignCollapsibleClick();
+			break;
+ 		case "undefined":
+ 			createAllCollapsiblePanel();
+ 			assignCollapsibleClick();
+			break;
+ 		}
+ }
+
+>>>>>>> 170e4d4a0a8a0762081f87c6a7d699f7510ae081
 /*****************************************************************/
-                         /*MAIN*/
+/*                              MAIN                             */
 /*****************************************************************/
 getApiData();
 
@@ -435,11 +499,13 @@ getApiData();
  * Search filter
  * @return {[type]} [description]
  */
-$(document).ready(function(){
+
+
+/*$(document).ready(function(){
    $("#input-station-name").on("keyup", function() {
      var value = $(this).val().toLowerCase();
      $("#container *").filter(function() {
        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
      });
    });
- });
+});*/
