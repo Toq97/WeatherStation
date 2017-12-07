@@ -10,8 +10,9 @@ function getDataFromJSONBlob() {
         url: 'https://jsonblob.com/api/jsonBlob/0d2e6422-da8c-11e7-b7f1-f7bfe312a22e',
         dataType: 'json',
         success: function(response) {
-          console.log("success");
+          console.log("success from jBlob");
         	console.log(response);
+          $('.jsonblob-date').html(response[0].datetime);
           //load the data on the page
           loadDataOnDOM(response);
         },
@@ -54,6 +55,13 @@ function keepJsonBlobUpdated() {
 
   },2000);
 
+}
+
+function alertTorinoMeteoError() {
+  $('.error-panel').show();
+  $('#close-error-panel-btn').click(function() {
+    $('.error-panel').hide();
+  })
 }
 
 keepJsonBlobUpdated();
