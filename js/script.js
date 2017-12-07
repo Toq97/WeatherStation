@@ -1,11 +1,19 @@
+/**
+ * @Author: stefanotortone
+ * @Date:   2017-12-07T11:10:26+01:00
+ * @Last modified by:   stefanotortone
+ * @Last modified time: 2017-12-08T00:16:37+01:00
+ */
+
+
+
 //"use strict";
 
 var manager = {
 	allData : [],
-	collapsibleOpenedIndex : []
+	collapsibleOpenedIndex : [],
+  collapsebody: []
 }
-
-var countimage = 0;
 /**
  * [function that get the Json Data]
  */
@@ -45,6 +53,7 @@ function loadDataOnDOM(data) {
 	manager.allData = data;
 	$("#container").empty();
 	createAllCollapsiblePanel(data);
+	utilitiesformanageimage();
 	assignCollapsibleClick(data);
     addEventListenerToCollapse();
     getSelectedValue(data);
@@ -54,13 +63,15 @@ function loadDataOnDOM(data) {
  * [function that control the collapsible panel]
  * @return {[type]} [description]
  */
-function assignCollapsibleClick(allDetectionData){
+function assignCollapsibleClick(singleData){
     /**
      * [contain all the divs that contain a collapsible panel]
      * @type {[type]}
      */
 	var acc = document.getElementsByClassName("panelHeader");
+
 	for (var i = 0; i < acc.length; i++) {
+
 		acc[i].onclick = function() {
 	    	this.classList.toggle("active");
 	    	var panel = this.nextElementSibling;
@@ -69,6 +80,8 @@ function assignCollapsibleClick(allDetectionData){
 	        } else {
 	        	panel.style.maxHeight = panel.scrollHeight + "px";
 	        }
+          var id = $(this).attr('id');
+					managerpanelbodyimage(id);
 	/*
            ste questa cosa mettila in funzione,
 		   solo che count image non ti va come variabile singola,
@@ -76,13 +89,8 @@ function assignCollapsibleClick(allDetectionData){
           puoi usare la logica di 'createAllCollapsiblePanel' per richiamare
 		  updateImageAPi(che poi non si chiama piu cosi perche fa altre cose,chiamala in un altro modo in modo che ti renda le sue funzioni )
 
-			if(countimage == 0){
-				updateImageApi(allDetectionData[i]);
-				countimage = 1;
-			} else {
-				countimage = 0;
-			}
 	*/
+
        callOnClickEventOnCollapse(acc,i);
      	}
 	}
@@ -190,7 +198,7 @@ function createPanelHeader(detectedDataForSinglelocation){
 			createTemperatureBox(detectedDataForSinglelocation.temperature));
 	}
 
-   divPanelHeader.attr("id",'#'+detectedDataForSinglelocation.station.id+"updateimageheader");
+   divPanelHeader.attr("id",detectedDataForSinglelocation.station.slug);
 
     return divPanelHeader;
 
@@ -249,24 +257,7 @@ function getFlagNation(detectedDataForSinglelocation){
 			return defaultImage;
 	}
 }
-/**
- * [function that create the url of google maps]
- * @param  {[String]} nameofLocation [name of location]
- * @return {[String]}[url for google maps]
- */
-var createLinkforMaps = function(nameofLocation){
 
-    var finalResult = "";
-    var mapsBaseLink = "https://www.google.it/maps/place/";
-
-    var changename = nameofLocation.replace(" ","+");
-    changename = changename.replace(" ","+");
-
-    finalResult=mapsBaseLink+changename;
-
-    //the link of the maps
-    return finalResult;
- }
 /**
  * function that take the selected nation
  * @param  {[type]} allDetectionData [description]
@@ -292,60 +283,7 @@ function getSelectedValue(allDetectionData)
 	 });
 }
 
- function updateImageApi(detectedDataForSinglelocation){
 
- 	      var divPanelCollapsibleBody = $(".panelCollapsibleBody");
-
- 		  //title with the name of the place
- 		  var collapsibleBodytitle = $('<h3></h3>');
- 		  collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
-
- 		  //image of the place
- 		  var collapsibleBodyImage = $('<img></img>');
- 		  collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
- 		  collapsibleBodyImage.addClass("collapsibleImageStyle");
-
- 		  //link to maps
- 		  var collapsibleBodyMapsLink = $('<a></a>');
- 		  collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
- 		  collapsibleBodyMapsLink.append(collapsibleBodyImage);
-
- 		  $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodytitle);
- 		  $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
-
-
-
-//commento che serve piu tardi spero non dia fastidio a nessuno
-		  /*
-		   $('.collapse').click(function(event){
-		   	//prendere l'id del panel, cioè quello della stazione
-		     var falseid = $(this).attr('id');
-		     var id = falseid.replace("#","");
-		   	console.log(id);
-
-		   	$.ajax({
-		   		//chiamata con l'id
-		   		url: "https://www.torinometeo.org/api/v1/realtime/data/"+id+"/",
-		   		type: 'GET',
-		   		dataType: 'JSON',
-		   	})
-		   	  .done(function(detectedDataForSinglelocation) {
-		  */
-/*
- 	})
- 	.fail(function(error) {
- 		console.log(error);
- 		console.log(error.status);
- 		console.log(error.statusText);
- 		//display the error data into page
- 	})
- 	.always(function() {
- 		console.log("ajax call for image complete");
- 	});
- });
-
-*/
-}
 
  /**
   * function that control what nation is selected and create all the collapse

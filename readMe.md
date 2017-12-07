@@ -40,7 +40,7 @@ descrizione mangaer
         - createPanelBody: Toqir
         - getFlagNation: Toqir
 
-        - createLinkforMaps: Tortone
+
 
         - loadDataOnDOM: Gianluca/Toqir
         - getDataFromJSONBlob: Gianluca
@@ -48,6 +48,9 @@ descrizione mangaer
         - getSelectNation: Pietro
         - getSelectedValue: Pietro
         - createLinkforMaps: Tortone
+        - updateImageApi: Tortone
+        - managerpanelbodyimage: Tortone
+        - utilitiesformanageimage: Tortone
 
 
 
@@ -68,7 +71,9 @@ All notable changes to this project will be documented in this file.
 - createPanelBody: Toqir 2/12/2018
 - getFlagNation: Toqir 2/12/2018
 - createLinkforMaps: Tortone 4/12/2017
-
+- updateImageApi: Tortone  7/12/2017
+- managerpanelbodyimage: Tortone  7/12/2017
+- utilitiesformanageimage: Tortone  7/12/2017
 ### Changed
 
 ### Removed

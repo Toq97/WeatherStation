@@ -1,3 +1,12 @@
+/**
+ * @Author: stefanotortone
+ * @Date:   2017-12-07T11:10:26+01:00
+ * @Last modified by:   stefanotortone
+ * @Last modified time: 2017-12-08T00:08:55+01:00
+ */
+
+
+
 /* da -5 a 45 gradi
 * centrato in 20
 * 2 -> 45
@@ -41,7 +50,7 @@ var temperatureColorUtilities = {
     temperatureToRGB: function(celsiusT) {
         var red = temperatureColorUtilities.temperatureToDecimalColor(celsiusT);
         var blue = 255 - red;
-    
+
         return '(' + red + ',0,' + blue + ')';
     },
 
@@ -49,7 +58,7 @@ var temperatureColorUtilities = {
     testTemperatures : [-1200, -20, -5, 0, 10, 15, 20, 30, 45, 50, 1500, 2520],
 
     testTemperatureToDecimalColor: function(celsiusT) {
-        console.log('temperature: ' + celsiusT + '; Color decimal number: ' 
+        console.log('temperature: ' + celsiusT + '; Color decimal number: '
             + temperatureColorUtilities.temperatureToDecimalColor(celsiusT) + '.');
     },
 
