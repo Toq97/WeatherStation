@@ -131,3 +131,24 @@ div.panelCollapsibleBody {
 			drop-shadow(1px -1px 0 white)
 			drop-shadow(-1px -1px 0 white);
 }
+
+.error-panel {
+    display: none;
+    position: fixed;
+    padding: 30px;
+    text-align: center;
+    background-color: coral;
+    top: 30px;
+    left: 40px;
+    border: solid 8px #c00;
+    width: 550px;
+    z-index: 5;
+}
+
+.error-panel h2 {
+  margin: 10px;
+}
+
+.error-panel button {
+  margin-top: 20px;
+}

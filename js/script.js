@@ -30,6 +30,7 @@ $.ajax({
 
 })
 .fail(function(error) {
+	alertTorinoMeteoError();
 	console.log(error);
 	console.log(error.status);
 	console.log(error.statusText);
@@ -212,7 +213,7 @@ function createTemperatureBox(temperature,urlIcon) {
 			$weatherIcon.attr('src', urlIcon);
 		} else {
 			$weatherIcon.attr('src', 'img/provv.png');
-			console.log($weatherIcon);
+		//	console.log($weatherIcon);
 		}
 
 		return $('<div>').addClass('temperature-box')
