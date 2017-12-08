@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-03T11:46:15+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-06T17:49:13+01:00
+ * @Last modified time: 2017-12-08T17:42:59+01:00
  */
 
 
@@ -47,8 +47,8 @@ body{
 
 
 #div-station-name{
-	float: left;
-	margin-left: 15px;
+  float: left;
+  margin-left: 15px;
 	margin-right: 20px;
 }
 
@@ -63,9 +63,34 @@ body{
 }
 
 #date{
-	margin-right: 100px;
+	margin-right: 125px;
 	margin-top: -20px;
 	float: right;
+}
+
+#stoprefresh{
+	margin-right: 10px;
+	margin-top: -20px;
+	float: right;
+}
+
+
+#refreshtime{
+
+  float: left;
+  margin-left: 150px;
+  margin-top: -20px;
+
+
+}
+
+#buttonsaverefresh{
+
+  float: left;
+  margin-left: 230px;
+  margin-top: -18px;
+
+
 }
 /* fine css inutile */
 /* inizio css collapsible */
