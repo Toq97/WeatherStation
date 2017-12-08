@@ -5,8 +5,6 @@
  * @Last modified time: 2017-12-08T00:08:55+01:00
  */
 
-
-
 /* da -5 a 45 gradi
 * centrato in 20
 * 2 -> 45
@@ -22,7 +20,7 @@ var temperatureColorUtilities = {
     * 20° must be the central value
     */
     recalibrateXRange: function(celsiusT) {
-        return (celsiusT - 20) * 2/25;
+        return celsiusT !== null ? (celsiusT - 20) * 2/25 : null;
     },
 
     /*
@@ -30,17 +28,18 @@ var temperatureColorUtilities = {
     * the [0; 255] range of the RGB color code
     */
     recalibrateYRange: function(radiants) {
-        return (radiants + (Math.PI/2)) / Math.PI * 255;
+        return radiants ? (radiants + (Math.PI/2)) / Math.PI * 255 : null;
     },
 
     /*
     * Profit the arctg function as a inferiorly and superiorly limited function
     */
     temperatureToDecimalColor: function(celsiusT) {
-        return Math.round(
+        return celsiusT !== null ? Math.round(
                 temperatureColorUtilities.recalibrateYRange(
                     Math.atan(
-                        temperatureColorUtilities.recalibrateXRange(celsiusT))));
+                        temperatureColorUtilities.recalibrateXRange(celsiusT))))
+                : null;
     },
 
     /*
@@ -55,7 +54,7 @@ var temperatureColorUtilities = {
     },
 
     /** test */
-    testTemperatures : [-1200, -20, -5, 0, 10, 15, 20, 30, 45, 50, 1500, 2520],
+    testTemperatures : [-1200, -20, -5, 0, 10, 15, 20, 30, 45, 50, 1500, 2520, null],
 
     testTemperatureToDecimalColor: function(celsiusT) {
         console.log('temperature: ' + celsiusT + '; Color decimal number: '
@@ -71,7 +70,7 @@ var temperatureColorUtilities = {
         $div.css({ 'background-color': ('rgb' + temperatureColorUtilities.temperatureToRGB(celsiusT)),
                 'width' : '100px',
                 'height' : '40px'
-        }).html(celsiusT);
+        }).html(celsiusT ? celsiusT : 'no T');
     },
 
     test: function() {

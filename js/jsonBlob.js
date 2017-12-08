@@ -51,7 +51,7 @@ function keepJsonBlobUpdated() {
       uploadJSONBlob(dataString);
       var keepUpdating = setTimeout(keepJsonBlobUpdated, 300000);
       clearInterval(tryToCall);
-  }
+    }
 
   },2000);
 

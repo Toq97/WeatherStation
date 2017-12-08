@@ -22,6 +22,21 @@ $.ajax({
 	url: 'https://www.torinometeo.org/api/v1/realtime/data/',
 	type: 'GET',
 	dataType: 'JSON',
+	progress: function(e) {
+		console.log(e.loaded)
+        //make sure we can compute the length
+        if(e.lengthComputable) {
+            //calculate the percentage loaded
+            var pct = (e.loaded / e.total) * 100;
+
+            //log percentage loaded
+            console.log(pct);
+        }
+        //this usually happens when Content-Length isn't set
+        else {
+            console.warn('Content Length not reported!');
+        }
+    }
 })
 .done(function(allDetectionData) {
 	console.log("success");
@@ -218,7 +233,7 @@ function createTemperatureBox(temperature,urlIcon) {
 		}
 
 		return $('<div>').addClass('temperature-box')
-										.html(temperature + '°')
+										.html(temperature ? temperature + '°' : 'no T')
 										.css({'background-color': (
 											'rgb' + temperatureColorUtilities.temperatureToRGB(temperature)),
 											})
