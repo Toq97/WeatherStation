@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:10:26+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-08T11:25:55+01:00
+ * @Last modified time: 2017-12-08T18:31:44+01:00
  */
 
 
@@ -13,7 +13,8 @@ var manager = {
 	allData : [],
 	collapsibleOpenedIndex : [],
   collapsebody: [],
-	loadimageoption: 0
+	loadimageoption: 0,
+	refreshtime: 30000
 }
 /**
  * [function that get the Json Data]
@@ -27,6 +28,8 @@ $.ajax({
 .done(function(allDetectionData) {
 	console.log("success");
     loadDataOnDOM(allDetectionData);
+		dateutilities();
+		$('#refreshtime').attr('placeholder',manager.refreshtime);
 
 })
 .fail(function(error) {
@@ -45,7 +48,8 @@ $.ajax({
 	 * [timer call the setTimeout for looping the GetApiData() function every 30 seconds]
 	 * @type {[type]}
 	 */
-	 var timeOut = setTimeout(getApiData, 30000);
+	 var timeOut = setTimeout(getApiData, manager.refreshtime);
+
 	 //inserite anche questa se si a
 	 //fare una funzione per il refresh, che serve per le immagini
 

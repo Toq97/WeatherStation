@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:43:44+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-08T11:20:10+01:00
+ * @Last modified time: 2017-12-08T18:31:29+01:00
  */
 
 
@@ -156,3 +156,47 @@ function utilitiesformanageimage(){
 
 //console.log(manager.collapsebody);
 }
+
+
+/**
+ * [function that print in the header the time of last update call]
+ * @return {[type]} [description]
+ */
+function dateutilities(){
+
+
+  var dateupdatetest = new Date();
+
+  var dateupdateprint= "Last Update: "+padNum(dateupdatetest.getDate())+"/"+padNum(dateupdatetest.getMonth())+"/"+dateupdatetest.getFullYear()+ " "+padNum(dateupdatetest.getHours())+":"+padNum(dateupdatetest.getMinutes())+":"+padNum(dateupdatetest.getSeconds());
+
+  $('#updatedate').html(dateupdateprint);
+
+}
+
+
+/**
+ * [function that do the padding of the number]
+ * @param  {[type]} number [description]
+ * @return {[type]}        [description]
+ */
+function padNum(number)
+{
+   if (number<10)
+   {
+     return "0"+number;
+   }else
+   {
+     return number;
+   }
+
+}
+
+
+$('#buttonstoprefresh').click(function (){
+//appena viene aggiornato il refresh si pò fare
+  /*
+  manager.refreshetime = $('#refreshtime').html();
+  $('#refreshtime').attr('placeholder',manager.refreshetime);
+   console.log(manager.refreshetime);
+*/
+})
