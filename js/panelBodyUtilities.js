@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:43:44+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-08T00:20:51+01:00
+ * @Last modified time: 2017-12-08T11:20:10+01:00
  */
 
 
@@ -105,13 +105,23 @@ for (var item in manager.collapsebody){
       {
         if(manager.collapsebody[item].count == 0){
           //libera il corpo del pannelo ogni volta che lo apro, in modo tale che non venga caricato più volte il materiale nel body del pannello
-          $(".panelCollapsibleBody").empty();
-           console.log(manager.collapsebody[item].count);
+
+          for(var items in manager.allData)
+          {
+             if (manager.allData[items].station.slug == id)
+            {
+                   $('#'+manager.allData[items].station.id+'updateimage').empty();
+
+            }
+          }
+          //$(".panelCollapsibleBody").empty();
+          // console.log(manager.collapsebody[item].count);
           updateImageApi(id);
           //manager.collapsebody[item].deleteimage = deleteimagetest;
          //console.log(manager.collapsebody[item].deleteimage);
          manager.collapsebody[item].count  = 1;
        } else {
+         //console.log(manager.collapsebody[item].count);
          manager.collapsebody[item].count  = 0;
          //$(manager.collapsebody[item].deleteimage).empty();
 
@@ -120,6 +130,7 @@ for (var item in manager.collapsebody){
       }
 
 }
+console.log(manager.collapsebody);
 }
 
 

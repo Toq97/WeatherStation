@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:10:26+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-08T00:16:37+01:00
+ * @Last modified time: 2017-12-08T11:25:55+01:00
  */
 
 
@@ -12,7 +12,8 @@
 var manager = {
 	allData : [],
 	collapsibleOpenedIndex : [],
-  collapsebody: []
+  collapsebody: [],
+	loadimageoption: 0
 }
 /**
  * [function that get the Json Data]
@@ -26,6 +27,7 @@ $.ajax({
 .done(function(allDetectionData) {
 	console.log("success");
     loadDataOnDOM(allDetectionData);
+
 })
 .fail(function(error) {
 	console.log(error);
@@ -43,6 +45,9 @@ $.ajax({
 	 * @type {[type]}
 	 */
 	 var timeOut = setTimeout(getApiData, 30000);
+	 //inserite anche questa se si a
+	 //fare una funzione per il refresh, che serve per le immagini
+
 }
 
 /**
@@ -53,7 +58,10 @@ function loadDataOnDOM(data) {
 	manager.allData = data;
 	$("#container").empty();
 	createAllCollapsiblePanel(data);
-	utilitiesformanageimage();
+	if(manager.loadimageoption == 0){
+		utilitiesformanageimage();
+		manager.loadimageoption = 1;
+	}
 	assignCollapsibleClick(data);
     addEventListenerToCollapse();
     getSelectedValue(data);
@@ -82,15 +90,6 @@ function assignCollapsibleClick(singleData){
 	        }
           var id = $(this).attr('id');
 					managerpanelbodyimage(id);
-	/*
-           ste questa cosa mettila in funzione,
-		   solo che count image non ti va come variabile singola,
-		   ti serve un array che si salvi una cosa del genere per ogni pannello.
-          puoi usare la logica di 'createAllCollapsiblePanel' per richiamare
-		  updateImageAPi(che poi non si chiama piu cosi perche fa altre cose,chiamala in un altro modo in modo che ti renda le sue funzioni )
-
-	*/
-
        callOnClickEventOnCollapse(acc,i);
      	}
 	}
