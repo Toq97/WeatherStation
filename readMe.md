@@ -30,7 +30,7 @@ descrizione mangaer
     We have collaborated together working at school and at home using the program : TeamViewer
     we have shared code with a repository online using Git.
 
-    function:
+    functions:
 
         - getApiData: Toqir
         - assignCollapsibleClick: Toqir
@@ -41,10 +41,14 @@ descrizione mangaer
         - getFlagNation: Toqir
 
 
-
-        - loadDataOnDOM: Gianluca/Toqir
+        - temperatureColorUtilities: Gianluca
+        - createTemperatureBox: Gianluca
+        - loadDataOnDOM: Toqir
         - getDataFromJSONBlob: Gianluca
         - uploadJSONBlob: Gianluca
+        - keepJsonBlobUpdated: Gianluca
+        - findSlugFromStation: Gianluca
+        - alertTorinoMeteoError: Gianluca
         - getSelectNation: Pietro
         - getSelectedValue: Pietro
         - createLinkforMaps: Tortone
@@ -52,12 +56,18 @@ descrizione mangaer
         - managerpanelbodyimage: Tortone
         - utilitiesformanageimage: Tortone
 
+    other:
+        - post the jsonBlob backup jsons: Gianluca
+        - style:
+        - animations:
+
 
 
 
 **CHANGELOG:**
 --------------
-
+Gianluca: c'è un po' di codice commentato in getApiData(). Più o meno ho scritto nei commenti a cosa serviva e perchè non l'ho ancora
+          cancellato
 #
 All notable changes to this project will be documented in this file.
 
@@ -74,6 +84,7 @@ All notable changes to this project will be documented in this file.
 - updateImageApi: Tortone  7/12/2017
 - managerpanelbodyimage: Tortone  7/12/2017
 - utilitiesformanageimage: Tortone  7/12/2017
+- updateSlug.js: Gianluca 8/12/2f903418b776
 ### Changed
 
 ### Removed

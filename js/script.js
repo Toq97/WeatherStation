@@ -24,7 +24,8 @@ $.ajax({
 	url: 'https://www.torinometeo.org/api/v1/realtime/data/',
 	type: 'GET',
 	dataType: 'JSON',
-	progress: function(e) {
+	/*** Se mai volessimo usare un progress ***/
+	/*progress: function(e) {
 		console.log(e.loaded)
         //make sure we can compute the length
         if(e.lengthComputable) {
@@ -38,11 +39,29 @@ $.ajax({
         else {
             console.warn('Content Length not reported!');
         }
-    }
+    }*/
 })
 .done(function(allDetectionData) {
 	console.log("success");
     loadDataOnDOM(allDetectionData);
+		/** Gian: queste funzioni mi sono servite per creare su jsonBlob tutti gli indirizzi
+		corrispondenti alle varie stazioni.
+		Non dovrebbero servire più, ma finchè c'è la possibilità che si crei qualche errore
+		preferirei non cancellarle **/
+//faiLeCOse(manager.allData)
+
+		/*var slugs = [];
+		for(var i = 0; i< allDetectionData.length; i++) {
+			slugs.push({
+				id: allDetectionData[i].station.id,
+				slug: allDetectionData[i].station.slug
+			});
+		}
+		var str = '';
+		slugs.forEach(function(slug) {
+			str += '\n{\n\t id : \'' + slug.id + '\', \n\tslug : \'' + slug.slug + '\' \n},'
+		});
+		console.log(str)*/
 		dateutilities();
 		$('#refreshtime').attr('placeholder',manager.refreshtime);
 
@@ -63,7 +82,7 @@ $.ajax({
 	 * [timer call the setTimeout for looping the GetApiData() function every 30 seconds]
 	 * @type {[type]}
 	 */
-	 var timeOut = setTimeout(getApiData, manager.refreshtime);
+	 //var timeOut = setTimeout(getApiData, manager.refreshtime);
 
 	 //inserite anche questa se si a
 	 //fare una funzione per il refresh, che serve per le immagini
