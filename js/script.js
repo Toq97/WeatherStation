@@ -14,17 +14,20 @@ var manager = {
 	collapsibleOpenedIndex : [],
   collapsebody: [],
 	loadimageoption: 0,
-	refreshtime: 30000
+	refreshtime: 30000,
+	loadedStations : 0,
+	slugs: slugs
 }
 
 
 function getAllStations() {
 	manager.allData = [];
+	initializeLoading();
 	for (var i = 0; i < slugs.length; i++) {
 		getApiData(slugs[i].slug);
 	}
 
-	loadDataOnDOM(manager.allData);
+
 	var timeOut = setTimeout(getAllStations, manager.refreshtime);
 }
 
@@ -36,27 +39,15 @@ $.ajax({
 	url: 'https://www.torinometeo.org/api/v1/realtime/data/' + slug + '/',
 	type: 'GET',
 	dataType: 'JSON',
-	/*** Se mai volessimo usare un progress ***/
-	/*progress: function(e) {
-		console.log(e.loaded)
-        //make sure we can compute the length
-        if(e.lengthComputable) {
-            //calculate the percentage loaded
-            var pct = (e.loaded / e.total) * 100;
-
-            //log percentage loaded
-            console.log(pct);
-        }
-        //this usually happens when Content-Length isn't set
-        else {
-            console.warn('Content Length not reported!');
-        }
-    }*/
 })
 .done(function(detectionData) {
 	console.log("success");
     //loadDataOnDOM(allDetectionData);
     manager.allData.push(detectionData);
+		updateLoading();
+		if(manager.allData.length === manager.slugs.length) {
+			loadDataOnDOM(manager.allData);
+		}
 		/** Gian: queste funzioni mi sono servite per creare su jsonBlob tutti gli indirizzi
 		corrispondenti alle varie stazioni.
 		Non dovrebbero servire più, ma finchè c'è la possibilità che si crei qualche errore
@@ -94,12 +85,6 @@ $.ajax({
 	}
 
 });
-	/**
-	 * [timer call the setTimeout for looping the GetApiData() function every 30 seconds]
-	 * @type {[type]}
-	 */
-
-
 	 //inserite anche questa se si a
 	 //fare una funzione per il refresh, che serve per le immagini
 
@@ -118,8 +103,8 @@ function loadDataOnDOM(data) {
 		manager.loadimageoption = 1;
 	}
 	assignCollapsibleClick(data);
-    addEventListenerToCollapse();
-    getSelectedValue(data);
+  addEventListenerToCollapse();
+  getSelectedValue(data);
 }
 
 /**
@@ -166,23 +151,22 @@ function callOnClickEventOnCollapse(acc,i){
 function addEventListenerToCollapse() {
 
 	$('.collapse').click(function (e){
-	var flag = null;
-	for (var item in manager.collapsibleOpenedIndex) {
-		if (manager.collapsibleOpenedIndex.hasOwnProperty(item)) {
-			if(manager.collapsibleOpenedIndex[item] == $(this).index('.collapse'))
-			{
-				flag = manager.collapsibleOpenedIndex[item];
-			}
+		var flag = null;
+		for (var item in manager.collapsibleOpenedIndex) {
+			if (manager.collapsibleOpenedIndex.hasOwnProperty(item)) {
+				if(manager.collapsibleOpenedIndex[item] == $(this).index('.collapse'))
+				{
+					flag = manager.collapsibleOpenedIndex[item];
+				}
+		    }
 	    }
-    }
-	if (flag == null){
-		manager.collapsibleOpenedIndex[$(this).index('.collapse')] = ($(this).index('.collapse'));
-	} else {
-		manager.collapsibleOpenedIndex[$(this).index('.collapse')] = null;
-	}
-    console.log(manager.collapsibleOpenedIndex);
-});
-
+		if (flag == null){
+			manager.collapsibleOpenedIndex[$(this).index('.collapse')] = ($(this).index('.collapse'));
+		} else {
+			manager.collapsibleOpenedIndex[$(this).index('.collapse')] = null;
+		}
+	    console.log(manager.collapsibleOpenedIndex);
+	});
 }
 
 
@@ -336,8 +320,6 @@ function getSelectedValue(allDetectionData)
 		 });
 	 });
 }
-
-
 
  /**
   * function that control what nation is selected and create all the collapse

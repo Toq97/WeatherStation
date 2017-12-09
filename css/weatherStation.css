@@ -177,3 +177,26 @@ div.panelCollapsibleBody {
 .error-panel button {
   margin-top: 20px;
 }
+
+.loading-box {
+    position: relative;
+    left: 50%;
+    margin-left: -250px;
+    width: 500px;
+    height: 400px;
+    text-align: center;
+    background-position: -155px -100px;
+    background-image: url(../img/cloud_load.gif);
+    background-color: white;
+    border: solid 4px #3c81f8;
+    border-radius: 30px;
+    color: #3c81f8;
+    padding: 40px;
+    font-size: 20px;
+}
+
+#loading-percent {
+  position: relative;
+  top: 45%;
+  font-size: 25px;
+}
