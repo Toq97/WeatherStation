@@ -28,7 +28,7 @@ var temperatureColorUtilities = {
     * the [0; 255] range of the RGB color code
     */
     recalibrateYRange: function(radiants) {
-        return radiants ? (radiants + (Math.PI/2)) / Math.PI * 255 : null;
+        return radiants !== null ? (radiants + (Math.PI/2)) / Math.PI * 255 : null;
     },
 
     /*

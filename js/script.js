@@ -16,12 +16,24 @@ var manager = {
 	loadimageoption: 0,
 	refreshtime: 30000
 }
+
+
+function getAllStations() {
+	manager.allData = [];
+	for (var i = 0; i < slugs.length; i++) {
+		getApiData(slugs[i].slug);
+	}
+
+	loadDataOnDOM(manager.allData);
+	var timeOut = setTimeout(getAllStations, manager.refreshtime);
+}
+
 /**
  * [function that get the Json Data]
  */
-function getApiData() {
+function getApiData(slug) {
 $.ajax({
-	url: 'https://www.torinometeo.org/api/v1/realtime/data/',
+	url: 'https://www.torinometeo.org/api/v1/realtime/data/' + slug + '/',
 	type: 'GET',
 	dataType: 'JSON',
 	/*** Se mai volessimo usare un progress ***/
@@ -41,9 +53,10 @@ $.ajax({
         }
     }*/
 })
-.done(function(allDetectionData) {
+.done(function(detectionData) {
 	console.log("success");
-    loadDataOnDOM(allDetectionData);
+    //loadDataOnDOM(allDetectionData);
+    manager.allData.push(detectionData);
 		/** Gian: queste funzioni mi sono servite per creare su jsonBlob tutti gli indirizzi
 		corrispondenti alle varie stazioni.
 		Non dovrebbero servire più, ma finchè c'è la possibilità che si crei qualche errore
@@ -67,22 +80,25 @@ $.ajax({
 
 })
 .fail(function(error) {
-	alertTorinoMeteoError();
-	console.log(error);
+	//alertTorinoMeteoError();
 	console.log(error.status);
 	console.log(error.statusText);
 	//display the error data into page
-	getDataFromJSONBlob();
+	//get the station from the backup API
+	getStationFromJSONBlob(findBlobIdFromSlug(slug));
 })
 .always(function() {
 	console.log("ajax call complete");
-	console.log(manager.allData);
+	if(manager.allData.length === 111) {
+		console.log(manager.allData);
+	}
+
 });
 	/**
 	 * [timer call the setTimeout for looping the GetApiData() function every 30 seconds]
 	 * @type {[type]}
 	 */
-	 //var timeOut = setTimeout(getApiData, manager.refreshtime);
+
 
 	 //inserite anche questa se si a
 	 //fare una funzione per il refresh, che serve per le immagini
@@ -94,7 +110,7 @@ $.ajax({
 * @param {Object} data - the data to be shown
 */
 function loadDataOnDOM(data) {
-	manager.allData = data;
+	//manager.allData = data;
 	$("#container").empty();
 	createAllCollapsiblePanel(data);
 	if(manager.loadimageoption == 0){
@@ -353,7 +369,7 @@ function getSelectedValue(allDetectionData)
 /*****************************************************************/
 /*                              MAIN                             */
 /*****************************************************************/
-getApiData();
+getAllStations();
 
 /**
  * Search filter
