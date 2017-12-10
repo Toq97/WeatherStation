@@ -58,6 +58,9 @@ descrizione mangaer
         - updateImageApi: Tortone
         - managerpanelbodyimage: Tortone
         - utilitiesformanageimage: Tortone
+        - loadingPercent: Gianluca
+        - updateLoading: Gianluca
+        - initializeLoading: Gianluca
 
     other:
         - post the jsonBlob backup jsons: Gianluca
