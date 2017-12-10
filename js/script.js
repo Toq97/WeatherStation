@@ -16,18 +16,21 @@ var manager = {
 	loadimageoption: 0,
 	refreshtime: 30000,
 	loadedStations : 0,
-	slugs: slugs
+	slugs: slugs,
+	jsonBlobCalls : 0,
+	standardCallActive: true
 }
 
 
 function getAllStations() {
-	manager.allData = [];
-	initializeLoading();
-	for (var i = 0; i < slugs.length; i++) {
-		getApiData(slugs[i].slug);
+	if(manager.standardCallActive) {
+		manager.allData = [];
+		manager.jsonBlobCalls = 0;
+		initializeLoading();
+		for (var i = 0; i < slugs.length; i++) {
+			getApiData(slugs[i].slug);
+		}
 	}
-
-
 	var timeOut = setTimeout(getAllStations, manager.refreshtime);
 }
 
@@ -41,8 +44,7 @@ $.ajax({
 	dataType: 'JSON',
 })
 .done(function(detectionData) {
-	console.log("success");
-    //loadDataOnDOM(allDetectionData);
+	//console.log("success");
     manager.allData.push(detectionData);
 		updateLoading();
 		if(manager.allData.length === manager.slugs.length) {
@@ -75,11 +77,12 @@ $.ajax({
 	console.log(error.status);
 	console.log(error.statusText);
 	//display the error data into page
+	alertTorinoMeteoError();
 	//get the station from the backup API
 	getStationFromJSONBlob(findBlobIdFromSlug(slug));
 })
 .always(function() {
-	console.log("ajax call complete");
+	//console.log("ajax call complete");
 	if(manager.allData.length === 111) {
 		console.log(manager.allData);
 	}
@@ -126,17 +129,18 @@ function assignCollapsibleClick(singleData){
 	    	if (panel.style.maxHeight){
 	        	panel.style.maxHeight = null;
 	        } else {
+						var id = $(this).attr('id');
+						managerpanelbodyimage(id);
 	        	panel.style.maxHeight = panel.scrollHeight + "px";
 	        }
-          var id = $(this).attr('id');
-					managerpanelbodyimage(id);
+
        callOnClickEventOnCollapse(acc,i);
      	}
 	}
 
 }
 /**
- * [fucntion that call the onclick event if the collapse in the previus refresh was opened]
+ * [function that call the onclick event if the collapse in the previus refresh was opened]
  */
 function callOnClickEventOnCollapse(acc,i){
 	for (var item in manager.collapsibleOpenedIndex) {
@@ -227,18 +231,28 @@ function createPanelHeader(detectedDataForSinglelocation){
 										  " | Temperature: "+ detectedDataForSinglelocation.temperature)
 										  .append(getFlagNation(detectedDataForSinglelocation));
 
-	if(detectedDataForSinglelocation.weather_icon){
-		divPanelHeader.append(
-			createTemperatureBox(detectedDataForSinglelocation.temperature,
-								detectedDataForSinglelocation.weather_icon.icon));
-	} else {
-		divPanelHeader.append(
-			createTemperatureBox(detectedDataForSinglelocation.temperature));
-	}
 
    divPanelHeader.attr("id",detectedDataForSinglelocation.station.slug);
 
+	 appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
+
     return divPanelHeader;
+}
+
+function appendTemperatureBox(stationData, panelHeader) {
+	//if historical data take the mean value
+	var temperature = stationData.temperature ?
+										stationData.temperature :
+										stationData.temperature_mean;
+
+	if(stationData.weather_icon){
+		panelHeader.append(
+			createTemperatureBox(temperature,
+								stationData.weather_icon.icon));
+	} else {
+		panelHeader.append(
+			createTemperatureBox(temperature));
+	}
 
 }
 /**
@@ -251,7 +265,6 @@ function createTemperatureBox(temperature,urlIcon) {
 			$weatherIcon.attr('src', urlIcon);
 		} else {
 			$weatherIcon.attr('src', 'img/provv.png');
-		//	console.log($weatherIcon);
 		}
 
 		return $('<div>').addClass('temperature-box')
@@ -282,16 +295,16 @@ function createPanelBody(detectedDataForSinglelocation){
 function getFlagNation(detectedDataForSinglelocation){
 	switch(detectedDataForSinglelocation.station.nation.name){
 		case "Italia":
-		    var imageItaly = $("<img></img>").attr('src',"img/flag_italy.jpg").addClass("flagIcon");
+		    var imageItaly = $("<img></img>").attr('src',"./img/italy-flag.png").addClass("flagIcon");
 			return imageItaly;
 		case "Francia":
-			var imageFrance = $("<img></img>").attr('src',"img/flag_france.jpg").addClass("flagIcon");
+			var imageFrance = $("<img></img>").attr('src',"./img/france-flag.png").addClass("flagIcon");
 			return imageFrance;
 		case "Svizzera":
-			var imageSwiss = $("<img></img>").attr('src',"img/flag_swiss.jpg").addClass("flagIcon");
+			var imageSwiss = $("<img></img>").attr('src',"./img/sw-flag.png").addClass("flagIcon");
 			return imageSwiss;
 		default:
-			var defaultImage = $("<img></img>").attr('src',"img/flag_default.svg").addClass("flagIcon");
+			var defaultImage = $("<img></img>").attr('src',"./	img/pirates-flag.png").addClass("flagIcon");
 			return defaultImage;
 	}
 }

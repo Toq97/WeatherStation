@@ -27,19 +27,21 @@
 	</div>
 
 	<div id="filter">
-		<div id="div-station-name">
-			<h3>Station name</h3>
-			<input type="text" name="station-name" id="input-station-name" placeholder="name">
-		</div>
-		<div>
-			<h3>Country</h3>
-				<select id="select-country">
-					<option value="">-</option>
-					<option value="Francia">France</option>
-					<option value="Italia">Italy</option>
-					<option value="Svizzera">Switzerland</option>
-				</select>
-		</div>
+				<div id="div-station-name">
+					<h3>Station name</h3>
+					<input type="text" name="station-name" id="input-station-name" placeholder="name">
+
+				</div>
+				<div>
+					<h3>Country</h3>
+						<select id="select-country">
+							<option value="">-</option>
+							<option value="Francia">France</option>
+							<option value="Italia">Italy</option>
+							<option value="Svizzera">Switzerland</option>
+						</select>
+				</div>
+
 		<div>
 
 				<input type="text" id="refreshtime" size="10">
@@ -54,6 +56,11 @@
 			<button id="buttonstoprefresh">STOP REFRESH</button>
 		</div>
 	</div>
+	<div class="history-box">
+		<label>Inserisci una porcoddio di data<input type="date" name="" value=""></label>
+		<button type="button" name="button" id="history-btn">Historicami tutta</button>
+	</div>
+
 	<div id="container">
 
 	</div>
@@ -61,6 +68,9 @@
 	<div class="error-panel">
 		<h2>Error!</h2>
 		<p>An error occured while trying to receive data from www.torinometeo.org
+			about the following stations:
+			<ul id="failed-stations-list">
+			</ul>
 			The shown data are received from JSONBlob and refer to</p>
 			<div class="jsonblob-date">
 					---- waiting for data from JBlob ----
@@ -75,6 +85,7 @@
 	<script src="js/loading.js"></script>
 	<script src="js/script.js" charset="utf-8"></script>
 	<script src="js/jsonBlob.js" charset="utf-8"></script>
+	<script src="js/history.js" charset="utf-8"></script>
 	<!-- cuastomized script  -->
 
 </body>

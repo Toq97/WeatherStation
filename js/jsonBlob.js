@@ -13,9 +13,16 @@ function getStationFromJSONBlob(blobId) {
           console.log("success from jBlob");
         	console.log(response);
           manager.allData.push(response);
-          $('.jsonblob-date').html(response[0].datetime);
-          //load the data on the page
-          //loadDataOnDOM(response);
+          if(!manager.jsonBlobCalls) {
+              $('#failed-stations-list').empty();
+          }
+          manager.jsonBlobCalls++;
+          //
+          $('.jsonblob-date').html(response.datetime);
+          $('#failed-stations-list').append(
+            $('<li>').html(response.station.slug));
+          updateLoading();
+
         },
         error: function(xhr, status, e) {
             console.log(status, e);
@@ -170,6 +177,9 @@ function alertTorinoMeteoError() {
   $('#close-error-panel-btn').click(function() {
     $('.error-panel').hide();
   })
+  setTimeout(function() {
+    $('.error-panel').hide();
+  },5000);
 }
 
 keepJsonBlobUpdated();

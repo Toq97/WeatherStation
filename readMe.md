@@ -44,6 +44,7 @@ descrizione mangaer
 
         - temperatureColorUtilities: Gianluca
         - createTemperatureBox: Gianluca
+        - appendTemperatureBox: Gianluca
         - loadDataOnDOM: Toqir
         - getDataFromJSONBlob: Gianluca
         - getStationFromJSONBlob: Gianluca
