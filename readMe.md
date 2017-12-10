@@ -41,7 +41,6 @@ descrizione mangaer
         - createPanelBody: Toqir
         - getFlagNation: Toqir
 
-
         - temperatureColorUtilities: Gianluca
         - createTemperatureBox: Gianluca
         - appendTemperatureBox: Gianluca
@@ -62,6 +61,8 @@ descrizione mangaer
         - loadingPercent: Gianluca
         - updateLoading: Gianluca
         - initializeLoading: Gianluca
+        - isValidDate: Gianluca
+        - getHistoricalData: Gianluca
 
     other:
         - post the jsonBlob backup jsons: Gianluca

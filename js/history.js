@@ -1,10 +1,12 @@
 $('#history-btn').click(function() {
-  //stop standard call
-  manager.standardCallActive = false;
   var inputDate = $('.history-box input').val();
-  manager.allData = [];
-  if(isValidDate(inputDate)) getHistoricalData(dateArray);
-})
+  if(isValidDate(inputDate)) {
+    //stop standard call
+    manager.standardCallActive = false;
+    manager.allData = [];
+    getHistoricalData(dateArray);
+  }
+});
 
 function isValidDate(textDate) {
   var sixMonths = 3600 * 24 * 30 * 6 * 1000;
