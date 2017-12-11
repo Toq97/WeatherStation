@@ -33,6 +33,7 @@ descrizione mangaer
     functions:
 
         - getApiData: Toqir
+        - getAllStations: Gianluca
         - assignCollapsibleClick: Toqir
         - createAllCollapsiblePanel: Toqir
         - createCollapsiblePanel: Toqir
@@ -40,14 +41,16 @@ descrizione mangaer
         - createPanelBody: Toqir
         - getFlagNation: Toqir
 
-
         - temperatureColorUtilities: Gianluca
         - createTemperatureBox: Gianluca
+        - appendTemperatureBox: Gianluca
         - loadDataOnDOM: Toqir
         - getDataFromJSONBlob: Gianluca
+        - getStationFromJSONBlob: Gianluca
         - uploadJSONBlob: Gianluca
         - keepJsonBlobUpdated: Gianluca
         - findSlugFromStation: Gianluca
+        - findBlobIdFromSlug: Gianluca
         - alertTorinoMeteoError: Gianluca
         - getSelectNation: Pietro
         - getSelectedValue: Pietro
@@ -55,6 +58,11 @@ descrizione mangaer
         - updateImageApi: Tortone
         - managerpanelbodyimage: Tortone
         - utilitiesformanageimage: Tortone
+        - loadingPercent: Gianluca
+        - updateLoading: Gianluca
+        - initializeLoading: Gianluca
+        - isValidDate: Gianluca
+        - getHistoricalData: Gianluca
 
     other:
         - post the jsonBlob backup jsons: Gianluca
@@ -73,7 +81,7 @@ All notable changes to this project will be documented in this file.
 
 ###**[2.1.0] - 2017-07-16 // al posto di questa l'ultima data**
 ### Added
-- getApiData: Toqir 2/12/2018
+- getApiData: Gianluca 9/12/2018
 - assignCollapsibleClick: Toqir 2/12/2018
 - createAllCollapsiblePanel: Toqir 2/12/2018
 - createCollapsiblePanel: Toqir 2/12/2018

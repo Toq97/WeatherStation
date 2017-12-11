@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:10:26+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-08T18:31:44+01:00
+ * @Last modified time: 2017-12-11T13:46:40+01:00
  */
 
 
@@ -14,36 +14,42 @@ var manager = {
 	collapsibleOpenedIndex : [],
   collapsebody: [],
 	loadimageoption: 0,
-	refreshtime: 30000
+	refreshtime: 30000,
+	loadedStations : 0,
+	slugs: slugs,
+	jsonBlobCalls : 0,
+	standardCallActive: true
 }
+
+
+function getAllStations() {
+	if(manager.standardCallActive) {
+		manager.allData = [];
+		manager.jsonBlobCalls = 0;
+		initializeLoading();
+		for (var i = 0; i < slugs.length; i++) {
+			getApiData(slugs[i].slug);
+		}
+	}
+	var timeOut = setTimeout(getAllStations, manager.refreshtime);
+}
+
 /**
  * [function that get the Json Data]
  */
-function getApiData() {
+function getApiData(slug) {
 $.ajax({
-	url: 'https://www.torinometeo.org/api/v1/realtime/data/',
+	url: 'https://www.torinometeo.org/api/v1/realtime/data/' + slug + '/',
 	type: 'GET',
 	dataType: 'JSON',
-	/*** Se mai volessimo usare un progress ***/
-	/*progress: function(e) {
-		console.log(e.loaded)
-        //make sure we can compute the length
-        if(e.lengthComputable) {
-            //calculate the percentage loaded
-            var pct = (e.loaded / e.total) * 100;
-
-            //log percentage loaded
-            console.log(pct);
-        }
-        //this usually happens when Content-Length isn't set
-        else {
-            console.warn('Content Length not reported!');
-        }
-    }*/
 })
-.done(function(allDetectionData) {
-	console.log("success");
-    loadDataOnDOM(allDetectionData);
+.done(function(detectionData) {
+	//console.log("success");
+    manager.allData.push(detectionData);
+		updateLoading();
+		if(manager.allData.length === manager.slugs.length) {
+			loadDataOnDOM(manager.allData);
+		}
 		/** Gian: queste funzioni mi sono servite per creare su jsonBlob tutti gli indirizzi
 		corrispondenti alle varie stazioni.
 		Non dovrebbero servire più, ma finchè c'è la possibilità che si crei qualche errore
@@ -67,23 +73,21 @@ $.ajax({
 
 })
 .fail(function(error) {
-	alertTorinoMeteoError();
-	console.log(error);
+	//alertTorinoMeteoError();
 	console.log(error.status);
 	console.log(error.statusText);
 	//display the error data into page
-	getDataFromJSONBlob();
+	alertTorinoMeteoError();
+	//get the station from the backup API
+	getStationFromJSONBlob(findBlobIdFromSlug(slug));
 })
 .always(function() {
-	console.log("ajax call complete");
-	console.log(manager.allData);
-});
-	/**
-	 * [timer call the setTimeout for looping the GetApiData() function every 30 seconds]
-	 * @type {[type]}
-	 */
-	 //var timeOut = setTimeout(getApiData, manager.refreshtime);
+	//console.log("ajax call complete");
+	if(manager.allData.length === 111) {
+		console.log(manager.allData);
+	}
 
+});
 	 //inserite anche questa se si a
 	 //fare una funzione per il refresh, che serve per le immagini
 
@@ -94,7 +98,7 @@ $.ajax({
 * @param {Object} data - the data to be shown
 */
 function loadDataOnDOM(data) {
-	manager.allData = data;
+	//manager.allData = data;
 	$("#container").empty();
 	createAllCollapsiblePanel(data);
 	if(manager.loadimageoption == 0){
@@ -102,8 +106,8 @@ function loadDataOnDOM(data) {
 		manager.loadimageoption = 1;
 	}
 	assignCollapsibleClick(data);
-    addEventListenerToCollapse();
-    getSelectedValue(data);
+  addEventListenerToCollapse();
+  getSelectedValue(data);
 }
 
 /**
@@ -122,20 +126,23 @@ function assignCollapsibleClick(singleData){
 		acc[i].onclick = function() {
 	    	this.classList.toggle("active");
 	    	var panel = this.nextElementSibling;
+				var id = $(this).attr('id');
 	    	if (panel.style.maxHeight){
 	        	panel.style.maxHeight = null;
 	        } else {
-	        	panel.style.maxHeight = panel.scrollHeight + "px";
+						panel.style.maxHeight = "350" + "px";
+	        	//panel.style.maxHeight = panel.scrollHeight + "px";
+						//console.log(panel.scrollHeight);
 	        }
-          var id = $(this).attr('id');
-					managerpanelbodyimage(id);
+						managerpanelbodyimage(id);
+
        callOnClickEventOnCollapse(acc,i);
      	}
 	}
 
 }
 /**
- * [fucntion that call the onclick event if the collapse in the previus refresh was opened]
+ * [function that call the onclick event if the collapse in the previus refresh was opened]
  */
 function callOnClickEventOnCollapse(acc,i){
 	for (var item in manager.collapsibleOpenedIndex) {
@@ -150,23 +157,22 @@ function callOnClickEventOnCollapse(acc,i){
 function addEventListenerToCollapse() {
 
 	$('.collapse').click(function (e){
-	var flag = null;
-	for (var item in manager.collapsibleOpenedIndex) {
-		if (manager.collapsibleOpenedIndex.hasOwnProperty(item)) {
-			if(manager.collapsibleOpenedIndex[item] == $(this).index('.collapse'))
-			{
-				flag = manager.collapsibleOpenedIndex[item];
-			}
+		var flag = null;
+		for (var item in manager.collapsibleOpenedIndex) {
+			if (manager.collapsibleOpenedIndex.hasOwnProperty(item)) {
+				if(manager.collapsibleOpenedIndex[item] == $(this).index('.collapse'))
+				{
+					flag = manager.collapsibleOpenedIndex[item];
+				}
+		    }
 	    }
-    }
-	if (flag == null){
-		manager.collapsibleOpenedIndex[$(this).index('.collapse')] = ($(this).index('.collapse'));
-	} else {
-		manager.collapsibleOpenedIndex[$(this).index('.collapse')] = null;
-	}
-    console.log(manager.collapsibleOpenedIndex);
-});
-
+		if (flag == null){
+			manager.collapsibleOpenedIndex[$(this).index('.collapse')] = ($(this).index('.collapse'));
+		} else {
+			manager.collapsibleOpenedIndex[$(this).index('.collapse')] = null;
+		}
+	    console.log(manager.collapsibleOpenedIndex);
+	});
 }
 
 
@@ -227,18 +233,28 @@ function createPanelHeader(detectedDataForSinglelocation){
 										  " | Temperature: "+ detectedDataForSinglelocation.temperature)
 										  .append(getFlagNation(detectedDataForSinglelocation));
 
-	if(detectedDataForSinglelocation.weather_icon){
-		divPanelHeader.append(
-			createTemperatureBox(detectedDataForSinglelocation.temperature,
-								detectedDataForSinglelocation.weather_icon.icon));
-	} else {
-		divPanelHeader.append(
-			createTemperatureBox(detectedDataForSinglelocation.temperature));
-	}
 
    divPanelHeader.attr("id",detectedDataForSinglelocation.station.slug);
 
+	 appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
+
     return divPanelHeader;
+}
+
+function appendTemperatureBox(stationData, panelHeader) {
+	//if historical data take the mean value
+	var temperature = stationData.temperature ?
+										stationData.temperature :
+										stationData.temperature_mean;
+
+	if(stationData.weather_icon){
+		panelHeader.append(
+			createTemperatureBox(temperature,
+								stationData.weather_icon.icon));
+	} else {
+		panelHeader.append(
+			createTemperatureBox(temperature));
+	}
 
 }
 /**
@@ -251,7 +267,6 @@ function createTemperatureBox(temperature,urlIcon) {
 			$weatherIcon.attr('src', urlIcon);
 		} else {
 			$weatherIcon.attr('src', 'img/provv.png');
-		//	console.log($weatherIcon);
 		}
 
 		return $('<div>').addClass('temperature-box')
@@ -269,8 +284,7 @@ function createTemperatureBox(temperature,urlIcon) {
  */
 function createPanelBody(detectedDataForSinglelocation){
 	var divPanelCollapsibleBody = $('<div></div>').addClass("panelCollapsibleBody");
-   //test
-   divPanelCollapsibleBody.html("test");
+
    divPanelCollapsibleBody.attr("id",detectedDataForSinglelocation.station.id+"updateimage");
    return divPanelCollapsibleBody;
 }
@@ -282,16 +296,16 @@ function createPanelBody(detectedDataForSinglelocation){
 function getFlagNation(detectedDataForSinglelocation){
 	switch(detectedDataForSinglelocation.station.nation.name){
 		case "Italia":
-		    var imageItaly = $("<img></img>").attr('src',"img/flag_italy.jpg").addClass("flagIcon");
+		    var imageItaly = $("<img></img>").attr('src',"./img/italy-flag.png").addClass("flagIcon");
 			return imageItaly;
 		case "Francia":
-			var imageFrance = $("<img></img>").attr('src',"img/flag_france.jpg").addClass("flagIcon");
+			var imageFrance = $("<img></img>").attr('src',"./img/france-flag.png").addClass("flagIcon");
 			return imageFrance;
 		case "Svizzera":
-			var imageSwiss = $("<img></img>").attr('src',"img/flag_swiss.jpg").addClass("flagIcon");
+			var imageSwiss = $("<img></img>").attr('src',"./img/sw-flag.png").addClass("flagIcon");
 			return imageSwiss;
 		default:
-			var defaultImage = $("<img></img>").attr('src',"img/flag_default.svg").addClass("flagIcon");
+			var defaultImage = $("<img></img>").attr('src',"./	img/pirates-flag.png").addClass("flagIcon");
 			return defaultImage;
 	}
 }
@@ -322,8 +336,11 @@ function getSelectedValue(allDetectionData)
 	 });
 }
 
+<<<<<<< HEAD
 */
 
+=======
+>>>>>>> a99c1dd8f46c452b2236b7ab7009fff125abd344
  /**
   * function that control what nation is selected and create all the collapse
   * of that nation
@@ -355,7 +372,7 @@ function getSelectedValue(allDetectionData)
 /*****************************************************************/
 /*                              MAIN                             */
 /*****************************************************************/
-getApiData();
+getAllStations();
 
 /**
  * Search filter

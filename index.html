@@ -21,6 +21,10 @@
 			<h1 id="title"> Real Time Weather Station </h1>
 		</div>
 	</header>
+	<div class="loading-box">
+		<h2>loading data</h2>
+		<div id="loading-percent">0%</div>
+	</div>
 
 	<div id="filter">
 		<div id="div-station-name">
@@ -49,6 +53,11 @@
 			<button id="buttonstoprefresh">STOP REFRESH</button>
 		</div>
 	</div>
+	<div class="history-box">
+		<label>Inserisci una data<input type="date" name="" value=""></label>
+		<button type="button" name="button" id="history-btn">Historicami</button>
+	</div>
+
 	<div id="container">
 
 	</div>
@@ -56,6 +65,9 @@
 	<div class="error-panel">
 		<h2>Error!</h2>
 		<p>An error occured while trying to receive data from www.torinometeo.org
+			about the following stations:
+			<ul id="failed-stations-list">
+			</ul>
 			The shown data are received from JSONBlob and refer to</p>
 			<div class="jsonblob-date">
 					---- waiting for data from JBlob ----
@@ -66,10 +78,12 @@
 	<script src="js/jquery.ajax-progress.js"></script>
 	<script src="js/temperatureColorUtilities.js" charset="utf-8"></script>
 	<script src="js/panelBodyUtilities.js" charset="utf-8"></script>
-	<script src="js/script.js" charset="utf-8"></script>
-	<script src="js/searchFilter.js" charset="utf-8"></script>
 	<script src="js/updateSlugs.js"></script>
+	<script src="js/loading.js"></script>
+	<script src="js/script.js" charset="utf-8"></script>
 	<script src="js/jsonBlob.js" charset="utf-8"></script>
+	<script src="js/history.js" charset="utf-8"></script>
+	<script src="js/searchFilter.js" charset="utf-8"></script>
 	<!-- cuastomized script  -->
 
 </body>

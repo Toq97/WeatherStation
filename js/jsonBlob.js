@@ -4,23 +4,38 @@
  * [getDataFromJSONBlob description]
  * @return {[type]} [description]
  */
-function getDataFromJSONBlob() {
+function getStationFromJSONBlob(blobId) {
     $.ajax({
         type: 'GET',
-        url: 'https://jsonblob.com/api/jsonBlob/0d2e6422-da8c-11e7-b7f1-f7bfe312a22e',
+        url: 'https://jsonblob.com/api/jsonBlob/' + blobId +'/',
         dataType: 'json',
         success: function(response) {
           console.log("success from jBlob");
         	console.log(response);
-          $('.jsonblob-date').html(response[0].datetime);
-          //load the data on the page
-          loadDataOnDOM(response);
+          manager.allData.push(response);
+          if(!manager.jsonBlobCalls) {
+              $('#failed-stations-list').empty();
+          }
+          manager.jsonBlobCalls++;
+          //
+          $('.jsonblob-date').html(response.datetime);
+          $('#failed-stations-list').append(
+            $('<li>').html(response.station.slug));
+          updateLoading();
+
         },
         error: function(xhr, status, e) {
             console.log(status, e);
         }
        });
 
+}
+
+function getDataFromJSONBlob() {
+  manager.allData = [];
+  for(var i = 0; i < slugs.length; i++) {
+    getStationFromJSONBlob(slugs[i].blobId);
+  }
 }
 
 /*
@@ -124,7 +139,9 @@ function uploadJSONBlob(newData, blobId) {
 
 function keepJsonBlobUpdated() {
   var tryToCall = setInterval(function() {
-    if(!!manager.allData.length) {
+    var dataNumber = manager.allData.length;
+
+    if(!(dataNumber < slugs.length)) {
       for (var i = 0; i < manager.allData.length; i++) {
         //search the slug with the same id of the current station
         var corrSlug = findSlugFromStation(manager.allData[i]);
@@ -149,11 +166,20 @@ function findSlugFromStation(station) {
   return slugs[slugPosition];
 }
 
+function findBlobIdFromSlug(slug) {
+  return slugs.filter(function(element) {
+    return element.slug === slug;
+  })[0].blobId;
+}
+
 function alertTorinoMeteoError() {
   $('.error-panel').show();
   $('#close-error-panel-btn').click(function() {
     $('.error-panel').hide();
   })
+  setTimeout(function() {
+    $('.error-panel').hide();
+  },5000);
 }
 
 keepJsonBlobUpdated();
