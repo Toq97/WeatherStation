@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:10:26+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-11T13:46:40+01:00
+ * @Last modified time: 2017-12-11T22:48:04+01:00
  */
 
 
@@ -18,7 +18,8 @@ var manager = {
 	loadedStations : 0,
 	slugs: slugs,
 	jsonBlobCalls : 0,
-	standardCallActive: true
+	standardCallActive: true,
+	timeOut: ""
 }
 
 
@@ -31,7 +32,11 @@ function getAllStations() {
 			getApiData(slugs[i].slug);
 		}
 	}
-	var timeOut = setTimeout(getAllStations, manager.refreshtime);
+
+
+		manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+
+
 }
 
 /**
@@ -68,7 +73,7 @@ $.ajax({
 			str += '\n{\n\t id : \'' + slug.id + '\', \n\tslug : \'' + slug.slug + '\' \n},'
 		});
 		console.log(str)*/
-		dateutilities();
+
 		$('#refreshtime').attr('placeholder',manager.refreshtime);
 
 })
@@ -88,9 +93,8 @@ $.ajax({
 	}
 
 });
-	 //inserite anche questa se si a
-	 //fare una funzione per il refresh, che serve per le immagini
-
+   //update the data update
+   dateutilities();
 }
 
 /**
