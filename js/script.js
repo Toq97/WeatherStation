@@ -107,7 +107,7 @@ function loadDataOnDOM(data) {
 	}
 	assignCollapsibleClick(data);
   addEventListenerToCollapse();
-  getSelectedValue(data);
+  //getSelectedValue(data);
 }
 
 /**
@@ -205,7 +205,7 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
      * div that contain the header and the body
      * @type {[type]}
      */
-	var collapse = $('<div></div>').addClass('collapse').attr('id', '#'+detectedDataForSinglelocation.station.slug);
+	var collapse = $('<div></div>').addClass('collapse').attr('id',detectedDataForSinglelocation.station.nation.name);
 	//aggiungo l'id al pannello per poterlo identificare in seguito
 	//collapse = $('#'+detectedDataForSinglelocation.id);
 	/**
@@ -310,65 +310,7 @@ function getFlagNation(detectedDataForSinglelocation){
 	}
 }
 
-/**
- * function that take the selected nation
- * @param  {[type]} allDetectionData [description]
- * @return {[type]}                  [description]
- */
-/*
-function getSelectedValue(allDetectionData)
-{
-	$(document).ready(function(){
-		 $("#select-country").on("change", function() {
-			 $("#container").empty();
-			 var value = $(this).val();
-			 for (var i in allDetectionData) {
-			 	if (allDetectionData.hasOwnProperty(i)) {
-					if(value == allDetectionData[i].station.nation.name || value == "")
-					{
-						//console.log(value);
-						getSelectNation(allDetectionData[i]);
-					}
-			 	}
-			 }
 
-		 });
-	 });
-}
-
-<<<<<<< HEAD
-*/
-
-=======
->>>>>>> a99c1dd8f46c452b2236b7ab7009fff125abd344
- /**
-  * function that control what nation is selected and create all the collapse
-  * of that nation
-  * @param  {[type]} detectedDataForSinglelocation [description]
-  * @return {[type]}                               [description]
-  */
- /*
- function getSelectNation(detectedDataForSinglelocation){
- 	switch(detectedDataForSinglelocation.station.nation.name){
- 		case "Italia":
- 			createCollapsiblePanel(detectedDataForSinglelocation);
- 			assignCollapsibleClick();
-			break;
- 		case "Francia":
- 			createCollapsiblePanel(detectedDataForSinglelocation);
- 			assignCollapsibleClick();
-			break;
- 		case "Svizzera":
- 			createCollapsiblePanel(detectedDataForSinglelocation);
- 			assignCollapsibleClick();
-			break;
- 		case "undefined":
- 			createAllCollapsiblePanel();
- 			assignCollapsibleClick();
-			break;
- 		}
- }
-*/
 /*****************************************************************/
 /*                              MAIN                             */
 /*****************************************************************/

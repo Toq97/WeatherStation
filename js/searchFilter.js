@@ -29,7 +29,7 @@ function filter(){
  * @param  {[type]} allDetectionData [description]
  * @return {[type]}                  [description]
  */
-
+/*
 function getSelectedValue(allDetectionData)
 {
 	$(document).ready(function(){
@@ -49,13 +49,15 @@ function getSelectedValue(allDetectionData)
 		 });
 	 });
 }
+
+*/
 /**
  * function that control what nation is selected and create all the collapse
  * of that nation
  * @param  {[type]} detectedDataForSinglelocation [description]
  * @return {[type]}                               [description]
  */
-
+/*
 function getSelectNation(detectedDataForSinglelocation){
  switch(detectedDataForSinglelocation.station.nation.name){
    case "Italia":
@@ -76,7 +78,7 @@ function getSelectNation(detectedDataForSinglelocation){
      break;
    }
 }
-
+*/
 //add events to the input text and the select
 $("#input-station-name").on("keyup", filter);
 $('#select-country').on('click', filter);
