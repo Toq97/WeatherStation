@@ -63,6 +63,7 @@ descrizione mangaer
         - initializeLoading: Gianluca
         - isValidDate: Gianluca
         - getHistoricalData: Gianluca
+        - filter: Pietro
 
     other:
         - post the jsonBlob backup jsons: Gianluca
@@ -93,6 +94,7 @@ All notable changes to this project will be documented in this file.
 - managerpanelbodyimage: Tortone  7/12/2017
 - utilitiesformanageimage: Tortone  7/12/2017
 - updateSlug.js: Gianluca 8/12/2f903418b776
+- searchFilter.js: Pietro 11/12/2017
 ### Changed
-
+- createCollapsiblePanel: Pietro 11/12/2017 , ho cambiato l'id del collapse(mi serviva per la ricerca)
 ### Removed
