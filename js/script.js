@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:10:26+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-08T18:31:44+01:00
+ * @Last modified time: 2017-12-11T13:46:40+01:00
  */
 
 
@@ -126,13 +126,15 @@ function assignCollapsibleClick(singleData){
 		acc[i].onclick = function() {
 	    	this.classList.toggle("active");
 	    	var panel = this.nextElementSibling;
+				var id = $(this).attr('id');
 	    	if (panel.style.maxHeight){
 	        	panel.style.maxHeight = null;
 	        } else {
-						var id = $(this).attr('id');
-						managerpanelbodyimage(id);
-	        	panel.style.maxHeight = panel.scrollHeight + "px";
+						panel.style.maxHeight = "350" + "px";
+	        	//panel.style.maxHeight = panel.scrollHeight + "px";
+						//console.log(panel.scrollHeight);
 	        }
+						managerpanelbodyimage(id);
 
        callOnClickEventOnCollapse(acc,i);
      	}
@@ -282,8 +284,7 @@ function createTemperatureBox(temperature,urlIcon) {
  */
 function createPanelBody(detectedDataForSinglelocation){
 	var divPanelCollapsibleBody = $('<div></div>').addClass("panelCollapsibleBody");
-   //test
-   divPanelCollapsibleBody.html("test");
+
    divPanelCollapsibleBody.attr("id",detectedDataForSinglelocation.station.id+"updateimage");
    return divPanelCollapsibleBody;
 }
