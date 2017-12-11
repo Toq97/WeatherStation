@@ -25,18 +25,17 @@
 	<div id="filter">
 		<div id="div-station-name">
 			<h3>Station name</h3>
-			<input type="text" name="station-name" id="input-station-name" placeholder="name">
+			<input type="text" name="station-name" id="input-station-name">
 		</div>
 		<div>
 			<h3>Country</h3>
 				<select id="select-country">
-					<option value="">-</option>
-					<option value="Francia">France</option>
-					<option value="Italia">Italy</option>
-					<option value="Svizzera">Switzerland</option>
+					<option value="" id="-">-</option>
+					<option value="francia" id="Francia">France</option>
+					<option value="italia" id="Italia">Italy</option>
+					<option value="svizzera" id = "Svizzera">Switzerland</option>
 				</select>
 		</div>
-		<div>
 
 				<input type="text" id="refreshtime" size="10">
 				<button id="buttonsaverefresh">SAVE REFRESH TIME</button>
@@ -68,6 +67,7 @@
 	<script src="js/temperatureColorUtilities.js" charset="utf-8"></script>
 	<script src="js/panelBodyUtilities.js" charset="utf-8"></script>
 	<script src="js/script.js" charset="utf-8"></script>
+	<script src="js/searchFilter.js" charset="utf-8"></script>
 	<script src="js/updateSlugs.js"></script>
 	<script src="js/jsonBlob.js" charset="utf-8"></script>
 	<!-- cuastomized script  -->

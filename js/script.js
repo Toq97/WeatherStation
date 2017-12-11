@@ -301,6 +301,7 @@ function getFlagNation(detectedDataForSinglelocation){
  * @param  {[type]} allDetectionData [description]
  * @return {[type]}                  [description]
  */
+/*
 function getSelectedValue(allDetectionData)
 {
 	$(document).ready(function(){
@@ -321,7 +322,7 @@ function getSelectedValue(allDetectionData)
 	 });
 }
 
-
+*/
 
  /**
   * function that control what nation is selected and create all the collapse
@@ -329,6 +330,7 @@ function getSelectedValue(allDetectionData)
   * @param  {[type]} detectedDataForSinglelocation [description]
   * @return {[type]}                               [description]
   */
+ /*
  function getSelectNation(detectedDataForSinglelocation){
  	switch(detectedDataForSinglelocation.station.nation.name){
  		case "Italia":
@@ -349,7 +351,7 @@ function getSelectedValue(allDetectionData)
 			break;
  		}
  }
-
+*/
 /*****************************************************************/
 /*                              MAIN                             */
 /*****************************************************************/
@@ -359,13 +361,3 @@ getApiData();
  * Search filter
  * @return {[type]} [description]
  */
-
-
-/*$(document).ready(function(){
-   $("#input-station-name").on("keyup", function() {
-     var value = $(this).val().toLowerCase();
-     $("#container *").filter(function() {
-       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-     });
-   });
-});*/
