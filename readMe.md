@@ -63,6 +63,9 @@ descrizione mangaer
         - initializeLoading: Gianluca
         - isValidDate: Gianluca
         - getHistoricalData: Gianluca
+        - buttonsaverefresh: Tortone
+        - dateutilities: Tortone
+        - PadNum: Tortone
 
     other:
         - post the jsonBlob backup jsons: Gianluca
@@ -92,7 +95,11 @@ All notable changes to this project will be documented in this file.
 - updateImageApi: Tortone  7/12/2017
 - managerpanelbodyimage: Tortone  7/12/2017
 - utilitiesformanageimage: Tortone  7/12/2017
+- dateutilities: Tortone 7/12/2017
+- PadNum: Tortone 7/12/2017
 - updateSlug.js: Gianluca 8/12/2f903418b776
+- buttonsaverefresh: Tortone 11/12/2017
+
 ### Changed
 
 ### Removed
