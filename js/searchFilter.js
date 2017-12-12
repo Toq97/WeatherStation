@@ -1,7 +1,5 @@
 /**
- * [filter function to filter the collpse elements
- * @param  {[type]}  				  [description]
- * @return {[type]}                   [description]
+ * [filter function to filter the collpse elements]
  */
 function filter(){
 	//what the user write in the input text
@@ -24,6 +22,10 @@ function filter(){
 refreshManager.selectData = selectedOption;
 refreshManager.textData = inputText;
 }
+/**
+ * [function that save the filter search when there is a refresh]
+ *
+ */
 function filteringAtRefresh(){
 	if( refreshManager.textData != "" && (refreshManager.selectData != "-" || refreshManager.selectData != "")){
 	   filter();
