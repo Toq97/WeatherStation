@@ -39,7 +39,8 @@ function getAllStations() {
 			getApiData(slugs[i].slug);
 		}
 	}
-	console.log(manager.allData)
+	console.log(manager.allData);
+	console.log(manager.refreshetime);
 		manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
 
 
@@ -309,13 +310,13 @@ function createPanelBody(detectedDataForSinglelocation){
 function getFlagNation(detectedDataForSinglelocation){
 	switch(detectedDataForSinglelocation.station.nation.name){
 		case "Italia":
-		    var imageItaly = $("<img></img>").attr('src',"./img/italy-flag.png").addClass("flagIcon");
+		    var imageItaly = $("<img></img>").attr('src',"./img/backgroundItaly.png").addClass("flagIcon");
 			return imageItaly;
 		case "Francia":
-			var imageFrance = $("<img></img>").attr('src',"./img/france-flag.png").addClass("flagIcon");
+			var imageFrance = $("<img></img>").attr('src',"./img/backgroundFrancia.png").addClass("flagIcon");
 			return imageFrance;
 		case "Svizzera":
-			var imageSwiss = $("<img></img>").attr('src',"./img/sw-flag.png").addClass("flagIcon");
+			var imageSwiss = $("<img></img>").attr('src',"./img/backgroundSvizzera.png").addClass("flagIcon");
 			return imageSwiss;
 		default:
 			var defaultImage = $("<img></img>").attr('src',"./	img/pirates-flag.png").addClass("flagIcon");
