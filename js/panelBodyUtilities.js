@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:43:44+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-11T22:42:15+01:00
+ * @Last modified time: 2017-12-12T14:21:54+01:00
  */
 
 
@@ -28,38 +28,37 @@ var createLinkforMaps = function(nameofLocation){
     return finalResult;
  }
 
-
+function getStationForClickedPanel(id){
+ var detectedDataForSinglelocation = {};
+    for (var item in manager.allData) {
+        if (manager.allData.hasOwnProperty(item)) {
+            if(manager.allData[item].station.slug == id){
+                detectedDataForSinglelocation = manager.allData[item];
+            }
+        }
+    }
+    return detectedDataForSinglelocation;
+}
 /**
  * [function that done the call for take the information of a station and update it in the body of panel]
- * @param  {[type]} id [description]
+ * @param  {[String]} id [the id of the clicked panel]
  * @return {[type]}    [description]
  */
 function updateImageApi(id){
 
-//commento che serve piu tardi spero non dia fastidio a nessuno
 
-      //$('.collapse').click(function(event){
-       //prendere l'id del panel, cioè quello della stazione
-      //  var falseid = $(this).attr('id');
-      //  var id = falseid.replace("#","");
-      // console.log(id);
 
-       $.ajax({
-         //chiamata con l'id
-         url: "https://www.torinometeo.org/api/v1/realtime/data/"+id+"/",
-         type: 'GET',
-         dataType: 'JSON',
-       })
-         .done(function(detectedDataForSinglelocation) {
-         //var divPanelCollapsibleBody = $(".panelCollapsibleBody");
+        var detectedDataForSinglelocation = getStationForClickedPanel(id);
 
-         //title with the name of the place
+
+        //title with the name of the place
          var collapsibleBodytitle = $('<h3></h3>');
          collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
 
          //image of the place
          var collapsibleBodyImage = $('<img></img>');
          collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
+         collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
          collapsibleBodyImage.addClass("collapsibleImageStyle");
 
          //link to maps
@@ -70,29 +69,13 @@ function updateImageApi(id){
          $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodytitle);
          $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
 
-        //deleteimagetest ="#"+detectedDataForSinglelocation.station.id+"updateimage";
-
-
-
- })
- .fail(function(error) {
-   console.log(error);
-   console.log(error.status);
-   console.log(error.statusText);
-   //display the error data into page
- })
- .always(function() {
-   console.log("ajax call for image complete");
- });
-//);
-
 
 }
 
 
 /**
  * [function that control when the pannel open, the body of pannel is empty]
- * @param  {[type]} id [description]
+ * @param  {[String]} id [description]
  * @return {[type]}    [description]
  */
 function managerpanelbodyimage(id){
@@ -105,25 +88,17 @@ for (var item in manager.collapsebody){
       {
         if(manager.collapsebody[item].count == 0){
           //libera il corpo del pannelo ogni volta che lo apro, in modo tale che non venga caricato più volte il materiale nel body del pannello
-
           for(var items in manager.allData)
           {
              if (manager.allData[items].station.slug == id)
             {
                    $('#'+manager.allData[items].station.id+'updateimage').empty();
-
             }
           }
-          //$(".panelCollapsibleBody").empty();
-          // console.log(manager.collapsebody[item].count);
           updateImageApi(id);
-          //manager.collapsebody[item].deleteimage = deleteimagetest;
-         //console.log(manager.collapsebody[item].deleteimage);
          manager.collapsebody[item].count  = 1;
        } else {
-         //console.log(manager.collapsebody[item].count);
          manager.collapsebody[item].count  = 0;
-         //$(manager.collapsebody[item].deleteimage).empty();
 
        }
 
@@ -208,8 +183,10 @@ alert("Hai stoppato il refresh");
 //funzione che serve per impostare il refresh
 $('#buttonsaverefresh').click(function (){
 
-
-manager.refreshetime = $('#refreshtime').html();
+/*
+var newrefreshtime = document.getElementById("refreshtime");
+//console.log(newrefreshtime.value);
+manager.refreshetime = newrefreshtime.value;
 $('#refreshtime').attr('placeholder',manager.refreshetime);
-
+*/
 });

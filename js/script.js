@@ -12,16 +12,23 @@
 var manager = {
 	allData : [],
 	collapsibleOpenedIndex : [],
-  collapsebody: [],
+    collapsebody: [],
 	loadimageoption: 0,
-	refreshtime: 30000,
+	refreshtime: 10000,
 	loadedStations : 0,
 	slugs: slugs,
 	jsonBlobCalls : 0,
 	standardCallActive: true,
 	timeOut: ""
 }
-
+/**
+ * [filterManager manager that saves the data for filtering at the refresh]
+ * @type {Object}
+ */
+var refreshManager = {
+	selectData: "",
+	textData: ""
+}
 
 function getAllStations() {
 	if(manager.standardCallActive) {
@@ -109,8 +116,9 @@ function loadDataOnDOM(data) {
 		manager.loadimageoption = 1;
 	}
 	assignCollapsibleClick(data);
-  addEventListenerToCollapse();
-  //getSelectedValue(data);
+    addEventListenerToCollapse();
+    callOnClickEventOnCollapse();
+    filteringAtRefresh();
 }
 
 /**
@@ -133,24 +141,24 @@ function assignCollapsibleClick(singleData){
 	    	if (panel.style.maxHeight){
 	        	panel.style.maxHeight = null;
 	        } else {
-						panel.style.maxHeight = "350" + "px";
-	        	//panel.style.maxHeight = panel.scrollHeight + "px";
-						//console.log(panel.scrollHeight);
+			    panel.style.maxHeight = "350" + "px";
 	        }
-						managerpanelbodyimage(id);
-
-       callOnClickEventOnCollapse(acc,i);
+		    managerpanelbodyimage(id);
      	}
 	}
 
 }
-/**
- * [function that call the onclick event if the collapse in the previus refresh was opened]
- */
-function callOnClickEventOnCollapse(acc,i){
-	for (var item in manager.collapsibleOpenedIndex) {
-		if (manager.collapsibleOpenedIndex[item] == i) {
-			acc[i].onclick();
+function callOnClickEventOnCollapse(){
+	/**
+     * [contain all the divs that contain a collapsible panel]
+     * @type {[type]}
+     */
+	var acc = document.getElementsByClassName("panelHeader");
+    for (var i = 0; i < acc.length; i++) {
+		for (var item in manager.collapsibleOpenedIndex) {
+			if (manager.collapsibleOpenedIndex[item] == i) {
+				acc[manager.collapsibleOpenedIndex[item]].onclick();
+			}
 	    }
     }
 }
@@ -174,7 +182,6 @@ function addEventListenerToCollapse() {
 		} else {
 			manager.collapsibleOpenedIndex[$(this).index('.collapse')] = null;
 		}
-	    console.log(manager.collapsibleOpenedIndex);
 	});
 }
 
@@ -208,7 +215,7 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
      * div that contain the header and the body
      * @type {[type]}
      */
-	var collapse = $('<div></div>').addClass('collapse').attr('id',detectedDataForSinglelocation.station.nation.name);
+	var collapse = $('<div></div>').addClass('collapse');
 	//aggiungo l'id al pannello per poterlo identificare in seguito
 	//collapse = $('#'+detectedDataForSinglelocation.id);
 	/**
@@ -231,15 +238,18 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
  */
 function createPanelHeader(detectedDataForSinglelocation){
 	var divPanelHeader = $('<div></div>').addClass("panelHeader")
-	                                     .html("Station Name:" + detectedDataForSinglelocation.station.name + " | City: "
+	                                     .html(" City: "
 										  + detectedDataForSinglelocation.station.city +
 										  " | Temperature: "+ detectedDataForSinglelocation.temperature)
 										  .append(getFlagNation(detectedDataForSinglelocation));
-
-
+    var stationName = $('<p></p').addClass('stationHeader')
+	                             .html(detectedDataForSinglelocation.station.name)
+								 .attr('id',detectedDataForSinglelocation.station.nation.name);
+								  appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
+   divPanelHeader.append(stationName);
    divPanelHeader.attr("id",detectedDataForSinglelocation.station.slug);
 
-	 appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
+
 
     return divPanelHeader;
 }
