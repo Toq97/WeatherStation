@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:43:44+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-12T14:21:54+01:00
+ * @Last modified time: 2017-12-12T15:19:52+01:00
  */
 
 
@@ -179,14 +179,14 @@ alert("Hai stoppato il refresh");
 
 });
 
-
 //funzione che serve per impostare il refresh
 $('#buttonsaverefresh').click(function (){
 
-/*
 var newrefreshtime = document.getElementById("refreshtime");
 //console.log(newrefreshtime.value);
 manager.refreshetime = newrefreshtime.value;
 $('#refreshtime').attr('placeholder',manager.refreshetime);
-*/
+clearInterval(manager.timeOut);
+manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+
 });
