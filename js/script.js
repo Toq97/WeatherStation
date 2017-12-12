@@ -12,9 +12,9 @@
 var manager = {
 	allData : [],
 	collapsibleOpenedIndex : [],
-  collapsebody: [],
+    collapsebody: [],
 	loadimageoption: 0,
-	refreshtime: 30000,
+	refreshtime: 15000,
 	loadedStations : 0,
 	slugs: slugs,
 	jsonBlobCalls : 0,
@@ -111,6 +111,7 @@ function loadDataOnDOM(data) {
 	}
 	assignCollapsibleClick(data);
   addEventListenerToCollapse();
+  callOnClickEventOnCollapse();
   //getSelectedValue(data);
 }
 
@@ -134,24 +135,24 @@ function assignCollapsibleClick(singleData){
 	    	if (panel.style.maxHeight){
 	        	panel.style.maxHeight = null;
 	        } else {
-						panel.style.maxHeight = "350" + "px";
-	        	//panel.style.maxHeight = panel.scrollHeight + "px";
-						//console.log(panel.scrollHeight);
+			    panel.style.maxHeight = "350" + "px";
 	        }
-						managerpanelbodyimage(id);
-
-       callOnClickEventOnCollapse(acc,i);
+		    managerpanelbodyimage(id);
      	}
 	}
 
 }
-/**
- * [function that call the onclick event if the collapse in the previus refresh was opened]
- */
-function callOnClickEventOnCollapse(acc,i){
-	for (var item in manager.collapsibleOpenedIndex) {
-		if (manager.collapsibleOpenedIndex[item] == i) {
-			acc[i].onclick();
+function callOnClickEventOnCollapse(){
+	/**
+     * [contain all the divs that contain a collapsible panel]
+     * @type {[type]}
+     */
+	var acc = document.getElementsByClassName("panelHeader");
+    for (var i = 0; i < acc.length; i++) {
+		for (var item in manager.collapsibleOpenedIndex) {
+			if (manager.collapsibleOpenedIndex[item] == i) {
+				acc[manager.collapsibleOpenedIndex[item]].onclick();
+			}
 	    }
     }
 }
@@ -175,7 +176,6 @@ function addEventListenerToCollapse() {
 		} else {
 			manager.collapsibleOpenedIndex[$(this).index('.collapse')] = null;
 		}
-	    console.log(manager.collapsibleOpenedIndex);
 	});
 }
 

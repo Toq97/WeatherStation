@@ -28,32 +28,30 @@ var createLinkforMaps = function(nameofLocation){
     return finalResult;
  }
 
-
+function getStationForClickedPanel(id){
+ var detectedDataForSinglelocation = {};
+    for (var item in manager.allData) {
+        if (manager.allData.hasOwnProperty(item)) {
+            if(manager.allData[item].station.slug == id){
+                detectedDataForSinglelocation = manager.allData[item];
+            }
+        }
+    }
+    return detectedDataForSinglelocation;
+}
 /**
  * [function that done the call for take the information of a station and update it in the body of panel]
- * @param  {[type]} id [description]
+ * @param  {[String]} id [the id of the clicked panel]
  * @return {[type]}    [description]
  */
 function updateImageApi(id){
 
-//commento che serve piu tardi spero non dia fastidio a nessuno
 
-      //$('.collapse').click(function(event){
-       //prendere l'id del panel, cioè quello della stazione
-      //  var falseid = $(this).attr('id');
-      //  var id = falseid.replace("#","");
-      // console.log(id);
 
-       $.ajax({
-         //chiamata con l'id
-         url: "https://www.torinometeo.org/api/v1/realtime/data/"+id+"/",
-         type: 'GET',
-         dataType: 'JSON',
-       })
-         .done(function(detectedDataForSinglelocation) {
-         //var divPanelCollapsibleBody = $(".panelCollapsibleBody");
+        var detectedDataForSinglelocation = getStationForClickedPanel(id);
 
-         //title with the name of the place
+
+        //title with the name of the place
          var collapsibleBodytitle = $('<h3></h3>');
          collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
 
@@ -70,23 +68,7 @@ function updateImageApi(id){
          $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodytitle);
          $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
 
-        //deleteimagetest ="#"+detectedDataForSinglelocation.station.id+"updateimage";
-
-
-
- })
- .fail(function(error) {
-   console.log(error);
-   console.log(error.status);
-   console.log(error.statusText);
-   //display the error data into page
- })
- .always(function() {
-   console.log("ajax call for image complete");
- });
-//);
-
-
+        
 }
 
 
@@ -105,25 +87,17 @@ for (var item in manager.collapsebody){
       {
         if(manager.collapsebody[item].count == 0){
           //libera il corpo del pannelo ogni volta che lo apro, in modo tale che non venga caricato più volte il materiale nel body del pannello
-
           for(var items in manager.allData)
           {
              if (manager.allData[items].station.slug == id)
             {
                    $('#'+manager.allData[items].station.id+'updateimage').empty();
-
             }
           }
-          //$(".panelCollapsibleBody").empty();
-          // console.log(manager.collapsebody[item].count);
           updateImageApi(id);
-          //manager.collapsebody[item].deleteimage = deleteimagetest;
-         //console.log(manager.collapsebody[item].deleteimage);
          manager.collapsebody[item].count  = 1;
        } else {
-         //console.log(manager.collapsebody[item].count);
          manager.collapsebody[item].count  = 0;
-         //$(manager.collapsebody[item].deleteimage).empty();
 
        }
 
