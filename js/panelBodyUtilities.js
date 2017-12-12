@@ -179,14 +179,22 @@ alert("Hai stoppato il refresh");
 
 });
 
+
+
 //funzione che serve per impostare il refresh
 $('#buttonsaverefresh').click(function (){
 
+
 var newrefreshtime = document.getElementById("refreshtime");
-//console.log(newrefreshtime.value);
-manager.refreshetime = newrefreshtime.value;
-$('#refreshtime').attr('placeholder',manager.refreshetime);
-clearInterval(manager.timeOut);
-manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+
+if(newrefreshtime.value >= 15000){
+
+  manager.refreshtime = newrefreshtime.value;
+  clearInterval(manager.timeOut);
+  manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+
+}else{
+  alert("Hai inserito un valore troppo basso di refresh.");
+}
 
 });
