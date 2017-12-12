@@ -14,18 +14,98 @@
     box-sizing: border-box;
 }
 body{
-	width: 100%;
 	margin: 0 auto;
    	font-family: 'Calibri', sans-serif;
 }
+/* inizio grid */
+.container{
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 15px;
+}
 
+.row {
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.row::before,
+.row::after {
+	content: '';
+	display: table;
+}
+
+.row::after {
+	clear: both;
+}
+
+.col {
+	float: left;
+}
+
+.col-1 {
+	width: 8.33333333%;
+}
+
+.col-2 {
+	width: 16.66666667%;
+}
+
+.col-3 {
+	width: 25%;
+}
+
+.col-4 {
+	width: 33.33333333%;
+}
+
+.col-5 {
+	width: 41.66666667%;
+}
+
+.col-6 {
+	width: 50%;
+}
+
+.col-6 {
+	width: 50%;
+}
+
+.col-7 {
+	width: 58.33333333%;
+}
+
+.col-8 {
+	width: 66.66666667%;
+}
+
+.col-9 {
+	width: 75%;
+}
+
+.col-10 {
+	width: 83.33333333%;
+}
+
+.col-11 {
+	width: 91.66666667%;
+}
+
+.col-12 {
+	width: 100%;
+}
+.col-headerElements {
+    width: 12.5%;
+}
+/*fine grid */
+.containerCollapse{
+   background-color: #29b1d0;
+   padding-bottom: 20px;
+   font-size: 18px;
+   font-weight: bold;
+}
 .comunication-box {
-  float: left;
-  width: 300px;
-  height: 580px;
-  margin-top: 125px;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin: 2% 3%;
   padding: 10px;
   border: solid 3px blue;
   border-radius: 10px;

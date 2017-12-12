@@ -39,14 +39,8 @@ function getAllStations() {
 			getApiData(slugs[i].slug);
 		}
 	}
-<<<<<<< HEAD
-	console.log(manager.allData)
-		//manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
-=======
 	console.log(manager.allData);
-	console.log(manager.refreshetime);
 		manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
->>>>>>> d7329dfcb97b9ea0621aed1afb616a91065f246e
 
 
 }
@@ -115,7 +109,7 @@ $.ajax({
 */
 function loadDataOnDOM(data) {
 	//manager.allData = data;
-	$("#container").empty();
+	$("#collapsibleContainer").empty();
 	createAllCollapsiblePanel(data);
 	if(manager.loadimageoption == 0){
 		utilitiesformanageimage();
@@ -216,7 +210,7 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
 	 * it is the container of all collapsible panels
 	 * @type {[type]}
 	 */
-	var allCollapsibleContainer = $('#container');
+	var allCollapsibleContainer = $('#collapsibleContainer');
     /**
      * div that contain the header and the body
      * @type {[type]}
@@ -237,6 +231,7 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
 	collapse.append(divPanelHeader,divPanelCollapsibleBody);
 	allCollapsibleContainer.append(collapse);
 }
+<<<<<<< HEAD
 /**
  * [appendHeaderData description]
  * @param  {DomElement} divPanelHeader [pannel header]
@@ -247,6 +242,14 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
 function appendHeaderData(divPanelHeader, className, text,data){
 	var stationData = $('<p></p').addClass(className)
 								 .html(text + data);
+=======
+function appendHeaderData(divPanelHeader, className, data){
+	if (data == null){
+		data = "NO Data";
+	}
+	var stationData = $('<p></p').addClass(className + " col col-headerElements")
+								 .html(data);
+>>>>>>> ab11b3fc8a4cada123ee1282fa65a8caee8993c2
      divPanelHeader.append(stationData);
 }
 /**
@@ -256,16 +259,16 @@ function appendHeaderData(divPanelHeader, className, text,data){
  */
 function createPanelHeader(detectedDataForSinglelocation){
 	var divPanelHeader = $('<div></div>').addClass("panelHeader")
-    var stationName = $('<p></p').addClass('stationName')
+    var stationName = $('<p></p').addClass('stationName col col-headerElements')
 	                             .html(detectedDataForSinglelocation.station.name)
 								 .attr('id',detectedDataForSinglelocation.station.nation.name);
    appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
    divPanelHeader.append(stationName);
-   appendHeaderData( divPanelHeader,'stationCity', 'City: ', detectedDataForSinglelocation.station.city );
-   appendHeaderData( divPanelHeader, 'stationRegion', 'Region: ',  detectedDataForSinglelocation.station.region.name);
-   appendHeaderData( divPanelHeader, 'stationPressure', 'Pressure: ', detectedDataForSinglelocation.pressure);
-   appendHeaderData( divPanelHeader, 'stationHumidity', 'Humidity: ', detectedDataForSinglelocation.relative_humidity);
-   appendHeaderData( divPanelHeader, 'stationWind', 'Wind strength: ', detectedDataForSinglelocation.wind_strength);
+   appendHeaderData( divPanelHeader,'stationCity', detectedDataForSinglelocation.station.city );
+   appendHeaderData( divPanelHeader, 'stationRegion',  detectedDataForSinglelocation.station.region.name);
+   appendHeaderData( divPanelHeader, 'stationPressure', detectedDataForSinglelocation.pressure);
+   appendHeaderData( divPanelHeader, 'stationHumidity', detectedDataForSinglelocation.relative_humidity);
+   appendHeaderData( divPanelHeader, 'stationWind', detectedDataForSinglelocation.wind_strength);
    getFlagNation(detectedDataForSinglelocation,divPanelHeader);
 
    divPanelHeader.append(getFlagNation(detectedDataForSinglelocation));
@@ -316,7 +319,7 @@ function createTemperatureBox(temperature,urlIcon) {
  */
 function createPanelBody(detectedDataForSinglelocation){
 	var divPanelCollapsibleBody = $('<div></div>').addClass("panelCollapsibleBody");
-   divPanelCollapsibleBody.attr("id",detectedDataForSinglelocation.station.id+"updateimage");
+    divPanelCollapsibleBody.attr("id",detectedDataForSinglelocation.station.id+"updateimage");
 
    return divPanelCollapsibleBody;
 }
