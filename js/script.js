@@ -40,7 +40,7 @@ function getAllStations() {
 		}
 	}
 	console.log(manager.allData)
-		manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+		//manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
 
 
 }
@@ -231,6 +231,11 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
 	collapse.append(divPanelHeader,divPanelCollapsibleBody);
 	allCollapsibleContainer.append(collapse);
 }
+function appendHeaderData(divPanelHeader, className, text,data){
+	var stationData = $('<p></p').addClass(className)
+								 .html(text + data);
+     divPanelHeader.append(stationData);
+}
 /**
  * [create the header of each collapsible panel]
  * @param  {[type]} detectedDataForSinglelocation [contain all the data for a single location]
@@ -238,18 +243,20 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
  */
 function createPanelHeader(detectedDataForSinglelocation){
 	var divPanelHeader = $('<div></div>').addClass("panelHeader")
-	                                     .html(" City: "
-										  + detectedDataForSinglelocation.station.city +
-										  " | Temperature: "+ detectedDataForSinglelocation.temperature)
-										  .append(getFlagNation(detectedDataForSinglelocation));
-    var stationName = $('<p></p').addClass('stationHeader')
+    var stationName = $('<p></p').addClass('stationName')
 	                             .html(detectedDataForSinglelocation.station.name)
 								 .attr('id',detectedDataForSinglelocation.station.nation.name);
-								  appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
+   appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
    divPanelHeader.append(stationName);
+   appendHeaderData( divPanelHeader,'stationCity', 'City: ', detectedDataForSinglelocation.station.city );
+   appendHeaderData( divPanelHeader, 'stationRegion', 'Region: ',  detectedDataForSinglelocation.station.region.name);
+   appendHeaderData( divPanelHeader, 'stationPressure', 'Pressure: ', detectedDataForSinglelocation.pressure);
+   appendHeaderData( divPanelHeader, 'stationHumidity', 'Humidity: ', detectedDataForSinglelocation.relative_humidity);
+   appendHeaderData( divPanelHeader, 'stationWind', 'Wind strength: ', detectedDataForSinglelocation.wind_strength);
+   getFlagNation(detectedDataForSinglelocation,divPanelHeader);
+
+   divPanelHeader.append(getFlagNation(detectedDataForSinglelocation));
    divPanelHeader.attr("id",detectedDataForSinglelocation.station.slug);
-
-
 
     return divPanelHeader;
 }
@@ -268,7 +275,6 @@ function appendTemperatureBox(stationData, panelHeader) {
 		panelHeader.append(
 			createTemperatureBox(temperature));
 	}
-
 }
 /**
  * create the colored box showing the temperature
@@ -297,8 +303,8 @@ function createTemperatureBox(temperature,urlIcon) {
  */
 function createPanelBody(detectedDataForSinglelocation){
 	var divPanelCollapsibleBody = $('<div></div>').addClass("panelCollapsibleBody");
-
    divPanelCollapsibleBody.attr("id",detectedDataForSinglelocation.station.id+"updateimage");
+
    return divPanelCollapsibleBody;
 }
 /**

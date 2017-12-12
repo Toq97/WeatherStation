@@ -11,7 +11,7 @@ function getStationFromJSONBlob(blobId) {
         dataType: 'json',
         success: function(response) {
           console.log("success from jBlob");
-        	console.log(response);
+        	//console.log(response);
           manager.allData.push(response);
           if(!manager.jsonBlobCalls) {
               $('#failed-stations-list').empty();

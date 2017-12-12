@@ -10,7 +10,7 @@ function filter(){
 	var selectedOption = $('#select-country')[0].selectedOptions[0].id;
 
 	//iterate each accordion elements
-    $(".stationHeader").each(function() {
+    $(".stationName").each(function() {
     	//check if the id of the accordion element is equal to the selected option
     	if (selectedOption === '-' || $(this).attr('id') === selectedOption) {
     		//do the filter
