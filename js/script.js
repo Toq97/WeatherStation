@@ -298,6 +298,7 @@ function createTemperatureBox(temperature,urlIcon) {
 											'rgb' + temperatureColorUtilities.temperatureToRGB(temperature)),
 											})
 										.append($weatherIcon);
+										
 }
 
 /**
