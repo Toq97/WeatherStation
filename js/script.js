@@ -14,7 +14,7 @@ var manager = {
 	collapsibleOpenedIndex : [],
     collapsebody: [],
 	loadimageoption: 0,
-	refreshtime: 15000,
+	refreshtime: 10000,
 	loadedStations : 0,
 	slugs: slugs,
 	jsonBlobCalls : 0,
@@ -246,10 +246,11 @@ function createPanelHeader(detectedDataForSinglelocation){
     var stationName = $('<p></p').addClass('stationHeader')
 	                             .html(detectedDataForSinglelocation.station.name)
 								 .attr('id',detectedDataForSinglelocation.station.nation.name);
+								  appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
    divPanelHeader.append(stationName);
    divPanelHeader.attr("id",detectedDataForSinglelocation.station.slug);
 
-	 appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
+
 
     return divPanelHeader;
 }
