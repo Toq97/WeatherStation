@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:43:44+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-08T18:31:29+01:00
+ * @Last modified time: 2017-12-11T22:42:15+01:00
  */
 
 
@@ -193,12 +193,23 @@ function padNum(number)
 
 }
 
-
+/**
+ * [function that stop the refresh]
+ * @return {[type]} []
+ */
 $('#buttonstoprefresh').click(function (){
-//appena viene aggiornato il refresh si pò fare
-  /*
-  manager.refreshetime = $('#refreshtime').html();
-  $('#refreshtime').attr('placeholder',manager.refreshetime);
-   console.log(manager.refreshetime);
-*/
-})
+
+clearInterval(manager.timeOut);
+alert("Hai stoppato il refresh");
+
+});
+
+
+//funzione che serve per impostare il refresh
+$('#buttonsaverefresh').click(function (){
+
+
+manager.refreshetime = $('#refreshtime').html();
+$('#refreshtime').attr('placeholder',manager.refreshetime);
+
+});

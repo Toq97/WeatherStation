@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:10:26+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-08T18:31:44+01:00
+ * @Last modified time: 2017-12-11T22:48:04+01:00
  */
 
 
@@ -18,7 +18,8 @@ var manager = {
 	loadedStations : 0,
 	slugs: slugs,
 	jsonBlobCalls : 0,
-	standardCallActive: true
+	standardCallActive: true,
+	timeOut: ""
 }
 
 
@@ -31,7 +32,11 @@ function getAllStations() {
 			getApiData(slugs[i].slug);
 		}
 	}
-	var timeOut = setTimeout(getAllStations, manager.refreshtime);
+
+
+		manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+
+
 }
 
 /**
@@ -68,7 +73,7 @@ $.ajax({
 			str += '\n{\n\t id : \'' + slug.id + '\', \n\tslug : \'' + slug.slug + '\' \n},'
 		});
 		console.log(str)*/
-		dateutilities();
+
 		$('#refreshtime').attr('placeholder',manager.refreshtime);
 
 })
@@ -88,9 +93,8 @@ $.ajax({
 	}
 
 });
-	 //inserite anche questa se si a
-	 //fare una funzione per il refresh, che serve per le immagini
-
+   //update the data update
+   dateutilities();
 }
 
 /**
@@ -107,7 +111,7 @@ function loadDataOnDOM(data) {
 	}
 	assignCollapsibleClick(data);
   addEventListenerToCollapse();
-  getSelectedValue(data);
+  //getSelectedValue(data);
 }
 
 /**
@@ -126,13 +130,15 @@ function assignCollapsibleClick(singleData){
 		acc[i].onclick = function() {
 	    	this.classList.toggle("active");
 	    	var panel = this.nextElementSibling;
+				var id = $(this).attr('id');
 	    	if (panel.style.maxHeight){
 	        	panel.style.maxHeight = null;
 	        } else {
-						var id = $(this).attr('id');
-						managerpanelbodyimage(id);
-	        	panel.style.maxHeight = panel.scrollHeight + "px";
+						panel.style.maxHeight = "350" + "px";
+	        	//panel.style.maxHeight = panel.scrollHeight + "px";
+						//console.log(panel.scrollHeight);
 	        }
+						managerpanelbodyimage(id);
 
        callOnClickEventOnCollapse(acc,i);
      	}
@@ -203,7 +209,7 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
      * div that contain the header and the body
      * @type {[type]}
      */
-	var collapse = $('<div></div>').addClass('collapse').attr('id', '#'+detectedDataForSinglelocation.station.slug);
+	var collapse = $('<div></div>').addClass('collapse').attr('id',detectedDataForSinglelocation.station.nation.name);
 	//aggiungo l'id al pannello per poterlo identificare in seguito
 	//collapse = $('#'+detectedDataForSinglelocation.id);
 	/**
@@ -282,8 +288,7 @@ function createTemperatureBox(temperature,urlIcon) {
  */
 function createPanelBody(detectedDataForSinglelocation){
 	var divPanelCollapsibleBody = $('<div></div>').addClass("panelCollapsibleBody");
-   //test
-   divPanelCollapsibleBody.html("test");
+
    divPanelCollapsibleBody.attr("id",detectedDataForSinglelocation.station.id+"updateimage");
    return divPanelCollapsibleBody;
 }
@@ -309,57 +314,6 @@ function getFlagNation(detectedDataForSinglelocation){
 	}
 }
 
-/**
- * function that take the selected nation
- * @param  {[type]} allDetectionData [description]
- * @return {[type]}                  [description]
- */
-function getSelectedValue(allDetectionData)
-{
-	$(document).ready(function(){
-		 $("#select-country").on("change", function() {
-			 $("#container").empty();
-			 var value = $(this).val();
-			 for (var i in allDetectionData) {
-			 	if (allDetectionData.hasOwnProperty(i)) {
-					if(value == allDetectionData[i].station.nation.name || value == "")
-					{
-						//console.log(value);
-						getSelectNation(allDetectionData[i]);
-					}
-			 	}
-			 }
-
-		 });
-	 });
-}
-
- /**
-  * function that control what nation is selected and create all the collapse
-  * of that nation
-  * @param  {[type]} detectedDataForSinglelocation [description]
-  * @return {[type]}                               [description]
-  */
- function getSelectNation(detectedDataForSinglelocation){
- 	switch(detectedDataForSinglelocation.station.nation.name){
- 		case "Italia":
- 			createCollapsiblePanel(detectedDataForSinglelocation);
- 			assignCollapsibleClick();
-			break;
- 		case "Francia":
- 			createCollapsiblePanel(detectedDataForSinglelocation);
- 			assignCollapsibleClick();
-			break;
- 		case "Svizzera":
- 			createCollapsiblePanel(detectedDataForSinglelocation);
- 			assignCollapsibleClick();
-			break;
- 		case "undefined":
- 			createAllCollapsiblePanel();
- 			assignCollapsibleClick();
-			break;
- 		}
- }
 
 /*****************************************************************/
 /*                              MAIN                             */
@@ -370,13 +324,3 @@ getAllStations();
  * Search filter
  * @return {[type]} [description]
  */
-
-
-/*$(document).ready(function(){
-   $("#input-station-name").on("keyup", function() {
-     var value = $(this).val().toLowerCase();
-     $("#container *").filter(function() {
-       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-     });
-   });
-});*/
