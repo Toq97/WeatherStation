@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:43:44+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-11T22:42:15+01:00
+ * @Last modified time: 2017-12-12T14:21:54+01:00
  */
 
 
@@ -58,6 +58,7 @@ function updateImageApi(id){
          //image of the place
          var collapsibleBodyImage = $('<img></img>');
          collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
+         collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
          collapsibleBodyImage.addClass("collapsibleImageStyle");
 
          //link to maps
@@ -68,13 +69,13 @@ function updateImageApi(id){
          $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodytitle);
          $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
 
-        
+
 }
 
 
 /**
  * [function that control when the pannel open, the body of pannel is empty]
- * @param  {[type]} id [description]
+ * @param  {[String]} id [description]
  * @return {[type]}    [description]
  */
 function managerpanelbodyimage(id){
@@ -182,8 +183,10 @@ alert("Hai stoppato il refresh");
 //funzione che serve per impostare il refresh
 $('#buttonsaverefresh').click(function (){
 
-
-manager.refreshetime = $('#refreshtime').html();
+/*
+var newrefreshtime = document.getElementById("refreshtime");
+//console.log(newrefreshtime.value);
+manager.refreshetime = newrefreshtime.value;
 $('#refreshtime').attr('placeholder',manager.refreshetime);
-
+*/
 });
