@@ -43,17 +43,14 @@ body{
   position: relative;
   top: 10px;
 }
-
+aside{
+    background-color: #ffffff;
+}
 aside h2 {
   text-align: center;
   margin: 10px;
   font-size: 25px;
 }
-
-#container {
-  float: left;
-}
-
 
 #divHeader{
 	color: #000000;
