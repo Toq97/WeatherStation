@@ -237,6 +237,13 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
 	collapse.append(divPanelHeader,divPanelCollapsibleBody);
 	allCollapsibleContainer.append(collapse);
 }
+/**
+ * [appendHeaderData description]
+ * @param  {DomElement} divPanelHeader [pannel header]
+ * @param  {CSS Class} className      [name of the css class]
+ * @param  {String} text           [text]
+ * @param  {String/Number} data           [the data that append to the header]
+ */
 function appendHeaderData(divPanelHeader, className, text,data){
 	var stationData = $('<p></p').addClass(className)
 								 .html(text + data);
@@ -340,8 +347,3 @@ function getFlagNation(detectedDataForSinglelocation){
 /*                              MAIN                             */
 /*****************************************************************/
 getAllStations();
-
-/**
- * Search filter
- * @return {[type]} [description]
- */
