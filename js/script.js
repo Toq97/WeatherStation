@@ -231,25 +231,13 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
 	collapse.append(divPanelHeader,divPanelCollapsibleBody);
 	allCollapsibleContainer.append(collapse);
 }
-<<<<<<< HEAD
-/**
- * [appendHeaderData description]
- * @param  {DomElement} divPanelHeader [pannel header]
- * @param  {CSS Class} className      [name of the css class]
- * @param  {String} text           [text]
- * @param  {String/Number} data           [the data that append to the header]
- */
-function appendHeaderData(divPanelHeader, className, text,data){
-	var stationData = $('<p></p').addClass(className)
-								 .html(text + data);
-=======
+
 function appendHeaderData(divPanelHeader, className, data){
 	if (data == null){
 		data = "NO Data";
 	}
 	var stationData = $('<p></p').addClass(className + " col col-headerElements")
 								 .html(data);
->>>>>>> ab11b3fc8a4cada123ee1282fa65a8caee8993c2
      divPanelHeader.append(stationData);
 }
 /**
@@ -350,3 +338,8 @@ function getFlagNation(detectedDataForSinglelocation){
 /*                              MAIN                             */
 /*****************************************************************/
 getAllStations();
+
+/**
+ * Search filter
+ * @return {[type]} [description]
+ */
