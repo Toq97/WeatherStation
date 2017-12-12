@@ -264,7 +264,7 @@ function createTemperatureBox(temperature,urlIcon) {
 		if(urlIcon) {
 			$weatherIcon.attr('src', urlIcon);
 		} else {
-			$weatherIcon.attr('src', 'img/provv.png');
+			$weatherIcon.attr('src', 'img/nf_weather_icon.png');
 		}
 
 		return $('<div>').addClass('temperature-box')

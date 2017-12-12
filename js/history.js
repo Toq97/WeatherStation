@@ -1,5 +1,7 @@
 $('#history-btn').click(function() {
   var inputDate = $('.history-box input').val();
+  console.log(inputDate)
+  var dateArray = inputDate.split('-');
   if(isValidDate(inputDate)) {
     //stop standard call
     manager.standardCallActive = false;
