@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:10:26+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-11T22:48:04+01:00
+ * @Last modified time: 2017-12-12T15:23:13+01:00
  */
 
 
@@ -14,7 +14,7 @@ var manager = {
 	collapsibleOpenedIndex : [],
     collapsebody: [],
 	loadimageoption: 0,
-	refreshtime: 10000,
+	refreshtime: 30000,
 	loadedStations : 0,
 	slugs: slugs,
 	jsonBlobCalls : 0,
@@ -39,8 +39,14 @@ function getAllStations() {
 			getApiData(slugs[i].slug);
 		}
 	}
+<<<<<<< HEAD
 	console.log(manager.allData)
 		//manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+=======
+	console.log(manager.allData);
+	console.log(manager.refreshetime);
+		manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+>>>>>>> d7329dfcb97b9ea0621aed1afb616a91065f246e
 
 
 }
@@ -315,13 +321,13 @@ function createPanelBody(detectedDataForSinglelocation){
 function getFlagNation(detectedDataForSinglelocation){
 	switch(detectedDataForSinglelocation.station.nation.name){
 		case "Italia":
-		    var imageItaly = $("<img></img>").attr('src',"./img/italy-flag.png").addClass("flagIcon");
+		    var imageItaly = $("<img></img>").attr('src',"./img/backgroundItaly.png").addClass("flagIcon");
 			return imageItaly;
 		case "Francia":
-			var imageFrance = $("<img></img>").attr('src',"./img/france-flag.png").addClass("flagIcon");
+			var imageFrance = $("<img></img>").attr('src',"./img/backgroundFrancia.png").addClass("flagIcon");
 			return imageFrance;
 		case "Svizzera":
-			var imageSwiss = $("<img></img>").attr('src',"./img/sw-flag.png").addClass("flagIcon");
+			var imageSwiss = $("<img></img>").attr('src',"./img/backgroundSvizzera.png").addClass("flagIcon");
 			return imageSwiss;
 		default:
 			var defaultImage = $("<img></img>").attr('src',"./	img/pirates-flag.png").addClass("flagIcon");
