@@ -2,7 +2,7 @@
  * @Author: stefanotortone
  * @Date:   2017-12-07T11:10:26+01:00
  * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-12T15:19:54+01:00
+ * @Last modified time: 2017-12-12T15:23:13+01:00
  */
 
 
@@ -14,7 +14,7 @@ var manager = {
 	collapsibleOpenedIndex : [],
     collapsebody: [],
 	loadimageoption: 0,
-	refreshtime: 10000,
+	refreshtime: 30000,
 	loadedStations : 0,
 	slugs: slugs,
 	jsonBlobCalls : 0,
