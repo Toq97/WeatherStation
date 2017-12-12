@@ -1,5 +1,5 @@
 /**
- * [filter function to filter the collpse elements]
+ * [filter function to filter the collapse elements]
  */
 function filter(){
 	//what the user write in the input text
@@ -24,7 +24,6 @@ refreshManager.textData = inputText;
 }
 /**
  * [function that save the filter search when there is a refresh]
- *
  */
 function filteringAtRefresh(){
 	if( refreshManager.textData != "" && (refreshManager.selectData != "-" || refreshManager.selectData != "")){

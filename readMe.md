@@ -67,6 +67,8 @@ descrizione mangaer
         - dateutilities: Tortone
         - PadNum: Tortone
         - filter: Pietro
+        - filteringAtRefresh: Pietro
+        - appendHeaderData: Pietro
 
     other:
         - post the jsonBlob backup jsons: Gianluca
