@@ -18,7 +18,7 @@ function filter(){
   		}
       else if($(this).attr('id') != selectedOption){
   			//if the id is different, hide the element
-  			$(this).hide();
+  			$(this).closest(".collapse").hide();
   		}
    });
 refreshManager.selectData = selectedOption;

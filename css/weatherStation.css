@@ -19,6 +19,41 @@ body{
    	font-family: 'Calibri', sans-serif;
 }
 
+.comunication-box {
+  float: left;
+  width: 300px;
+  height: 580px;
+  margin-top: 125px;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 10px;
+  border: solid 3px blue;
+  border-radius: 10px;
+}
+
+.other-comunications {
+  position: relative;
+}
+
+.comunication-first {
+  height: 300px;
+  width: 300px;
+}
+.comunication-first img {
+  position: relative;
+  top: 10px;
+}
+
+aside h2 {
+  text-align: center;
+  margin: 10px;
+  font-size: 25px;
+}
+
+#container {
+  float: left;
+}
+
 
 #divHeader{
 	color: #000000;
@@ -158,16 +193,18 @@ div.panelCollapsibleBody {
 }
 
 .error-panel {
-    display: none;
-    position: fixed;
+    /*display: none;
+    position: fixed;*/
     padding: 30px;
     text-align: center;
     background-color: coral;
     top: 30px;
     left: 40px;
     border: solid 8px #c00;
-    width: 550px;
     z-index: 5;
+    height: 200px;
+    overflow: scroll;
+    padding: 10px;
 }
 
 .error-panel h2 {
@@ -180,12 +217,13 @@ div.panelCollapsibleBody {
 
 .loading-box {
     position: relative;
-    left: 50%;
-    margin-left: -250px;
-    width: 500px;
-    height: 400px;
+    /* left: 50%; */
+    /* margin-left: -250px; */
+    top: 0;
+    width: 274px;
+    height: 280px;
     text-align: center;
-    background-position: -155px -100px;
+    background-position: -267px -140px;
     background-image: url(../img/cloud_load.gif);
     background-color: white;
     border: solid 4px #3c81f8;

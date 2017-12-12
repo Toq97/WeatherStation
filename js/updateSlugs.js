@@ -6,7 +6,7 @@
 var slugs = [
   {
   	 id : '140',
-  	slug : 'alpe-di-mera',
+  	slug : 'alpe-di-mea',
   	blobId : 'bd777cfa-dc6d-11e7-b106-ed8d7b38d371'
   },
   {

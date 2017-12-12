@@ -14,7 +14,7 @@ var manager = {
 	collapsibleOpenedIndex : [],
     collapsebody: [],
 	loadimageoption: 0,
-	refreshtime: 15000,
+	refreshtime: 10000,
 	loadedStations : 0,
 	slugs: slugs,
 	jsonBlobCalls : 0,
@@ -39,8 +39,7 @@ function getAllStations() {
 			getApiData(slugs[i].slug);
 		}
 	}
-
-
+	console.log(manager.allData)
 		manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
 
 
@@ -246,10 +245,11 @@ function createPanelHeader(detectedDataForSinglelocation){
     var stationName = $('<p></p').addClass('stationHeader')
 	                             .html(detectedDataForSinglelocation.station.name)
 								 .attr('id',detectedDataForSinglelocation.station.nation.name);
+								  appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
    divPanelHeader.append(stationName);
    divPanelHeader.attr("id",detectedDataForSinglelocation.station.slug);
 
-	 appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
+
 
     return divPanelHeader;
 }
@@ -279,7 +279,7 @@ function createTemperatureBox(temperature,urlIcon) {
 		if(urlIcon) {
 			$weatherIcon.attr('src', urlIcon);
 		} else {
-			$weatherIcon.attr('src', 'img/provv.png');
+			$weatherIcon.attr('src', 'img/nf_weather_icon.png');
 		}
 
 		return $('<div>').addClass('temperature-box')
