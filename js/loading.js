@@ -7,10 +7,13 @@ function updateLoading() {
   $('#loading-percent').html(loadingPercent() + '%');
   if(loadingPercent()  === 100) {
     $('.loading-box').hide();
+    $('.comunication-first img').show();
   }
 }
 
 function initializeLoading() {
     manager.loadedStations = 0;
-    //$('.loading-box').show();
+    $('#loading-percent').html(loadingPercent() + '%');
+    $('.comunication-first img').hide();
+    $('.loading-box').show();
 }

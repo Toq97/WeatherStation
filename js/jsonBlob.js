@@ -131,6 +131,9 @@ function uploadJSONBlob(newData, blobId) {
         data: newData
     }).done(function(msg){
         console.log('Data Saved on JSONBlob: ' + msg);
+        if(manager.allData.length === manager.slugs.length) {
+    			loadDataOnDOM(manager.allData);
+    		}
         //console.log(new Date());
     }).fail(function(jqXHR, textStatus){
         console.error('Request to upload JSONBlob failed: ' + textStatus);
@@ -174,12 +177,12 @@ function findBlobIdFromSlug(slug) {
 
 function alertTorinoMeteoError() {
   $('.error-panel').show();
-  $('#close-error-panel-btn').click(function() {
+/*  $('#close-error-panel-btn').click(function() {
     $('.error-panel').hide();
-  })
-  setTimeout(function() {
+  })*/
+  /*setTimeout(function() {
     $('.error-panel').hide();
-  },5000);
+  },5000);*/
 }
 
 keepJsonBlobUpdated();

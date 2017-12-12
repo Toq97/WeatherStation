@@ -32,8 +32,7 @@ function getAllStations() {
 			getApiData(slugs[i].slug);
 		}
 	}
-
-
+	console.log(manager.allData)
 		manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
 
 
