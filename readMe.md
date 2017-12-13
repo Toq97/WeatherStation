@@ -20,15 +20,15 @@ E' disponibile un sistema di ricerca tramite textbox e selectbox, nella
 textbox è possibile ricercare il nome della stazione mentre nella selectbox
 si possono filtrare le stazioni per nazione.
 La pagina si refresha ogni 30 secondi cosi da aggiornare costantemente i dati
-delle stazioni, inoltre è possibile visualizzare l'ultimo aggiornamento,
-modificare il tempo di refresh(tramite una texbox e relativo bottone) e
-stoppare gli aggiornamenti(tramite il relativo bottone).
+delle stazioni, è possibile modificare il tempo di refresh(tramite una
+texbox e relativo bottone).
 Inoltre è possibile scegliere una data passata(tramite la relativa datePicker
 e relativo pulsante Historicami) per andare e vedere i dati delle stazioni in
 quella data.
 Infine nella pagina è disponibile sulla sinistra la raccolta delle
 informazioni più rilevanti: stato del loading della pagina, resoconto dei
-possibili errori nella chiamata API.
+possibili errori nella chiamata API, ultimo aggiornamento e eventuale stop del
+refresh(tramite relativo pulsante).
 
 
 
@@ -105,6 +105,7 @@ possibili errori nella chiamata API.
         - filteringAtRefresh: Pietro
         - appendHeaderData: Pietro
         - buttonstoprefresh: Tortone
+				- sortAllDataArray: Gianluca
 
     other:
         - post the jsonBlob backup jsons: Gianluca
@@ -116,8 +117,7 @@ possibili errori nella chiamata API.
 
 **CHANGELOG:**
 --------------
-Gianluca: c'è un po' di codice commentato in getApiData(). Più o meno ho scritto nei commenti a cosa serviva e perchè non l'ho ancora
-          cancellato
+
 #
 All notable changes to this project will be documented in this file.
 

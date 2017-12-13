@@ -5,9 +5,7 @@
  * @Last modified time: 2017-12-12T15:23:13+01:00
  */
 
-
-
-//"use strict";
+"use strict";
 
 /**
  * [global object manager that manage the most important data]
@@ -57,55 +55,36 @@ function getAllStations() {
  * @param  {String} slug [station name with kebabCase]
  */
 function getApiData(slug) {
-$.ajax({
-	url: 'https://www.torinometeo.org/api/v1/realtime/data/' + slug + '/',
-	type: 'GET',
-	dataType: 'JSON',
-})
-.done(function(detectionData) {
-	//console.log("success");
-    manager.allData.push(detectionData);
-		updateLoading();
-		if(manager.allData.length === manager.slugs.length) {
-			loadDataOnDOM(manager.allData);
+	$.ajax({
+		url: 'https://www.torinometeo.org/api/v1/realtime/data/' + slug + '/',
+		type: 'GET',
+		dataType: 'JSON',
+	})
+	.done(function(detectionData) {
+		//console.log("success");
+	    manager.allData.push(detectionData);
+			updateLoading();
+			if(manager.allData.length === manager.slugs.length) {
+				loadDataOnDOM(manager.allData);
+			}
+			$('#refreshtime').attr('placeholder',manager.refreshtime);
+	})
+	.fail(function(error) {
+		//alertTorinoMeteoError();
+		console.log(error.status);
+		console.log(error.statusText);
+		//display the error data into page
+		alertTorinoMeteoError();
+		//get the station from the backup API
+		getStationFromJSONBlob(findBlobIdFromSlug(slug));
+	})
+	.always(function() {
+		//console.log("ajax call complete");
+		if(manager.allData.length === 111) {
+			console.log(manager.allData);
 		}
-		/** Gian: queste funzioni mi sono servite per creare su jsonBlob tutti gli indirizzi
-		corrispondenti alle varie stazioni.
-		Non dovrebbero servire più, ma finchè c'è la possibilità che si crei qualche errore
-		preferirei non cancellarle **/
-//faiLeCOse(manager.allData)
 
-		/*var slugs = [];
-		for(var i = 0; i< allDetectionData.length; i++) {
-			slugs.push({
-				id: allDetectionData[i].station.id,
-				slug: allDetectionData[i].station.slug
-			});
-		}
-		var str = '';
-		slugs.forEach(function(slug) {
-			str += '\n{\n\t id : \'' + slug.id + '\', \n\tslug : \'' + slug.slug + '\' \n},'
-		});
-		console.log(str)*/
-
-		$('#refreshtime').attr('placeholder',manager.refreshtime);
-})
-.fail(function(error) {
-	//alertTorinoMeteoError();
-	console.log(error.status);
-	console.log(error.statusText);
-	//display the error data into page
-	alertTorinoMeteoError();
-	//get the station from the backup API
-	getStationFromJSONBlob(findBlobIdFromSlug(slug));
-})
-.always(function() {
-	//console.log("ajax call complete");
-	if(manager.allData.length === 111) {
-		console.log(manager.allData);
-	}
-
-});
+	});
    //update the data update
    dateutilities();
 }
