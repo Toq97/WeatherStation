@@ -233,7 +233,13 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
 	collapse.append(divPanelHeader,divPanelCollapsibleBody);
 	allCollapsibleContainer.append(collapse);
 }
-
+/**
+ * [function that append on the header the information about the station]
+ * @param  {DomElement} divPanelHeader [the header of the collapsiblePanel]
+ * @param  {String} className      [CSS class of the element]
+ * @param  {String/Number} data           [the data about the element]
+ * @param  {String} text           [unit of measure of the element]
+ */
 function appendHeaderData(divPanelHeader, className, data, text){
 	if (data == null || data == ""){
 		data = "NO Data";
@@ -244,13 +250,20 @@ function appendHeaderData(divPanelHeader, className, data, text){
 	      divPanelHeader.append(stationData);
 
 }
+
+/*function createPercentageBar(divPanelHeader,data){
+
+
+}*/
+
+
 /**
  * [create the header of each collapsible panel]
  * @param  {Array} detectedDataForSinglelocation [contain all the data for a single location]
  * @return {DomElement} [header of the collapsiblePanel]
  */
 function createPanelHeader(detectedDataForSinglelocation){
-	var divPanelHeader = $('<div></div>').addClass("panelHeader")
+	var divPanelHeader = $('<div></div>').addClass("panelHeader");
     var stationName = $('<p></p').addClass('stationName col col-headerElements')
 	                             .html(detectedDataForSinglelocation.station.name)
 								 .attr('id',detectedDataForSinglelocation.station.nation.name);
@@ -259,7 +272,8 @@ function createPanelHeader(detectedDataForSinglelocation){
    appendHeaderData( divPanelHeader,'stationCity', detectedDataForSinglelocation.station.city, "");
    appendHeaderData( divPanelHeader, 'stationRegion',  detectedDataForSinglelocation.station.region.name, "");
    appendHeaderData( divPanelHeader, 'stationPressure', detectedDataForSinglelocation.pressure, " hPa");
-   appendHeaderData( divPanelHeader, 'stationHumidity', detectedDataForSinglelocation.relative_humidity, " %");
+	 createPercentageBar(divPanelHeader,  detectedDataForSinglelocation.relative_humidity);
+   //appendHeaderData( divPanelHeader, 'stationHumidity', detectedDataForSinglelocation.relative_humidity, " %");
    appendHeaderData( divPanelHeader, 'stationWind', detectedDataForSinglelocation.wind_strength, " Km/h");
    getFlagNation(detectedDataForSinglelocation,divPanelHeader);
 
