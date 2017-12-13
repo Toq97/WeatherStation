@@ -28,6 +28,11 @@ var createLinkforMaps = function(nameofLocation){
     return finalResult;
  }
 
+/**
+ * [Function that give the correct station for the correct panel]
+ * @param  {[String]} id [the slug of station]
+ * @return {[Object]}    [te object of the coprrect station]
+ */
 function getStationForClickedPanel(id){
  var detectedDataForSinglelocation = {};
     for (var item in manager.allData) {
