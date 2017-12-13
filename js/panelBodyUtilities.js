@@ -76,8 +76,12 @@ function updateImageApi(id){
          collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
          collapsibleBodyMapsLink.append(collapsibleBodyImage);
 
+         var linkparagraph = $('<p></p>');
+         linkparagraph.html('Il link per maps si trova all interno dell immagine');
+
          $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodytitle);
          $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
+         $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(linkparagraph);
 
 
 
