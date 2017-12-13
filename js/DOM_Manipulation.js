@@ -16,6 +16,8 @@ var DOM_Manipulation = {
     DOM_Manipulation.addEventListenerToCollapse();
     DOM_Manipulation.callOnClickEventOnCollapse();
     filterSearch.filteringAtRefresh();
+    $('#collapsibleContainer').hide();
+    fadeInCollapse();
   },
 
   /**
@@ -43,7 +45,7 @@ var DOM_Manipulation = {
   	   }
 
      },
-     
+
   /**
    * [function that open the selected panel when there is a refresh]
    */
@@ -135,12 +137,13 @@ var DOM_Manipulation = {
    * @param  {String} text           [text]
    * @param  {String/Number} data           [the data that append to the header]
    */
-  appendHeaderData: function(divPanelHeader, className, data){
+  appendHeaderData: function(divPanelHeader, className, data, text){
   	if (data == null || data == "") {
   		data = "NO Data";
+      text = "";
   	}
   	var stationData = $('<p></p').addClass(className + " col col-headerElements")
-  								 .html(" " + data);
+  								 .html(" " + data + text);
        divPanelHeader.append(stationData);
   },
 
@@ -157,15 +160,15 @@ var DOM_Manipulation = {
      DOM_Manipulation.appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
      divPanelHeader.append(stationName);
      DOM_Manipulation.appendHeaderData( divPanelHeader,'stationCity',
-                                        detectedDataForSinglelocation.station.city);
+                                        detectedDataForSinglelocation.station.city, "");
      DOM_Manipulation.appendHeaderData( divPanelHeader, 'stationRegion',
-                                        detectedDataForSinglelocation.station.region.name);
+                                        detectedDataForSinglelocation.station.region.name, "");
      DOM_Manipulation.appendHeaderData( divPanelHeader, 'stationPressure',
-                                        detectedDataForSinglelocation.pressure);
+                                        detectedDataForSinglelocation.pressure, " hPa");
      DOM_Manipulation.appendHeaderData( divPanelHeader, 'stationHumidity',
-                                        detectedDataForSinglelocation.relative_humidity);
+                                        detectedDataForSinglelocation.relative_humidity, " %");
      DOM_Manipulation.appendHeaderData( divPanelHeader, 'stationWind',
-                                        detectedDataForSinglelocation.wind_strength);
+                                        detectedDataForSinglelocation.wind_strength, " Km/h");
      DOM_Manipulation.getFlagNation(detectedDataForSinglelocation,divPanelHeader);
 
      divPanelHeader.append(DOM_Manipulation.getFlagNation(detectedDataForSinglelocation));
