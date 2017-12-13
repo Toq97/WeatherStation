@@ -15,18 +15,22 @@
  	<![endif]-->
 </head>
 <body id="bodyid">
-
-	<header>
-		<div id="divHeader">
-			<h1 id="title"> Real Time Weather Station </h1>
+<div class = "container">
+	<div class = "row">
+		<div class="col col-12">
+			<div id="divHeader">
+				<h1 id="title"> Real Time Weather Station </h1>
+			</div>
 		</div>
-	</header>
-	<div id="filter">
-		<div id="div-station-name">
-			<h3>Station name</h3>
-			<input type="text" name="station-name" id="input-station-name">
+	</div>
+	<div class = "row" id="filter">
+		<div class="col col-3">
+			<div id="div-station-name">
+				<h3>Station name</h3>
+				<input type="text" name="station-name" id="input-station-name">
+			</div>
 		</div>
-		<div>
+		<div class="col col-3">
 			<h3>Country</h3>
 				<select id="select-country">
 					<option value="" id="-">-</option>
@@ -35,18 +39,19 @@
 					<option value="svizzera" id = "Svizzera">Switzerland</option>
 				</select>
 		</div>
-
-				<input type="text" id="refreshtime" size="10">
-				<button id="buttonsaverefresh">SAVE REFRESH TIME</button>
-
-				<div id="date">
-					<p id="updatedate"></p>
-				</div>
-				<div id="stoprefresh">
-					<button id="buttonstoprefresh">STOP REFRESH</button>
-				</div>
+		<div class="col col-3">
+			<input type="text" id="refreshtime">
+			<button id="buttonsaverefresh">SAVE REFRESH TIME</button>
 		</div>
-<div class = "container">
+		<div class="col col-3">
+			<div id="date">
+				<p id="updatedate"></p>
+			</div>
+			<div id="stoprefresh">
+				<button id="buttonstoprefresh">STOP REFRESH</button>
+			</div>
+		</div>
+	</div>
 	<div class = "row">
 		<div class="col col-3">
 			<aside class="comunication-box">
