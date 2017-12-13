@@ -59,19 +59,15 @@ function updateImageApi(id){
          var collapsibleBodytitle = $('<h3></h3>');
          collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
 
-
-         //collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
-         //collapsibleBodyImage.attr('id',detectedDataForSinglelocation.station.slug+"image");
-         //
-         //
          //image of the place
          if (detectedDataForSinglelocation.station.webcam == ""){
              var collapsibleBodyImage = $('<img></img>');
-             collapsibleBodyImage.attr('src',"./img/immagine_errore_caricamento.jpg");
+             collapsibleBodyImage.attr('src',"./img/immagine_default.jpeg");
              collapsibleBodyImage.addClass("collapsibleImageStyle");
          } else {
              var collapsibleBodyImage = $('<img></img>');
              collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
+             collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
              collapsibleBodyImage.addClass("collapsibleImageStyle");
         }
 
@@ -119,7 +115,7 @@ for (var item in manager.collapsebody){
       }
 
 }
-//console.log(manager.collapsebody);
+
 
 }
 
@@ -143,7 +139,7 @@ function utilitiesformanageimage(){
 
   }
 
-//console.log(manager.collapsebody);
+
 }
 
 
