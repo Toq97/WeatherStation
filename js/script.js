@@ -89,7 +89,12 @@ $.ajax({
 		console.log(str)*/
 
 		$('#refreshtime').attr('placeholder',manager.refreshtime);
+<<<<<<< HEAD
 
+
+=======
+
+>>>>>>> 482cf9ff08ed8410c9fa15f9d82725f8e811f409
 
 })
 .fail(function(error) {
