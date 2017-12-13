@@ -106,7 +106,8 @@ input{
 }
 /*fine grid */
 .containerCollapse{
-   background-color: #29b1d0;
+   background-color: rgb(59, 129, 248);
+   color: #fff;
    padding-bottom: 20px;
    font-size: 18px;
    font-weight: bold;
@@ -171,8 +172,9 @@ aside h3 {
 }
 #filter{
 	color: #fff;
-	background-color: #1bb6b2;
-	height: 70px;
+	background-color: rgb(59, 129, 248);
+	height: 80px;
+    padding-top: 10px;
 }
 /* inizio css collapsible */
 .panelHeader {
