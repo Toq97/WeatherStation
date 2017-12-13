@@ -5,15 +5,38 @@
 
 
 
-THE Wheater Station
+The Wheather Station
 ========================
 
-inserire descrizione
+L'applicazione permette di visualizzare le stazioni presenti nel sito
+torinometeo(tramite una chiamata API), per ogni stazione e' presente un header
+contenente: il nome della stazione, la città, la regione, la pressione,
+l'umidità, la forza del vento, la nazione(immaginedella bandiera), la
+temperatura e il meteo relativo.
+E' possibile cliccare su una stazione per aprire il relativo body contenente la
+descrione della stazione, l'immagine della webcam della stazone e un link per
+visualizzare la posizione di essa.
+E' disponibile un sistema di ricerca tramite textbox e selectbox, nella
+textbox è possibile ricercare il nome della stazione mentre nella selectbox
+si possono filtrare le stazioni per nazione.
+La pagina si refresha ogni 30 secondi cosi da aggiornare costantemente i dati
+delle stazioni, inoltre è possibile visualizzare l'ultimo aggiornamento,
+modificare il tempo di refresh(tramite una texbox e relativo bottone) e
+stoppare gli aggiornamenti(tramite il relativo bottone).
+Inoltre è possibile scegliere una data passata(tramite la relativa datePicker
+e relativo pulsante Historicami) per andare e vedere i dati delle stazioni in
+quella data.
+Infine nella pagina è disponibile sulla sinistra la raccolta delle
+informazioni più rilevanti: stato del loading della pagina, resoconto dei
+possibili errori nella chiamata API.
+
+
+
 
 **WeatherStationManager**
 -----------------------
 
-descrizione mangaer
+descrizione manager
 
 
 
