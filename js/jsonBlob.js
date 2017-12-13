@@ -1,8 +1,8 @@
 //https://jsonblob.com/api/jsonBlob/0d2e6422-da8c-11e7-b7f1-f7bfe312a22e
 
 /**
- * [getDataFromJSONBlob description]
- * @return {[type]} [description]
+ * [function that do the JSONBLob call]
+ * @param  {String} blobId [string that contains the id of the single station in JSONBlob]
  */
 function getStationFromJSONBlob(blobId) {
     $.ajax({
@@ -39,6 +39,9 @@ function getStationFromJSONBlob(blobId) {
 
 }
 
+/**
+ * [function that call the function getStationFromJSONBlob for each station ]
+ */
 function getDataFromJSONBlob() {
   manager.allData = [];
   for(var i = 0; i < slugs.length; i++) {
@@ -92,9 +95,9 @@ function clone(obj) {
 */
 
 /**
- * [uploadJSONBlob description]
- * @param  {[type]} newData [description]
- * @return {[type]}         [description]
+ * [function that upload the JSONBlob with the updated stations]
+ * @param  {JSON Object} newData [object that contains the single updated station]
+ * @param  {String} blobId  [string that contains the id of the single station in JSONBlob]
  */
 function uploadJSONBlob(newData, blobId) {
     $.ajax({
@@ -115,6 +118,9 @@ function uploadJSONBlob(newData, blobId) {
     });
 }
 
+/**
+ * [function that keep the JSONBlob updated]
+ */
 function keepJsonBlobUpdated() {
   var tryToCall = setInterval(function() {
     var dataNumber = manager.allData.length;
@@ -136,6 +142,12 @@ function keepJsonBlobUpdated() {
 }
 
 /** aggiungere manager. quando slug sarà in manager {} **/
+/**
+ * [function that find the slug of the corrispondent station]
+ * @param  {Object} station [object with the information of the station]
+ * @return {Object}         [object with the id, the name of the station with
+ *                          kebabCase and the blobId of the station]
+ */
 function findSlugFromStation(station) {
   var corrispSlug = slugs.filter(function(element) {
     return parseInt(element.id) === station.station.id;
@@ -144,12 +156,21 @@ function findSlugFromStation(station) {
   return slugs[slugPosition];
 }
 
+/**
+ * [function that find he blobId from the slugs array]
+ * @param  {Array} slug [array that contains the id, the name of the station
+ *                      with kebabCase and the blobId of the stations]
+ * @return {String}      [string that contain the blobId of the station]
+ */
 function findBlobIdFromSlug(slug) {
   return slugs.filter(function(element) {
     return element.slug === slug;
   })[0].blobId;
 }
 
+/**
+ * [function that show the error panel]
+ */
 function alertTorinoMeteoError() {
   //$('.error-panel').show();
 /*  $('#close-error-panel-btn').click(function() {
