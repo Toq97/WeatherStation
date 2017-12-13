@@ -94,6 +94,7 @@ function getApiData(slug) {
 * @param {Object} data - [the data to be shown]
 */
 function loadDataOnDOM(data) {
+	sortAllDataArray();
 	//manager.allData = data;
 	$("#collapsibleContainer").empty();
 	createAllCollapsiblePanel(data);
