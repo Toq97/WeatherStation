@@ -9,6 +9,10 @@
 
 //"use strict";
 
+/**
+ * [global object manager that manage the most important data]
+ * @type {Object}
+ */
 var manager = {
 	allData : [],
 	collapsibleOpenedIndex : [],
@@ -29,7 +33,9 @@ var refreshManager = {
 	selectData: "",
 	textData: ""
 }
-
+/**
+ * [function that does the API call and set the setTimeout of the refresh]
+ */
 function getAllStations() {
 	if(manager.standardCallActive) {
 		manager.allData = [];
@@ -47,6 +53,7 @@ function getAllStations() {
 
 /**
  * [function that get the Json Data]
+ * @param  {String} slug [station name with kebabCase]
  */
 function getApiData(slug) {
 $.ajax({
@@ -104,8 +111,8 @@ $.ajax({
 }
 
 /**
-* Load the json data on the page
-* @param {Object} data - the data to be shown
+* [Load the json data on the page]
+* @param {Object} data - [the data to be shown]
 */
 function loadDataOnDOM(data) {
 	//manager.allData = data;
@@ -123,12 +130,11 @@ function loadDataOnDOM(data) {
 
 /**
  * [function that control the collapsible panel]
- * @return {[type]} [description]
  */
 function assignCollapsibleClick(singleData){
     /**
      * [contain all the divs that contain a collapsible panel]
-     * @type {[type]}
+     * @type {DomElement}
      */
 	var acc = document.getElementsByClassName("panelHeader");
 
@@ -148,10 +154,13 @@ function assignCollapsibleClick(singleData){
 	}
 
 }
+/**
+ * [function that open the selected panel when there is a refresh]
+ */
 function callOnClickEventOnCollapse(){
 	/**
      * [contain all the divs that contain a collapsible panel]
-     * @type {[type]}
+     * @type {DomElement}
      */
 	var acc = document.getElementsByClassName("panelHeader");
     for (var i = 0; i < acc.length; i++) {
@@ -163,7 +172,7 @@ function callOnClickEventOnCollapse(){
     }
 }
 /**
- * [addEventListenerToCollapse function that retrive index of clicked collapse]
+ * [function that retrive index of clicked collapse]
  */
 function addEventListenerToCollapse() {
 
@@ -189,7 +198,6 @@ function addEventListenerToCollapse() {
 /**
  * [this function will populate the dom with all data]
  * @param  {[type]} allDetectionData [contain all the data received from the API]
- * @return {[type]}                  [description]
  */
 function createAllCollapsiblePanel(allDetectionData) {
 	//loop for allDetectionData and call createCollapsiblePanel function
@@ -202,30 +210,29 @@ function createAllCollapsiblePanel(allDetectionData) {
 
 /**
  * [this function will create the single collapsible panel]
- * @param  {[type]} detectedDataForSinglelocation [contain all the data for a single location]
- * @return {[type]}       [description]
+ * @param  {Array} detectedDataForSinglelocation [contain all the data for a single location]
  */
 function createCollapsiblePanel(detectedDataForSinglelocation) {
 	/**
 	 * it is the container of all collapsible panels
-	 * @type {[type]}
+	 * @type {DomElement}
 	 */
 	var allCollapsibleContainer = $('#collapsibleContainer');
     /**
      * div that contain the header and the body
-     * @type {[type]}
+     * @type {DomElement}
      */
 	var collapse = $('<div></div>').addClass('collapse');
 	//aggiungo l'id al pannello per poterlo identificare in seguito
 	//collapse = $('#'+detectedDataForSinglelocation.id);
 	/**
 	 * [contain the header of the location]
-	 * @type {[type]}
+	 * @type {DomElement}
 	 */
     var divPanelHeader = createPanelHeader(detectedDataForSinglelocation);
 	/**
 	 * contain the body of the location
-	 * @type {[type]}
+	 * @type {DomElement}
 	 */
     var divPanelCollapsibleBody = createPanelBody(detectedDataForSinglelocation , divPanelHeader);
 	collapse.append(divPanelHeader,divPanelCollapsibleBody);
@@ -248,8 +255,8 @@ function appendHeaderData(divPanelHeader, className, data){
 }
 /**
  * [create the header of each collapsible panel]
- * @param  {[type]} detectedDataForSinglelocation [contain all the data for a single location]
- * @return {[type]} [description]
+ * @param  {Array} detectedDataForSinglelocation [contain all the data for a single location]
+ * @return {DomElement} [header of the collapsiblePanel]
  */
 function createPanelHeader(detectedDataForSinglelocation){
 	var divPanelHeader = $('<div></div>').addClass("panelHeader")
@@ -270,7 +277,12 @@ function createPanelHeader(detectedDataForSinglelocation){
 
     return divPanelHeader;
 }
-
+/**
+ * [append the temperatureBox to the panelHeader]
+ * @param  {Object} stationData [object that contain the information of the
+ * 															station]
+ * @param  {DomElement} panelHeader [header of the collapsiblePanel]
+ */
 function appendTemperatureBox(stationData, panelHeader) {
 	//if historical data take the mean value
 	var temperature = stationData.temperature ?
@@ -287,7 +299,11 @@ function appendTemperatureBox(stationData, panelHeader) {
 	}
 }
 /**
- * create the colored box showing the temperature
+ * [create the colored box showing the temperature]
+ * @param  {Number} temperature [temperature of the station]
+ * @param  {String} urlIcon     [URL of the icon]
+ * @return {DomElement}         [div with the temperature and the icon to
+ * 															append to the header]
  */
 function createTemperatureBox(temperature,urlIcon) {
 
@@ -309,8 +325,8 @@ function createTemperatureBox(temperature,urlIcon) {
 
 /**
  * [create the body of each collapsible panel]
- * @param  {[type]} detectedDataForSinglelocation [contain all the data for a single location]
- * @return {[type]} [description]
+ * @param  {Array} detectedDataForSinglelocation [contain all the data for a single location]
+ * @return {DomElement} divPanelCollapsibleBody [the body of the panel]
  */
 function createPanelBody(detectedDataForSinglelocation){
 	var divPanelCollapsibleBody = $('<div></div>').addClass("panelCollapsibleBody");
@@ -320,8 +336,8 @@ function createPanelBody(detectedDataForSinglelocation){
 }
 /**
  * [give the flag icon for the respetive state of the location]
- * @param  {[type]} detectedDataForSinglelocation [contain all the data for a single location]
- * @return {[type]}                               [description]
+ * @param  {Array} detectedDataForSinglelocation [contain all the data for a single location]
+ * @return {DomElement}     image                          [the image to append to the header]
  */
 function getFlagNation(detectedDataForSinglelocation){
 	switch(detectedDataForSinglelocation.station.nation.name){
@@ -345,8 +361,3 @@ function getFlagNation(detectedDataForSinglelocation){
 /*                              MAIN                             */
 /*****************************************************************/
 getAllStations();
-
-/**
- * Search filter
- * @return {[type]} [description]
- */
