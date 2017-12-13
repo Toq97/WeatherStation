@@ -89,7 +89,6 @@ $.ajax({
 		console.log(str)*/
 
 		$('#refreshtime').attr('placeholder',manager.refreshtime);
-
 		
 
 })
