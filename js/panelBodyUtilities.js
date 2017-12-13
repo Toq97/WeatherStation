@@ -50,41 +50,34 @@ function getStationForClickedPanel(id){
  */
 function updateImageApi(id){
 
+    var detectedDataForSinglelocation = getStationForClickedPanel(id);
+    //title with the name of the place
+     var collapsibleBodytitle = $('<h3></h3>');
+     collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
 
+     //image of the place
+     if (detectedDataForSinglelocation.station.webcam == ""){
+         var collapsibleBodyImage = $('<img></img>');
+         collapsibleBodyImage.attr('src',"./img/immagine_default.jpeg");
+         collapsibleBodyImage.addClass("collapsibleImageStyle");
+     } else {
+         var collapsibleBodyImage = $('<img></img>');
+         collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
+         collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
+         collapsibleBodyImage.addClass("collapsibleImageStyle");
+    }
 
-        var detectedDataForSinglelocation = getStationForClickedPanel(id);
+     //link to maps
+     var collapsibleBodyMapsLink = $('<a></a>');
+     collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
+     collapsibleBodyMapsLink.append(collapsibleBodyImage);
 
+     var linkparagraph = $('<p></p>');
+     linkparagraph.html('Il link per maps si trova all interno dell immagine');
 
-        //title with the name of the place
-         var collapsibleBodytitle = $('<h3></h3>');
-         collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
-
-         //image of the place
-         if (detectedDataForSinglelocation.station.webcam == ""){
-             var collapsibleBodyImage = $('<img></img>');
-             collapsibleBodyImage.attr('src',"./img/immagine_default.jpeg");
-             collapsibleBodyImage.addClass("collapsibleImageStyle");
-         } else {
-             var collapsibleBodyImage = $('<img></img>');
-             collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
-             collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
-             collapsibleBodyImage.addClass("collapsibleImageStyle");
-        }
-
-         //link to maps
-         var collapsibleBodyMapsLink = $('<a></a>');
-         collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
-         collapsibleBodyMapsLink.append(collapsibleBodyImage);
-
-         var linkparagraph = $('<p></p>');
-         linkparagraph.html('Il link per maps si trova all interno dell immagine');
-
-         $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodytitle);
-         $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
-         $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(linkparagraph);
-
-
-
+     $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodytitle);
+     $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
+     $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(linkparagraph);
 }
 
 
@@ -95,28 +88,22 @@ function updateImageApi(id){
 function managerpanelbodyimage(id){
 
 for (var item in manager.collapsebody){
-
-
-
-      if (manager.collapsebody[item].id == id)
-      {
-        if(manager.collapsebody[item].count == 0){
-          //libera il corpo del pannelo ogni volta che lo apro, in modo tale che non venga caricato più volte il materiale nel body del pannello
-          for(var items in manager.allData)
-          {
-             if (manager.allData[items].station.slug == id)
-            {
-                   $('#'+manager.allData[items].station.id+'updateimage').empty();
+if (manager.collapsebody[item].id == id) {
+    if(manager.collapsebody[item].count == 0){
+    //libera il corpo del pannelo ogni volta che lo apro, in modo tale che non venga caricato più volte il materiale nel body del pannello
+        for(var items in manager.allData){
+            if (manager.allData[items].station.slug == id){
+                $('#'+manager.allData[items].station.id+'updateimage').empty();
             }
-          }
-          updateImageApi(id);
-         manager.collapsebody[item].count  = 1;
-       } else {
-         manager.collapsebody[item].count  = 0;
+        }
+        updateImageApi(id);
+        manager.collapsebody[item].count  = 1;
+        } else {
+            manager.collapsebody[item].count  = 0;
 
-       }
+        }
 
-      }
+}
 
 }
 

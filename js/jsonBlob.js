@@ -47,51 +47,6 @@ function getDataFromJSONBlob() {
   }
 }
 
-/*
-function faiLeCOse(array) {
-  console.log(array[0])
-  sli = [];
-  for (var i = 0; i < array.length; i++) {
-    var stationObj = clone(array[i]);
-    sli.push({
-      id : stationObj.station.id,
-      slug: stationObj.station.slug,
-    });
-    cose(i, stationObj);
-
-  }
-
-  var str = '';
-  sli.forEach(function(slug) {
-    str += '\n{\n\t id : \'' + slug.id + '\', \n\tslug : \'' + slug.slug + '\' \n\tblobId : \'' + slug.blobId + '\'\n},'
-  });
-  console.log('********************')
-  console.log(sli)
-  console.log(str)
-}
-
-function clone(obj) {
-      if (obj === null || typeof(obj) !== 'object' || 'isActiveClone' in obj)
-        return obj;
-
-      if (obj instanceof Date)
-        var temp = new obj.constructor(); //or new Date(obj);
-      else
-        var temp = obj.constructor();
-
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-          obj['isActiveClone'] = null;
-          temp[key] = clone(obj[key]);
-          delete obj['isActiveClone'];
-        }
-      }
-
-      return temp;
-    }
-
-*/
-
 /**
  * [function that upload the JSONBlob with the updated stations]
  * @param  {JSON Object} newData [object that contains the single updated station]
@@ -170,12 +125,6 @@ function findBlobIdFromSlug(slug) {
  */
 function alertTorinoMeteoError() {
   $('.error-panel').show();
-/*  $('#close-error-panel-btn').click(function() {
-    $('.error-panel').hide();
-  })*/
-  /*setTimeout(function() {
-    $('.error-panel').hide();
-  },5000);*/
 }
 
 keepJsonBlobUpdated();
