@@ -23,7 +23,8 @@ var manager = {
 	slugs: slugs,
 	jsonBlobCalls : 0,
 	standardCallActive: true,
-	timeOut: ""
+	timeOut: "",
+	stoprefresh: 0
 }
 /**
  * [filterManager manager that saves the data for filtering at the refresh]
@@ -246,11 +247,11 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
  * @param  {String/Number} data           [the data that append to the header]
  */
 function appendHeaderData(divPanelHeader, className, data){
-	if (data == null){
+	if (data == null || data == ""){
 		data = "NO Data";
 	}
 	var stationData = $('<p></p').addClass(className + " col col-headerElements")
-								 .html(data);
+								 .html(" " + data);
      divPanelHeader.append(stationData);
 }
 /**
@@ -265,7 +266,7 @@ function createPanelHeader(detectedDataForSinglelocation){
 								 .attr('id',detectedDataForSinglelocation.station.nation.name);
    appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
    divPanelHeader.append(stationName);
-   appendHeaderData( divPanelHeader,'stationCity', detectedDataForSinglelocation.station.city );
+   appendHeaderData( divPanelHeader,'stationCity', detectedDataForSinglelocation.station.city);
    appendHeaderData( divPanelHeader, 'stationRegion',  detectedDataForSinglelocation.station.region.name);
    appendHeaderData( divPanelHeader, 'stationPressure', detectedDataForSinglelocation.pressure);
    appendHeaderData( divPanelHeader, 'stationHumidity', detectedDataForSinglelocation.relative_humidity);
