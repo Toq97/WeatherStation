@@ -35,7 +35,9 @@ function initializeLoading() {
     //$('.loading-box').show();
 }
 
-
+/**
+ * [sortAllDataArray sort the array of allData]
+ */
 function sortAllDataArray() {
   manager.allData.sort(function(a, b){
     if(a.station.slug < b.station.slug) return -1;

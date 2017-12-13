@@ -1,5 +1,3 @@
-//https://jsonblob.com/api/jsonBlob/0d2e6422-da8c-11e7-b7f1-f7bfe312a22e
-
 /**
  * [function that do the JSONBLob call]
  * @param  {String} blobId [string that contains the id of the single station in JSONBlob]
@@ -49,51 +47,6 @@ function getDataFromJSONBlob() {
   }
 }
 
-/*
-function faiLeCOse(array) {
-  console.log(array[0])
-  sli = [];
-  for (var i = 0; i < array.length; i++) {
-    var stationObj = clone(array[i]);
-    sli.push({
-      id : stationObj.station.id,
-      slug: stationObj.station.slug,
-    });
-    cose(i, stationObj);
-
-  }
-
-  var str = '';
-  sli.forEach(function(slug) {
-    str += '\n{\n\t id : \'' + slug.id + '\', \n\tslug : \'' + slug.slug + '\' \n\tblobId : \'' + slug.blobId + '\'\n},'
-  });
-  console.log('********************')
-  console.log(sli)
-  console.log(str)
-}
-
-function clone(obj) {
-      if (obj === null || typeof(obj) !== 'object' || 'isActiveClone' in obj)
-        return obj;
-
-      if (obj instanceof Date)
-        var temp = new obj.constructor(); //or new Date(obj);
-      else
-        var temp = obj.constructor();
-
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-          obj['isActiveClone'] = null;
-          temp[key] = clone(obj[key]);
-          delete obj['isActiveClone'];
-        }
-      }
-
-      return temp;
-    }
-
-*/
-
 /**
  * [function that upload the JSONBlob with the updated stations]
  * @param  {JSON Object} newData [object that contains the single updated station]
@@ -141,7 +94,6 @@ function keepJsonBlobUpdated() {
 
 }
 
-/** aggiungere manager. quando slug sarà in manager {} **/
 /**
  * [function that find the slug of the corrispondent station]
  * @param  {Object} station [object with the information of the station]
@@ -149,11 +101,11 @@ function keepJsonBlobUpdated() {
  *                          kebabCase and the blobId of the station]
  */
 function findSlugFromStation(station) {
-  var corrispSlug = slugs.filter(function(element) {
+  var corrispSlug = manager.slugs.filter(function(element) {
     return parseInt(element.id) === station.station.id;
   })[0];
-  var slugPosition = slugs.indexOf(corrispSlug);
-  return slugs[slugPosition];
+  var slugPosition = manager.slugs.indexOf(corrispSlug);
+  return manager.slugs[slugPosition];
 }
 
 /**
@@ -163,7 +115,7 @@ function findSlugFromStation(station) {
  * @return {String}      [string that contain the blobId of the station]
  */
 function findBlobIdFromSlug(slug) {
-  return slugs.filter(function(element) {
+  return manager.slugs.filter(function(element) {
     return element.slug === slug;
   })[0].blobId;
 }
@@ -173,12 +125,6 @@ function findBlobIdFromSlug(slug) {
  */
 function alertTorinoMeteoError() {
   $('.error-panel').show();
-/*  $('#close-error-panel-btn').click(function() {
-    $('.error-panel').hide();
-  })*/
-  /*setTimeout(function() {
-    $('.error-panel').hide();
-  },5000);*/
 }
 
 keepJsonBlobUpdated();

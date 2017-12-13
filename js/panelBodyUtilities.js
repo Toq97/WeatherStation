@@ -50,41 +50,34 @@ function getStationForClickedPanel(id){
  */
 function updateImageApi(id){
 
+    var detectedDataForSinglelocation = getStationForClickedPanel(id);
+    //title with the name of the place
+     var collapsibleBodytitle = $('<h3></h3>');
+     collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
 
+     //image of the place
+     if (detectedDataForSinglelocation.station.webcam == ""){
+         var collapsibleBodyImage = $('<img></img>');
+         collapsibleBodyImage.attr('src',"./img/immagine_default.jpeg");
+         collapsibleBodyImage.addClass("collapsibleImageStyle");
+     } else {
+         var collapsibleBodyImage = $('<img></img>');
+         collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
+         collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
+         collapsibleBodyImage.addClass("collapsibleImageStyle");
+    }
 
-        var detectedDataForSinglelocation = getStationForClickedPanel(id);
+     //link to maps
+     var collapsibleBodyMapsLink = $('<a></a>');
+     collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
+     collapsibleBodyMapsLink.append(collapsibleBodyImage);
 
+     var linkparagraph = $('<p></p>');
+     linkparagraph.html('Il link per maps si trova all interno dell immagine');
 
-        //title with the name of the place
-         var collapsibleBodytitle = $('<h3></h3>');
-         collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
-
-
-         //collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
-         //collapsibleBodyImage.attr('id',detectedDataForSinglelocation.station.slug+"image");
-         //
-         //
-         //image of the place
-         if (detectedDataForSinglelocation.station.webcam == ""){
-             var collapsibleBodyImage = $('<img></img>');
-             collapsibleBodyImage.attr('src',"./img/immagine_errore_caricamento.jpg");
-             collapsibleBodyImage.addClass("collapsibleImageStyle");
-         } else {
-             var collapsibleBodyImage = $('<img></img>');
-             collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
-             collapsibleBodyImage.addClass("collapsibleImageStyle");
-        }
-
-         //link to maps
-         var collapsibleBodyMapsLink = $('<a></a>');
-         collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
-         collapsibleBodyMapsLink.append(collapsibleBodyImage);
-
-         $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodytitle);
-         $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
-
-
-
+     $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodytitle);
+     $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
+     $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(linkparagraph);
 }
 
 
@@ -94,33 +87,42 @@ function updateImageApi(id){
  */
 function managerpanelbodyimage(id){
 
+
+//il pannello viene svuotato quando viene aperto e ricaricato subito dopo
+
+
+// cicla l array collapse body in cui sono presenti gli oggetti caricati con la funzione utilitiesformanageimage
 for (var item in manager.collapsebody){
 
+  //va a prendere l'oggetto corrispondente all'id
+if (manager.collapsebody[item].id == id) {
 
+    //va a vedere se count è a 0.
+    //0: pannello chiuso
+    //1: pannello aperto
+    if(manager.collapsebody[item].count == 0){
+    //libera il corpo del pannelo ogni volta che lo apro, in modo tale che non venga caricato più volte il materiale nel body del pannello
+        //cicla tutte le stazioni
+        for(var items in manager.allData){
 
-      if (manager.collapsebody[item].id == id)
-      {
-        if(manager.collapsebody[item].count == 0){
-          //libera il corpo del pannelo ogni volta che lo apro, in modo tale che non venga caricato più volte il materiale nel body del pannello
-          for(var items in manager.allData)
-          {
-             if (manager.allData[items].station.slug == id)
-            {
-                   $('#'+manager.allData[items].station.id+'updateimage').empty();
+             //va a prendere la stazione giusta
+            if (manager.allData[items].station.slug == id){
+                 //svuota il pannello
+                $('#'+manager.allData[items].station.id+'updateimage').empty();
             }
-          }
-          updateImageApi(id);
-         manager.collapsebody[item].count  = 1;
-       } else {
-         manager.collapsebody[item].count  = 0;
+        }
 
-       }
+        //va a caricare il pannello con i dati
+        updateImageApi(id);
 
-      }
+        // mette count a 1
+        manager.collapsebody[item].count  = 1;
+        } else {
+          //mette count a 0
+            manager.collapsebody[item].count  = 0;
 
-}
-//console.log(manager.collapsebody);
-
+        }
+    }
 }
 
 
@@ -143,7 +145,7 @@ function utilitiesformanageimage(){
 
   }
 
-//console.log(manager.collapsebody);
+
 }
 
 
@@ -190,7 +192,7 @@ $('#buttonstoprefresh').click(function (){
 if(manager.stoprefresh == 0){
   clearInterval(manager.timeOut);
   $('#buttonstoprefresh').html('START REFRESH');
-  alert("Hai stoppato il refresh");
+  alert("Refresh stopped");
   manager.stoprefresh = 1;
 }else{
   manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
@@ -216,7 +218,7 @@ if(newrefreshtime.value >= 15000){
   manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
 
 }else{
-  alert("Hai inserito un valore troppo basso di refresh.");
+  alert("Refresh value too low. Minimum value is 15000ms");
 }
 
 });
