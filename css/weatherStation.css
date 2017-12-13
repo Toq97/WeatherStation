@@ -264,7 +264,7 @@ div.panelCollapsibleBody {
     text-align: center;
     top: 30px;
     left: 40px;
-    border: solid 8px #c00;
+    border: solid 4px #c00;
     z-index: 5;
     height: 200px;
     overflow-y: scroll;
@@ -272,6 +272,7 @@ div.panelCollapsibleBody {
     margin-left: 20px;
     margin-top: 20%;
     border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .error-panel h2 {
