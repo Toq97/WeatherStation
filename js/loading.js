@@ -18,6 +18,7 @@ function updateLoading() {
     $('.loading-box').css({'background-image' : 'url("./img/cloud_load_img.png")',
                           'background-position' : '0 0'
                           });
+    $('.comunication-first h3').html('data loaded');
   }
 }
 
@@ -30,6 +31,6 @@ function initializeLoading() {
     $('.loading-box').css({'background-image' : 'url("./img/cloud_load.gif")',
                           'background-position' : '-280px -225px'
                           });
-    //$('.comunication-first img').hide();
+    $('.comunication-first h3').html('loading data');
     //$('.loading-box').show();
 }

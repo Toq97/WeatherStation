@@ -151,15 +151,18 @@ aside h3 {
 #divHeader{
 	color: #000000;
 	background-color: #ffffff;
-	height: 100px;
+	/*height: 100px;*/
 	padding-left: 10px;
 }
 
 #title{
-	font-size: 70px;
-	text-align: center;
-	padding-top: 10px;
-	padding-bottom: 10px;
+  position: absolute;
+  top: 20px;
+  font-size: 70px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
 }
 #filter{
 	color: #fff;
@@ -244,7 +247,6 @@ div.panelCollapsibleBody {
     position: fixed;*/
     padding: 30px;
     text-align: center;
-    background-color: coral;
     top: 30px;
     left: 40px;
     border: solid 8px #c00;
