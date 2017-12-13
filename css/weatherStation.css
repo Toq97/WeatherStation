@@ -16,7 +16,8 @@
 body{
   /*  background-color: rgb(192, 206, 208);*/
 	margin: 0 auto;
-   	font-family: 'Calibri', sans-serif;
+   font-family: 'Calibri', sans-serif;
+  overflow-x: hidden;
 }
 input{
   font-size:18px;
@@ -37,7 +38,9 @@ input{
 }
 
 .row:nth-child(3) {
-    background-image: url('../img/background-meteo.jpg');
+  background-image: url(../img/background-meteo.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .row::before,
@@ -305,4 +308,9 @@ div.panelCollapsibleBody {
 
 .jsonBlob-error {
   color: red;
+}
+
+#collapsibleContainer {
+  height: 600px;
+  overflow-y: scroll;
 }

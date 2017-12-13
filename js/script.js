@@ -82,7 +82,7 @@ $.ajax({
 
 		$('#refreshtime').attr('placeholder',manager.refreshtime);
 
-		
+
 
 })
 .fail(function(error) {
@@ -292,7 +292,7 @@ function createTemperatureBox(temperature,urlIcon) {
 		if(urlIcon) {
 			$weatherIcon.attr('src', urlIcon);
 		} else {
-			$weatherIcon.attr('src', 'img/nf_weather_icon.png');
+			$weatherIcon.attr('src', 'img/not_found_weather.png');
 		}
 
 		return $('<div>').addClass('temperature-box')
