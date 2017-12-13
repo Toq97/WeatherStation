@@ -87,22 +87,6 @@ function updateImageApi(id){
  */
 function managerpanelbodyimage(id){
 
-<<<<<<< HEAD
-    for (var item in manager.collapsebody){
-        if (manager.collapsebody[item].id == id) {
-            if(manager.collapsebody[item].count == 0){
-            //libera il corpo del pannelo ogni volta che lo apro, in modo tale che non venga caricato più volte il materiale nel body del pannello
-                for(var items in manager.allData){
-                    if (manager.allData[items].station.slug == id){
-                        $('#'+manager.allData[items].station.id+'updateimage').empty();
-                    }
-                }
-                updateImageApi(id);
-                manager.collapsebody[item].count  = 1;
-                } else {
-                    manager.collapsebody[item].count  = 0;
-                }
-=======
 
 //il pannello viene svuotato quando viene aperto e ricaricato subito dopo
 
@@ -136,7 +120,6 @@ if (manager.collapsebody[item].id == id) {
         } else {
           //mette count a 0
             manager.collapsebody[item].count  = 0;
->>>>>>> 8aa6c11290224d6511fc552975b4bf0279bd757c
 
         }
     }
