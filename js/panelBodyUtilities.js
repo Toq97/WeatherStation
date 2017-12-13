@@ -60,26 +60,28 @@ function updateImageApi(id){
          collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
 
          //image of the place
-         var collapsibleBodyImage = $('<img></img>');
-         collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
-         collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
-         collapsibleBodyImage.attr('id',detectedDataForSinglelocation.station.slug+"image");
-         collapsibleBodyImage.addClass("collapsibleImageStyle");
-
-
-        /* if (isImgOk($('#'+id+'image')) == false)
- 				{
- 				  $('#'+id+'image').attr('src','./img/backgroundItaly.png');
- 				  $('#'+id+'image').addClass("collapsibleImageStyle");
- 				}*/
+         if (detectedDataForSinglelocation.station.webcam == ""){
+             var collapsibleBodyImage = $('<img></img>');
+             collapsibleBodyImage.attr('src',"./img/immagine_default.jpeg");
+             collapsibleBodyImage.addClass("collapsibleImageStyle");
+         } else {
+             var collapsibleBodyImage = $('<img></img>');
+             collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
+             collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
+             collapsibleBodyImage.addClass("collapsibleImageStyle");
+        }
 
          //link to maps
          var collapsibleBodyMapsLink = $('<a></a>');
          collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
          collapsibleBodyMapsLink.append(collapsibleBodyImage);
 
+         var linkparagraph = $('<p></p>');
+         linkparagraph.html('Il link per maps si trova all interno dell immagine');
+
          $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodytitle);
          $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
+         $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(linkparagraph);
 
 
 
@@ -117,7 +119,7 @@ for (var item in manager.collapsebody){
       }
 
 }
-//console.log(manager.collapsebody);
+
 
 }
 
@@ -141,7 +143,7 @@ function utilitiesformanageimage(){
 
   }
 
-//console.log(manager.collapsebody);
+
 }
 
 
@@ -218,22 +220,3 @@ if(newrefreshtime.value >= 15000){
 }
 
 });
-
-/**
- * [function for the manage of the image]
- * @param  {[img]}  img [image]
- * @return {Boolean}     [boolean value]
- */
-function isImgOk (img) {
-    //assuming it's ok
-    var isImageOk = true;
-    if (!img.complete){
-    isImageOk = false;
-    }
-
-    // naturalWidth is undefined or zero if there have been problems on loading.
-    if (typeof img.naturalWidth != undefined && img.naturalWidth == 0){
-    isImageOk = false;
-    }
-    return isImageOk;
-}
