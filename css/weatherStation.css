@@ -115,6 +115,7 @@ input{
   padding: 10px;
   border: solid 3px blue;
   border-radius: 10px;
+  height: 600px;
 }
 
 .other-comunications {
@@ -142,7 +143,9 @@ aside h3 {
   text-align: center;
   margin: 10px;
   font-size: 25px;
-  color: blue;
+  color: #3b81f8;
+  width: 100%;
+  margin-top: 30px;
 }
 
 #divHeader{
@@ -247,8 +250,11 @@ div.panelCollapsibleBody {
     border: solid 8px #c00;
     z-index: 5;
     height: 200px;
-    overflow: scroll;
+    overflow-y: scroll;
     padding: 10px;
+    margin-left: 20px;
+    margin-top: 20%;
+    border-radius: 10px;
 }
 
 .error-panel h2 {
@@ -263,7 +269,7 @@ div.panelCollapsibleBody {
     position: relative;
     left: 15%;
     /* margin-left: -250px; */
-    top: 50px;
+    top: 10px;
     width: 240px;
     height: 150px;
     text-align: center;
