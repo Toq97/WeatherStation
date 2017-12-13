@@ -126,6 +126,8 @@ function loadDataOnDOM(data) {
     addEventListenerToCollapse();
     callOnClickEventOnCollapse();
     filteringAtRefresh();
+		//$("#collapsibleContainer").animate({ opacity: 0 });
+		fadeIn();
 }
 
 /**
@@ -245,13 +247,14 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
  * @param  {String} text           [text]
  * @param  {String/Number} data           [the data that append to the header]
  */
-function appendHeaderData(divPanelHeader, className, data){
+function appendHeaderData(divPanelHeader, className, data, text){
 	if (data == null || data == ""){
 		data = "NO Data";
 	}
 	var stationData = $('<p></p').addClass(className + " col col-headerElements")
-								 .html(" " + data);
-     divPanelHeader.append(stationData);
+	 								 .html(" " + data + text);
+	      divPanelHeader.append(stationData);
+
 }
 /**
  * [create the header of each collapsible panel]
@@ -265,11 +268,11 @@ function createPanelHeader(detectedDataForSinglelocation){
 								 .attr('id',detectedDataForSinglelocation.station.nation.name);
    appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
    divPanelHeader.append(stationName);
-   appendHeaderData( divPanelHeader,'stationCity', detectedDataForSinglelocation.station.city);
-   appendHeaderData( divPanelHeader, 'stationRegion',  detectedDataForSinglelocation.station.region.name);
-   appendHeaderData( divPanelHeader, 'stationPressure', detectedDataForSinglelocation.pressure);
-   appendHeaderData( divPanelHeader, 'stationHumidity', detectedDataForSinglelocation.relative_humidity);
-   appendHeaderData( divPanelHeader, 'stationWind', detectedDataForSinglelocation.wind_strength);
+   appendHeaderData( divPanelHeader,'stationCity', detectedDataForSinglelocation.station.city, "");
+   appendHeaderData( divPanelHeader, 'stationRegion',  detectedDataForSinglelocation.station.region.name, "");
+   appendHeaderData( divPanelHeader, 'stationPressure', detectedDataForSinglelocation.pressure, " %");
+   appendHeaderData( divPanelHeader, 'stationHumidity', detectedDataForSinglelocation.relative_humidity, " hPa");
+   appendHeaderData( divPanelHeader, 'stationWind', detectedDataForSinglelocation.wind_strength, " Km/h");
    getFlagNation(detectedDataForSinglelocation,divPanelHeader);
 
    divPanelHeader.append(getFlagNation(detectedDataForSinglelocation));
