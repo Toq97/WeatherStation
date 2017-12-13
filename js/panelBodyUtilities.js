@@ -87,6 +87,7 @@ function updateImageApi(id){
  */
 function managerpanelbodyimage(id){
 
+<<<<<<< HEAD
     for (var item in manager.collapsebody){
         if (manager.collapsebody[item].id == id) {
             if(manager.collapsebody[item].count == 0){
@@ -101,6 +102,41 @@ function managerpanelbodyimage(id){
                 } else {
                     manager.collapsebody[item].count  = 0;
                 }
+=======
+
+//il pannello viene svuotato quando viene aperto e ricaricato subito dopo
+
+
+// cicla l array collapse body in cui sono presenti gli oggetti caricati con la funzione utilitiesformanageimage
+for (var item in manager.collapsebody){
+
+  //va a prendere l'oggetto corrispondente all'id
+if (manager.collapsebody[item].id == id) {
+
+    //va a vedere se count è a 0.
+    //0: pannello chiuso
+    //1: pannello aperto
+    if(manager.collapsebody[item].count == 0){
+    //libera il corpo del pannelo ogni volta che lo apro, in modo tale che non venga caricato più volte il materiale nel body del pannello
+        //cicla tutte le stazioni
+        for(var items in manager.allData){
+
+             //va a prendere la stazione giusta
+            if (manager.allData[items].station.slug == id){
+                 //svuota il pannello
+                $('#'+manager.allData[items].station.id+'updateimage').empty();
+            }
+        }
+
+        //va a caricare il pannello con i dati
+        updateImageApi(id);
+
+        // mette count a 1
+        manager.collapsebody[item].count  = 1;
+        } else {
+          //mette count a 0
+            manager.collapsebody[item].count  = 0;
+>>>>>>> 8aa6c11290224d6511fc552975b4bf0279bd757c
 
         }
     }
