@@ -14,6 +14,7 @@
     box-sizing: border-box;
 }
 body{
+    background-color: rgb(192, 206, 208);
 	margin: 0 auto;
    	font-family: 'Calibri', sans-serif;
 }
@@ -113,9 +114,13 @@ input{
 .comunication-box {
   margin: 2% 3%;
   padding: 10px;
-  border: solid 3px blue;
+  border-radius: 2px;
+  /*border: solid 3px blue;*/
   border-radius: 10px;
   height: 600px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+
 }
 
 .other-comunications {
