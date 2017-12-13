@@ -626,10 +626,12 @@ function getCompleteJsonFromTorinoMeteo() {
 		dataType: 'JSON',
 	})
 	.done(function(detectionData) {
+    //return an array containing
     detectionData.filter(function(jsonElement) {
-      var jsonSlug= jsonElement.station.slug;
+      //search an element in slugs that correspond to the given json station
       return manager.slugs.filter(function(slugElement){
         return slugElement.slug === jsonElement.station.slug
+        //if found put it in the return array
       }).length === -1;
 
     })

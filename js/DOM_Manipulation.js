@@ -17,7 +17,7 @@ var DOM_Manipulation = {
     DOM_Manipulation.callOnClickEventOnCollapse();
     filterSearch.filteringAtRefresh();
     $('#collapsibleContainer').hide();
-    fadeInCollapse();
+    DOM_Manipulation.fadeInCollapse();
   },
 
   /**
