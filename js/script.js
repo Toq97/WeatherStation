@@ -12,7 +12,7 @@
 var manager = {
 	allData : [],
 	collapsibleOpenedIndex : [],
-    collapsebody: [],
+  collapsebody: [],
 	loadimageoption: 0,
 	refreshtime: 30000,
 	loadedStations : 0,
@@ -34,13 +34,12 @@ function getAllStations() {
 	if(manager.standardCallActive) {
 		manager.allData = [];
 		manager.jsonBlobCalls = 0;
-		initializeLoading();
+		loadingManager.initializeLoading();
 		for (var i = 0; i < slugs.length; i++) {
 			getApiData(slugs[i].slug);
 		}
 	}
 	console.log(manager.allData);
-	fadeOutCollapse();
 		manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
 
 
@@ -50,17 +49,33 @@ function getAllStations() {
  * [function that get the Json Data]
  */
 function getApiData(slug) {
-$.ajax({
-	url: 'https://www.torinometeo.org/api/v1/realtime/data/' + slug + '/',
-	type: 'GET',
-	dataType: 'JSON',
-})
-.done(function(detectionData) {
-	//console.log("success");
-    manager.allData.push(detectionData);
-		updateLoading();
-		if(manager.allData.length === manager.slugs.length) {
-			loadDataOnDOM(manager.allData);
+	$.ajax({
+		url: 'https://www.torinometeo.org/api/v1/realtime/data/' + slug + '/',
+		type: 'GET',
+		dataType: 'JSON',
+	})
+	.done(function(detectionData) {
+		//console.log("success");
+	    manager.allData.push(detectionData);
+			loadingManager.updateLoading();
+			if(manager.allData.length === manager.slugs.length) {
+				DOM_Manipulation.loadDataOnDOM(manager.allData);
+			}
+			$('#refreshtime').attr('placeholder',manager.refreshtime);
+	})
+	.fail(function(error) {
+		//alertTorinoMeteoError();
+		console.log(error.status);
+		console.log(error.statusText);
+		//display the error data into page
+		alertTorinoMeteoError();
+		//get the station from the backup API
+		getStationFromJSONBlob(findBlobIdFromSlug(slug));
+	})
+	.always(function() {
+		//console.log("ajax call complete");
+		if(manager.allData.length === 111) {
+			console.log(manager.allData);
 		}
 		/** Gian: queste funzioni mi sono servite per creare su jsonBlob tutti gli indirizzi
 		corrispondenti alle varie stazioni.
@@ -101,93 +116,11 @@ $.ajax({
 
 });
    //update the data update
-   dateutilities();
-}
-
-/**
-* Load the json data on the page
-* @param {Object} data - the data to be shown
-*/
-function loadDataOnDOM(data) {
-	//manager.allData = data;
-	$("#collapsibleContainer").empty();
-	createAllCollapsiblePanel(data);
-	if(manager.loadimageoption == 0){
-		utilitiesformanageimage();
-		manager.loadimageoption = 1;
-	}
-	assignCollapsibleClick(data);
-    addEventListenerToCollapse();
-    callOnClickEventOnCollapse();
-    filteringAtRefresh();
-		$("#collapsibleContainer").hide();
-		fadeInCollapse();
-}
-
-/**
- * [function that control the collapsible panel]
- * @return {[type]} [description]
- */
-function assignCollapsibleClick(singleData){
-    /**
-     * [contain all the divs that contain a collapsible panel]
-     * @type {[type]}
-     */
-	var acc = document.getElementsByClassName("panelHeader");
-
-	for (var i = 0; i < acc.length; i++) {
-
-		acc[i].onclick = function() {
-	    	this.classList.toggle("active");
-	    	var panel = this.nextElementSibling;
-		    var id = $(this).attr('id');
-	    	if (panel.style.maxHeight){
-	        	panel.style.maxHeight = null;
-	        } else {
-			    panel.style.maxHeight = "350" + "px";
-	        }
-		    managerpanelbodyimage(id);
-     	}
-	}
-
-}
-function callOnClickEventOnCollapse(){
-	/**
-     * [contain all the divs that contain a collapsible panel]
-     * @type {[type]}
-     */
-	var acc = document.getElementsByClassName("panelHeader");
-    for (var i = 0; i < acc.length; i++) {
-		for (var item in manager.collapsibleOpenedIndex) {
-			if (manager.collapsibleOpenedIndex[item] == i) {
-				acc[manager.collapsibleOpenedIndex[item]].onclick();
-			}
-	    }
-    }
-}
-/**
- * [addEventListenerToCollapse function that retrive index of clicked collapse]
- */
-function addEventListenerToCollapse() {
-	$('.collapse').click(function (e){
-		var flag = null;
-		for (var item in manager.collapsibleOpenedIndex) {
-			if (manager.collapsibleOpenedIndex.hasOwnProperty(item)) {
-				if(manager.collapsibleOpenedIndex[item] == $(this).index('.collapse'))
-				{
-					flag = manager.collapsibleOpenedIndex[item];
-				}
-		    }
-	    }
-		if (flag == null){
-			manager.collapsibleOpenedIndex[$(this).index('.collapse')] = ($(this).index('.collapse'));
-		} else {
-			manager.collapsibleOpenedIndex[$(this).index('.collapse')] = null;
-		}
-	});
+   panelBodyUtilities.dateutilities();
 }
 
 
+<<<<<<< HEAD
 /**
  * [this function will populate the dom with all data]
  * @param  {[type]} allDetectionData [contain all the data received from the API]
@@ -351,6 +284,9 @@ function getFlagNation(detectedDataForSinglelocation){
 			return defaultImage;
 	}
 }
+=======
+
+>>>>>>> 4eb053ac22943890a8cee42b4f27a3765995352e
 
 
 /*****************************************************************/
