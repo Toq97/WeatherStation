@@ -238,9 +238,12 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
  * @param  {String} text           [text]
  * @param  {String/Number} data           [the data that append to the header]
  */
-function appendHeaderData(divPanelHeader, className, text,data){
-	var stationData = $('<p></p').addClass(className)
-								 .html(text + data);
+function appendHeaderData(divPanelHeader, className, data){
+	if (data == null){
+		data = "NO Data";
+	}
+	var stationData = $('<p></p').addClass(className + " col col-headerElements")
+								 .html(data);
      divPanelHeader.append(stationData);
 }
 /**
@@ -301,6 +304,7 @@ function createTemperatureBox(temperature,urlIcon) {
 											'rgb' + temperatureColorUtilities.temperatureToRGB(temperature)),
 											})
 										.append($weatherIcon);
+
 }
 
 /**
@@ -341,3 +345,8 @@ function getFlagNation(detectedDataForSinglelocation){
 /*                              MAIN                             */
 /*****************************************************************/
 getAllStations();
+
+/**
+ * Search filter
+ * @return {[type]} [description]
+ */
