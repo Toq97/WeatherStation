@@ -159,52 +159,7 @@ aside h2 {
 	background-color: #1bb6b2;
 	height: 70px;
 }
-/*
-#div-station-name{
-  float: left;
-  margin-left: 15px;
-	margin-right: 20px;
-}
 
-
-
-
-#select-country{
-	margin-top: 5px;
-	width: 120px;
-}
-
-#date{
-	margin-right: 125px;
-	margin-top: -20px;
-	float: right;
-}
-
-#stoprefresh{
-	margin-right: 10px;
-	margin-top: -20px;
-	float: right;
-}
-
-
-#refreshtime{
-
-  float: left;
-  margin-left: 150px;
-  margin-top: -20px;
-
-
-}
-
-#buttonsaverefresh{
-
-  float: left;
-  margin-left: 230px;
-  margin-top: -18px;
-
-
-}*/
-/* fine css inutile */
 /* inizio css collapsible */
 .panelHeader {
     background-color: #eee;
