@@ -64,11 +64,11 @@ function getApiData(slug) {
 			$('#refreshtime').attr('placeholder',manager.refreshtime);
 	})
 	.fail(function(error) {
-		//alertTorinoMeteoError();
+
 		console.log(error.status);
 		console.log(error.statusText);
 		//display the error data into page
-		alertTorinoMeteoError();
+		$('.error-panel').show();
 		//get the station from the backup API
 		getStationFromJSONBlob(findBlobIdFromSlug(slug));
 	})
@@ -100,11 +100,10 @@ function getApiData(slug) {
 
 })
 .fail(function(error) {
-	//alertTorinoMeteoError();
 	console.log(error.status);
 	console.log(error.statusText);
 	//display the error data into page
-	alertTorinoMeteoError();
+	$('.error-panel').show();
 	//get the station from the backup API
 	getStationFromJSONBlob(findBlobIdFromSlug(slug));
 })
@@ -120,6 +119,61 @@ function getApiData(slug) {
 }
 
 
+/**************************************************/
+//[the function of the historical button, it give the meteo conditions of a an date]
+$('#history-btn').click(function() {
+  var inputDate = $('.history-box input').val();
+  console.log(inputDate)
+  var dateArray = inputDate.split('-');
+  if(historicalMeteo.isValidDate(inputDate)) {
+    //stop standard call
+    manager.standardCallActive = false;
+    manager.allData = [];
+    historicalMeteo.getHistoricalData(dateArray);
+  }
+});
+
+
+  /**
+   * [function that stop/restart the refresh]
+   */
+  $('#buttonstoprefresh').click(function (){
+
+  if(manager.stoprefresh == 0){
+    clearInterval(manager.timeOut);
+    $('#buttonstoprefresh').html('START REFRESH');
+    alert("Refresh stopped");
+    manager.stoprefresh = 1;
+  }else{
+    manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+    $('#buttonstoprefresh').html('STOP REFRESH');
+    manager.stoprefresh = 0;
+  }
+  });
+
+
+
+  //funzione che serve per impostare il refresh
+  $('#buttonsaverefresh').click(function (){
+  var newrefreshtime = document.getElementById("refreshtime");
+  if(newrefreshtime.value >= 15000) {
+
+    manager.refreshtime = newrefreshtime.value;
+    clearInterval(manager.timeOut);
+    manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+
+  } else {
+    alert("Refresh value too low. Minimum value is 15000ms");
+  }
+
+  });
+
+
+	//add events to the input text and the select
+	$("#input-station-name").on("keyup", filterSearch.filter);
+	$('#select-country').on('click', filterSearch.filter);
+
+jsonBlobBackup.keepJsonBlobUpdated();
 
 
 

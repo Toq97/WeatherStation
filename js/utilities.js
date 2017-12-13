@@ -1,4 +1,7 @@
 var utilities = {
+  /*
+  * Deep copy an object into a new one
+   */
   cloneObj: function(obj) {
     if (obj === null || typeof(obj) !== 'object' || 'isActiveClone' in obj)
       return obj;

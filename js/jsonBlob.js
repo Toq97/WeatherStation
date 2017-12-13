@@ -147,11 +147,3 @@ function faiLeCOse(array) {
 
 
 */
-/**
- * [function that show the error panel]
- */
-function alertTorinoMeteoError() {
-  $('.error-panel').show();
-}
-
-jsonBlobBackup.keepJsonBlobUpdated();

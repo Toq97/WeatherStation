@@ -75,7 +75,6 @@ refresh(tramite relativo pulsante).
         - createPanelHeader: Toqir
         - createPanelBody: Toqir
         - getFlagNation: Toqir
-
         - temperatureColorUtilities: Gianluca
         - createTemperatureBox: Gianluca
         - appendTemperatureBox: Gianluca
@@ -86,7 +85,6 @@ refresh(tramite relativo pulsante).
         - keepJsonBlobUpdated: Gianluca
         - findSlugFromStation: Gianluca
         - findBlobIdFromSlug: Gianluca
-        - alertTorinoMeteoError: Gianluca
         - getSelectNation: Pietro
         - getSelectedValue: Pietro
         - createLinkforMaps: Tortone

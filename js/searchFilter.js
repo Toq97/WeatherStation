@@ -37,9 +37,3 @@ var filterSearch = {
 	}
 
 };
-
-
-
-//add events to the input text and the select
-$("#input-station-name").on("keyup", filterSearch.filter);
-$('#select-country').on('click', filterSearch.filter);

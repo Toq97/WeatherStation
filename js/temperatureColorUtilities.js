@@ -5,13 +5,6 @@
  * @Last modified time: 2017-12-08T00:08:55+01:00
  */
 
-/* da -5 a 45 gradi
-* centrato in 20
-* 2 -> 45
-* -2 -> -5
-* 0 -> 20
-*/
-
 
 var temperatureColorUtilities = {
     /*

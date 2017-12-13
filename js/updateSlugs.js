@@ -615,3 +615,29 @@ function postNewStationOnJsonBlob(i,stationObj) {
       alert('Request failed: ' + textStatus);
     });
 }
+
+/**
+ * [function that get the Json Data]
+ */
+function getCompleteJsonFromTorinoMeteo() {
+	$.ajax({
+		url: 'https://www.torinometeo.org/api/v1/realtime/data/',
+		type: 'GET',
+		dataType: 'JSON',
+	})
+	.done(function(detectionData) {
+    detectionData.filter(function(jsonElement) {
+      var jsonSlug= jsonElement.station.slug;
+      return manager.slugs.filter(function(slugElement){
+        return slugElement.slug === jsonElement.station.slug
+      }).length === -1;
+
+    })
+
+	})
+	.fail(function(error) {
+
+		console.log(error.statusText);
+
+	})
+}

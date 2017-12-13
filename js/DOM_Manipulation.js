@@ -43,7 +43,7 @@ var DOM_Manipulation = {
   	   }
 
      },
-     
+
   /**
    * [function that open the selected panel when there is a refresh]
    */
@@ -253,5 +253,19 @@ var DOM_Manipulation = {
   			var defaultImage = $("<img></img>").attr('src',"./	img/pirates-flag.png").addClass("flagIcon");
   			return defaultImage;
   	}
+  },
+  /**
+   * [function that animate all the collapsiblePanel with a fadeIn]
+   */
+  fadeInCollapse: function(){
+    $( "#collapsibleContainer").fadeIn( "60000" );
+  },
+
+  /**
+   * [function that animate all the collapsiblePanel at the refresh with a
+   * fadeOut]
+   */
+  fadeOutCollapse: function(){
+    $("#collapsibleContainer").fadeOut("60000");
   }
 };
