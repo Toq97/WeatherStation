@@ -53,7 +53,9 @@ function updateImageApi(id){
     var detectedDataForSinglelocation = getStationForClickedPanel(id);
     //title with the name of the place
      var collapsibleBodytitle = $('<h3></h3>');
-     collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
+     collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "
+                               +detectedDataForSinglelocation.station.region.name+" in "+
+                               detectedDataForSinglelocation.station.nation.name);
 
      //image of the place
      if (detectedDataForSinglelocation.station.webcam == ""){
@@ -92,39 +94,33 @@ function managerpanelbodyimage(id){
 
 
 // cicla l array collapse body in cui sono presenti gli oggetti caricati con la funzione utilitiesformanageimage
-for (var item in manager.collapsebody){
-
-  //va a prendere l'oggetto corrispondente all'id
-if (manager.collapsebody[item].id == id) {
-
-    //va a vedere se count è a 0.
-    //0: pannello chiuso
-    //1: pannello aperto
-    if(manager.collapsebody[item].count == 0){
-    //libera il corpo del pannelo ogni volta che lo apro, in modo tale che non venga caricato più volte il materiale nel body del pannello
-        //cicla tutte le stazioni
-        for(var items in manager.allData){
-
-             //va a prendere la stazione giusta
-            if (manager.allData[items].station.slug == id){
-                 //svuota il pannello
-                $('#'+manager.allData[items].station.id+'updateimage').empty();
+    for (var item in manager.collapsebody){
+      //va a prendere l'oggetto corrispondente all'id
+        if (manager.collapsebody[item].id == id) {
+            //va a vedere se count è a 0.
+            //0: pannello chiuso
+            //1: pannello aperto
+            if(manager.collapsebody[item].count == 0){
+            //libera il corpo del pannelo ogni volta che lo apro, in modo tale che non venga caricato più volte il materiale nel body del pannello
+                //cicla tutte le stazioni
+                for(var items in manager.allData){
+                     //va a prendere la stazione giusta
+                    if (manager.allData[items].station.slug == id){
+                         //svuota il pannello
+                        $('#'+manager.allData[items].station.id+'updateimage').empty();
+                    }
+                }
+            //va a caricare il pannello con i dati
+            updateImageApi(id);
+            // mette count a 1
+            manager.collapsebody[item].count  = 1;
+            } else {
+                  //mette count a 0
+                    manager.collapsebody[item].count  = 0;
             }
-        }
-
-        //va a caricare il pannello con i dati
-        updateImageApi(id);
-
-        // mette count a 1
-        manager.collapsebody[item].count  = 1;
-        } else {
-          //mette count a 0
-            manager.collapsebody[item].count  = 0;
-
         }
     }
 }
-
 
 /**
  * [function that give utilities for manage the update of the image]
@@ -170,37 +166,29 @@ function dateutilities(){
  *                         year or the hours or the minutes or the seconds]
  * @return {Number}        [number with the type of data passed before]
  */
-function padNum(number)
-{
-   if (number<10)
-   {
-     return "0"+number;
-   }else
-   {
-     return number;
+function padNum(number){
+   if (number<10){
+       return "0"+number;
+   }else{
+       return number;
    }
-
    return number<10 ? '0' + number : number;
-
 }
 
 /**
  * [function that stop/restart the refresh]
  */
 $('#buttonstoprefresh').click(function (){
-
-if(manager.stoprefresh == 0){
-  clearInterval(manager.timeOut);
-  $('#buttonstoprefresh').html('START REFRESH');
-  alert("Refresh stopped");
-  manager.stoprefresh = 1;
-}else{
-  manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
-  $('#buttonstoprefresh').html('STOP REFRESH');
-  manager.stoprefresh = 0;
-}
-
-
+    if(manager.stoprefresh == 0){
+        clearInterval(manager.timeOut);
+        $('#buttonstoprefresh').html('START REFRESH');
+        alert("Refresh stopped");
+        manager.stoprefresh = 1;
+    }else{
+        manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+        $('#buttonstoprefresh').html('STOP REFRESH');
+        manager.stoprefresh = 0;
+    }
 });
 
 
@@ -208,17 +196,13 @@ if(manager.stoprefresh == 0){
 //funzione che serve per impostare il refresh
 $('#buttonsaverefresh').click(function (){
 
-
-var newrefreshtime = document.getElementById("refreshtime");
-
-if(newrefreshtime.value >= 15000){
-
-  manager.refreshtime = newrefreshtime.value;
-  clearInterval(manager.timeOut);
-  manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
-
-}else{
-  alert("Refresh value too low. Minimum value is 15000ms");
-}
+    var newrefreshtime = document.getElementById("refreshtime");
+    if(newrefreshtime.value >= 15000) {
+        manager.refreshtime = newrefreshtime.value;
+        clearInterval(manager.timeOut);
+        manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+    } else {
+        alert("Refresh value too low. Minimum value is 15000ms");
+    }
 
 });
