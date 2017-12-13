@@ -62,15 +62,17 @@ function updateImageApi(id){
          //image of the place
          var collapsibleBodyImage = $('<img></img>');
          collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
-         //collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
+         collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
+         collapsibleBodyImage.attr('id',detectedDataForSinglelocation.station.slug+"image");
          collapsibleBodyImage.addClass("collapsibleImageStyle");
 
-        /* if (isImgOk(collapsibleBodyImage) == false)
-         {
-           collapsibleBodyImage.attr('src','./img/backgroundItaly.png');
-           //collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
-           collapsibleBodyImage.addClass("collapsibleImageStyle");
-         }*/
+
+        /* if (isImgOk($('#'+id+'image')) == false)
+ 				{
+ 				  $('#'+id+'image').attr('src','./img/backgroundItaly.png');
+ 				  $('#'+id+'image').addClass("collapsibleImageStyle");
+ 				}*/
+
          //link to maps
          var collapsibleBodyMapsLink = $('<a></a>');
          collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
@@ -78,6 +80,7 @@ function updateImageApi(id){
 
          $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodytitle);
          $("#"+detectedDataForSinglelocation.station.id+"updateimage").append(collapsibleBodyMapsLink);
+
 
 
 }
@@ -114,7 +117,8 @@ for (var item in manager.collapsebody){
       }
 
 }
-console.log(manager.collapsebody);
+//console.log(manager.collapsebody);
+
 }
 
 
@@ -215,16 +219,21 @@ if(newrefreshtime.value >= 15000){
 
 });
 
-/*
+/**
+ * [function for the manage of the image]
+ * @param  {[img]}  img [image]
+ * @return {Boolean}     [boolean value]
+ */
 function isImgOk (img) {
     //assuming it's ok
     var isImageOk = true;
-    if (!img.complete)
+    if (!img.complete){
     isImageOk = false;
+    }
 
     // naturalWidth is undefined or zero if there have been problems on loading.
-    if (typeof img.naturalWidth != undefined && img.naturalWidth == 0)
+    if (typeof img.naturalWidth != undefined && img.naturalWidth == 0){
     isImageOk = false;
+    }
     return isImageOk;
 }
-*/
