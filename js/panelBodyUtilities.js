@@ -42,7 +42,6 @@ function getStationForClickedPanel(id){
 /**
  * [function that done the call for take the information of a station and update it in the body of panel]
  * @param  {[String]} id [the id of the clicked panel]
- * @return {[type]}    [description]
  */
 function updateImageApi(id){
 
@@ -75,8 +74,7 @@ function updateImageApi(id){
 
 /**
  * [function that control when the pannel open, the body of pannel is empty]
- * @param  {[String]} id [description]
- * @return {[type]}    [description]
+ * @param  {[String]} id [id of the station]
  */
 function managerpanelbodyimage(id){
 
@@ -111,7 +109,6 @@ console.log(manager.collapsebody);
 
 /**
  * [function that give utilities for manage the update of the image]
- * @return {[type]} [description]
  */
 function utilitiesformanageimage(){
 
@@ -135,7 +132,6 @@ function utilitiesformanageimage(){
 
 /**
  * [function that print in the header the time of last update call]
- * @return {[type]} [description]
  */
 function dateutilities(){
 
@@ -151,8 +147,9 @@ function dateutilities(){
 
 /**
  * [function that do the padding of the number]
- * @param  {[type]} number [description]
- * @return {[type]}        [description]
+ * @param  {Number} number [number that contain the date or the month or the
+ *                         year or the hours or the minutes or the seconds]
+ * @return {Number}        [number with the type of data passed before]
  */
 function padNum(number)
 {
@@ -170,7 +167,6 @@ function padNum(number)
 
 /**
  * [function that stop the refresh]
- * @return {[type]} []
  */
 $('#buttonstoprefresh').click(function (){
 
