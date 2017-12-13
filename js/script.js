@@ -91,7 +91,6 @@ $.ajax({
 		$('#refreshtime').attr('placeholder',manager.refreshtime);
 
 
-
 })
 .fail(function(error) {
 	//alertTorinoMeteoError();
