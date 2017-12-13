@@ -2,7 +2,7 @@
  * [function that animate all the collapsiblePanel with a fadeIn]
  */
 function fadeInCollapse(){
-  $( "#collapsibleContainer").fadeIn( "40000" );
+  $( "#collapsibleContainer").fadeIn( "60000" );
 }
 
 /**
@@ -10,5 +10,5 @@ function fadeInCollapse(){
  * fadeOut]
  */
 function fadeOutCollapse(){
-  $("#collapsibleContainer").fadeOut("40000");
+  $("#collapsibleContainer").fadeOut("60000");
 }
