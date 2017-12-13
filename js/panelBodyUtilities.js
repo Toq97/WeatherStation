@@ -171,12 +171,21 @@ function padNum(number)
 }
 
 /**
- * [function that stop the refresh]
+ * [function that stop/restart the refresh]
  */
 $('#buttonstoprefresh').click(function (){
 
-clearInterval(manager.timeOut);
-alert("Hai stoppato il refresh");
+if(manager.stoprefresh == 0){
+  clearInterval(manager.timeOut);
+  $('#buttonstoprefresh').html('START REFRESH');
+  alert("Hai stoppato il refresh");
+  manager.stoprefresh = 1;
+}else{
+  manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+  $('#buttonstoprefresh').html('STOP REFRESH');
+  manager.stoprefresh = 0;
+}
+
 
 });
 
