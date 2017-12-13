@@ -39,7 +39,7 @@ refresh(tramite relativo pulsante).
 
 	- allData: [all data of stations, it is update at the end of every calls]
 	- collapsibleOpenedIndex: [it is an index that manage the openings and the closure of a panel]
-  - collapsebody: [array used to manage the body of collapse]
+    - collapsebody: [array used to manage the body of collapse]
 	- loadimageoption: [number used to the manage of image]
 	- refreshtime: [the time of the refresh]
 	- loadedStations: [it has the number of loaded station]
@@ -48,7 +48,7 @@ refresh(tramite relativo pulsante).
 	- standardCallActive: [it is used to the calls]
 	- timeOut: [it is used to make the timeout of refresh]
 	- stoprefresh: [a count of the button of stop refresh]
-}
+
 
 
 
