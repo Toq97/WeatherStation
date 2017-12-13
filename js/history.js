@@ -1,3 +1,5 @@
+
+//[the function of the historical button, it give the meteo conditions of a an date]
 $('#history-btn').click(function() {
   var inputDate = $('.history-box input').val();
   console.log(inputDate)
@@ -10,6 +12,11 @@ $('#history-btn').click(function() {
   }
 });
 
+/**
+ * [function that give the validate of a date]
+ * @param  {[String]}  textDate [the text of the date]
+ * @return {Boolean}          [a boolean value]
+ */
 function isValidDate(textDate) {
   var sixMonths = 3600 * 24 * 30 * 6 * 1000;
   if(new Date(textDate) == 'Invalid Date') return false;
@@ -20,6 +27,10 @@ function isValidDate(textDate) {
   return true;
 }
 
+/**
+ * [the function that make the call of historical data and it give the body]
+ * @param  {[array]} dateArray [array whit the date of the call]
+ */
 function getHistoricalData(dateArray) {
   $.ajax({
   	url: 'https://www.torinometeo.org/api/v1/realtime/history/' + dateArray[0] + '/' + dateArray[1] + '/' + dateArray[2] + '/',
