@@ -40,6 +40,7 @@ function getAllStations() {
 		}
 	}
 	console.log(manager.allData);
+	fadeOutCollapse();
 		manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
 
 
