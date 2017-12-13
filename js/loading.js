@@ -34,3 +34,12 @@ function initializeLoading() {
     $('.comunication-first h3').html('loading data');
     //$('.loading-box').show();
 }
+
+
+function sortAllDataArray() {
+  manager.allData.sort(function(a, b){
+    if(a.station.slug < b.station.slug) return -1;
+    if(a.station.slug > b.station.slug) return 1;
+    return 0;
+})
+}
