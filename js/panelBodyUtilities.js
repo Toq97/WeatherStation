@@ -28,6 +28,11 @@ var createLinkforMaps = function(nameofLocation){
     return finalResult;
  }
 
+/**
+ * [Function that give the correct station for the correct panel]
+ * @param  {[String]} id [the slug of station]
+ * @return {[Object]}    [te object of the coprrect station]
+ */
 function getStationForClickedPanel(id){
  var detectedDataForSinglelocation = {};
     for (var item in manager.allData) {
@@ -166,12 +171,21 @@ function padNum(number)
 }
 
 /**
- * [function that stop the refresh]
+ * [function that stop/restart the refresh]
  */
 $('#buttonstoprefresh').click(function (){
 
-clearInterval(manager.timeOut);
-alert("Hai stoppato il refresh");
+if(manager.stoprefresh == 0){
+  clearInterval(manager.timeOut);
+  $('#buttonstoprefresh').html('START REFRESH');
+  alert("Hai stoppato il refresh");
+  manager.stoprefresh = 1;
+}else{
+  manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+  $('#buttonstoprefresh').html('STOP REFRESH');
+  manager.stoprefresh = 0;
+}
+
 
 });
 

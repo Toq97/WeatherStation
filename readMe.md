@@ -13,7 +13,19 @@ inserire descrizione
 **WeatherStationManager**
 -----------------------
 
-descrizione mangaer
+
+	- allData: [all data of stations, it is update at the end of every calls]
+	- collapsibleOpenedIndex: [it is an index that manage the openings and the closure of a panel]
+  - collapsebody: [array used to manage the body of collapse]
+	- loadimageoption: [number used to the manage of image]
+	- refreshtime: [the time of the refresh]
+	- loadedStations: [it has the number of loaded station]
+	- slugs: [it is used to give the corrispondence of slug and jsonblob calls]
+	- jsonBlobCalls: [it is used for manage the jsonblobcalls]
+	- standardCallActive: [it is used to the calls]
+	- timeOut: [it is used to make the timeout of refresh]
+	- stoprefresh: [a count of the button of stop refresh]
+}
 
 
 
@@ -69,6 +81,7 @@ descrizione mangaer
         - filter: Pietro
         - filteringAtRefresh: Pietro
         - appendHeaderData: Pietro
+        - buttonstoprefresh: Tortone
 
     other:
         - post the jsonBlob backup jsons: Gianluca
@@ -87,22 +100,23 @@ All notable changes to this project will be documented in this file.
 
 ###**[2.1.0] - 2017-07-16 // al posto di questa l'ultima data**
 ### Added
-- getApiData: Gianluca 9/12/2018
-- assignCollapsibleClick: Toqir 2/12/2018
-- createAllCollapsiblePanel: Toqir 2/12/2018
-- createCollapsiblePanel: Toqir 2/12/2018
-- createPanelHeader: Toqir 2/12/2018
-- createPanelBody: Toqir 2/12/2018
-- getFlagNation: Toqir 2/12/2018
+- getApiData: Gianluca 9/12/2017
+- assignCollapsibleClick: Toqir 2/12/2017
+- createAllCollapsiblePanel: Toqir 2/12/2017
+- createCollapsiblePanel: Toqir 2/12/2017
+- createPanelHeader: Toqir 2/12/2017
+- createPanelBody: Toqir 2/12/2017
+- getFlagNation: Toqir 2/12/2017
 - createLinkforMaps: Tortone 4/12/2017
 - updateImageApi: Tortone  7/12/2017
 - managerpanelbodyimage: Tortone  7/12/2017
 - utilitiesformanageimage: Tortone  7/12/2017
 - dateutilities: Tortone 7/12/2017
 - PadNum: Tortone 7/12/2017
-- updateSlug.js: Gianluca 8/12/2f903418b776
+- updateSlug.js: Gianluca 8/12/2017
 - buttonsaverefresh: Tortone 11/12/2017
 - searchFilter.js: Pietro 11/12/2017
+- buttonstoprefresh: Tortone 12/12/2017
 
 ### Changed
 - createCollapsiblePanel: Pietro 11/12/2017 , ho cambiato l'id del collapse(mi serviva per la ricerca)
