@@ -59,19 +59,21 @@ function updateImageApi(id){
          var collapsibleBodytitle = $('<h3></h3>');
          collapsibleBodytitle.html(detectedDataForSinglelocation.station.name+" situato nella regione "+detectedDataForSinglelocation.station.region.name+" in "+ detectedDataForSinglelocation.station.nation.name);
 
+
+         //collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
+         //collapsibleBodyImage.attr('id',detectedDataForSinglelocation.station.slug+"image");
+         //
+         //
          //image of the place
-         var collapsibleBodyImage = $('<img></img>');
-         collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
-         collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
-         collapsibleBodyImage.attr('id',detectedDataForSinglelocation.station.slug+"image");
-         collapsibleBodyImage.addClass("collapsibleImageStyle");
-
-
-        /* if (isImgOk($('#'+id+'image')) == false)
- 				{
- 				  $('#'+id+'image').attr('src','./img/backgroundItaly.png');
- 				  $('#'+id+'image').addClass("collapsibleImageStyle");
- 				}*/
+         if (detectedDataForSinglelocation.station.webcam == ""){
+             var collapsibleBodyImage = $('<img></img>');
+             collapsibleBodyImage.attr('src',"./img/immagine_errore_caricamento.jpg");
+             collapsibleBodyImage.addClass("collapsibleImageStyle");
+         } else {
+             var collapsibleBodyImage = $('<img></img>');
+             collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
+             collapsibleBodyImage.addClass("collapsibleImageStyle");
+        }
 
          //link to maps
          var collapsibleBodyMapsLink = $('<a></a>');
@@ -218,22 +220,3 @@ if(newrefreshtime.value >= 15000){
 }
 
 });
-
-/**
- * [function for the manage of the image]
- * @param  {[img]}  img [image]
- * @return {Boolean}     [boolean value]
- */
-function isImgOk (img) {
-    //assuming it's ok
-    var isImageOk = true;
-    if (!img.complete){
-    isImageOk = false;
-    }
-
-    // naturalWidth is undefined or zero if there have been problems on loading.
-    if (typeof img.naturalWidth != undefined && img.naturalWidth == 0){
-    isImageOk = false;
-    }
-    return isImageOk;
-}
