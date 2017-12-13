@@ -204,7 +204,7 @@ function addEventListenerToCollapse() {
 
 /**
  * [this function will populate the dom with all data]
- * @param  {[type]} allDetectionData [contain all the data received from the API]
+ * @param  {Array} allDetectionData [contain all the data received from the API]
  */
 function createAllCollapsiblePanel(allDetectionData) {
 	//loop for allDetectionData and call createCollapsiblePanel function
