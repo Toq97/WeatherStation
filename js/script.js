@@ -23,7 +23,8 @@ var manager = {
 	slugs: slugs,
 	jsonBlobCalls : 0,
 	standardCallActive: true,
-	timeOut: ""
+	timeOut: "",
+	stoprefresh: 0
 }
 /**
  * [filterManager manager that saves the data for filtering at the refresh]
