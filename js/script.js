@@ -89,8 +89,6 @@ $.ajax({
 		console.log(str)*/
 
 		$('#refreshtime').attr('placeholder',manager.refreshtime);
-
-
 })
 .fail(function(error) {
 	//alertTorinoMeteoError();
@@ -199,7 +197,7 @@ function addEventListenerToCollapse() {
 
 /**
  * [this function will populate the dom with all data]
- * @param  {[type]} allDetectionData [contain all the data received from the API]
+ * @param  {Array} allDetectionData [contain all the data received from the API]
  */
 function createAllCollapsiblePanel(allDetectionData) {
 	//loop for allDetectionData and call createCollapsiblePanel function
@@ -313,7 +311,7 @@ function createTemperatureBox(temperature,urlIcon) {
 		if(urlIcon) {
 			$weatherIcon.attr('src', urlIcon);
 		} else {
-			$weatherIcon.attr('src', 'img/nf_weather_icon.png');
+			$weatherIcon.attr('src', 'img/not_found_weather.png');
 		}
 
 		return $('<div>').addClass('temperature-box')
