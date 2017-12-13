@@ -45,6 +45,7 @@ function getAllStations() {
 		}
 	}
 	console.log(manager.allData);
+		fadeOut();
 		manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
 
 
@@ -106,7 +107,7 @@ function loadDataOnDOM(data) {
     addEventListenerToCollapse();
     callOnClickEventOnCollapse();
     filteringAtRefresh();
-		//$("#collapsibleContainer").animate({ opacity: 0 });
+		$(".collapse").hide();
 		fadeIn();
 }
 
