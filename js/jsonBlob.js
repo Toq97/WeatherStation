@@ -22,10 +22,18 @@ function getStationFromJSONBlob(blobId) {
           $('#failed-stations-list').append(
             $('<li>').html(response.station.slug));
           updateLoading();
+          if(loadingPercent() == 100) {
+            loadDataOnDOM(manager.allData);
+          }
 
         },
         error: function(xhr, status, e) {
             console.log(status, e);
+            var $showError = $('<div>');
+            $showError.addClass('jsonBlob-error')
+                      .html('Request to upload JSONBlob failed: ' + status);
+            $('.other-comunications').append($showError);
+            updateLoading();
         }
        });
 
@@ -63,39 +71,6 @@ function faiLeCOse(array) {
   console.log(sli)
   console.log(str)
 }
-*/
-
-/*function cose(i,stationObj) {
-  $.ajax({
-   method: 'POST',
-   url: 'https://jsonblob.com/api/jsonBlob',
-   headers: {
-       "Content-Type": "application/json; charset=utf8"
-   },
-   data: JSON.stringify(stationObj),
-   success: function(data,textStatus,jqXHR,bla) {
-    //console.log(jqXHR)
-    //console.log(bla)
-    }
-  }).done(function(msg,ba,bla){
-    console.log(msg,ba,bla)
-    console.log(bla.getAllResponseHeaders())
-    console.log(bla.getAllResponseHeaders().slice(48,85))
-    console.log(sli[i])
-
-    sli[i].blobId = bla.getAllResponseHeaders().slice(48,85);
-    var str = '';
-    sli.forEach(function(slug) {
-      str += '\n{\n\t id : \'' + slug.id + '\', \n\tslug : \'' + slug.slug + '\' \n\tblobId : \'' + slug.blobId + '\'\n},'
-    });
-    console.log(str)
-
-    }).fail(function(jqXHR, textStatus){
-      console.log(textStatus);
-      alert('Request failed: ' + textStatus);
-    });
-}
-
 
 function clone(obj) {
       if (obj === null || typeof(obj) !== 'object' || 'isActiveClone' in obj)
@@ -134,9 +109,9 @@ function uploadJSONBlob(newData, blobId) {
         data: newData
     }).done(function(msg){
         console.log('Data Saved on JSONBlob: ' + msg);
-        if(manager.allData.length === manager.slugs.length) {
+        /*if(manager.allData.length === manager.slugs.length) {
     			loadDataOnDOM(manager.allData);
-    		}
+    		}*/
         //console.log(new Date());
     }).fail(function(jqXHR, textStatus){
         console.error('Request to upload JSONBlob failed: ' + textStatus);

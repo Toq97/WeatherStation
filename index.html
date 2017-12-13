@@ -15,92 +15,94 @@
  	<![endif]-->
 </head>
 <body id="bodyid">
-<div class = "container">
-	<div class = "row">
-		<div class="col col-12">
-			<div id="divHeader">
-				<h1 id="title"> Real Time Weather Station </h1>
-			</div>
-		</div>
-	</div>
-	<div class = "row" id="filter">
-		<div class="col col-3">
-			<div id="div-station-name">
-				<h3>Station name</h3>
-				<input type="text" name="station-name" id="input-station-name">
-			</div>
-		</div>
-		<div class="col col-3">
-			<h3>Country</h3>
-				<select id="select-country">
-					<option value="" id="-">-</option>
-					<option value="francia" id="Francia">France</option>
-					<option value="italia" id="Italia">Italy</option>
-					<option value="svizzera" id = "Svizzera">Switzerland</option>
-				</select>
-		</div>
-		<div class="col col-3">
-			<input type="text" id="refreshtime">
-			<button id="buttonsaverefresh">SAVE REFRESH TIME</button>
-		</div>
-		<div class="col col-3">
-			<div id="date">
-				<p id="updatedate"></p>
-			</div>
-			<div id="stoprefresh">
-				<button id="buttonstoprefresh">STOP REFRESH</button>
-			</div>
-		</div>
-	</div>
-	<div class = "row">
-		<div class="col col-3">
-			<aside class="comunication-box">
-				<h2>Page informations</h2>
-				<div class="comunication-first">
-					<img src="https://picsum.photos/274/274/?random" alt="">
-					<div class="loading-box">
-						<h2>loading data</h2>
-						<div id="loading-percent">0%</div>
-					</div>
+	<div class = "container">
+		<div class = "row">
+			<div class="col col-12">
+				<div id="divHeader">
+					<h1 id="title"> Real Time Weather Station </h1>
 				</div>
-
-				<div class="other-comunications">
-					<div class="error-panel">
-						<h2>Error!</h2>
-						<p>An error occured while trying to receive data from www.torinometeo.org
-							about the following stations:
-							<ul id="failed-stations-list">
-							</ul>
-							The shown data are received from JSONBlob and refer to</p>
-							<div class="jsonblob-date">
-									---- waiting for data from JBlob ----
-							</div>
-							<button type="button" name="button" id="close-error-panel-btn">Ok</button>
-					</div>
+			</div>
+		</div>
+		<div class = "row" id="filter">
+			<div class="col col-3">
+				<div id="div-station-name">
+					<h3>Station name</h3>
+					<input type="text" name="station-name" id="input-station-name">
 				</div>
-			</aside>
+			</div>
+			<div class="col col-3">
+				<h3>Country</h3>
+					<select id="select-country">
+						<option value="" id="-">-</option>
+						<option value="francia" id="Francia">France</option>
+						<option value="italia" id="Italia">Italy</option>
+						<option value="svizzera" id = "Svizzera">Switzerland</option>
+					</select>
+			</div>
+			<div class="col col-3">
+				<h3>Refresh Time</h3>
+				<input type="text" id="refreshtime">
+				<button id="buttonsaverefresh">SAVE REFRESH TIME</button>
+			</div>
+			<div class="col col-3">
+				<div id="date">
+					<p id="updatedate"></p>
+				</div>
+				<div id="stoprefresh">
+					<button id="buttonstoprefresh">STOP REFRESH</button>
+				</div>
+			</div>
 		</div>
-		<div class="col col-9">
-			<div class="history-box">
-				<label>Inserisci una data<input type="date" name="" value=""></label>
-				<button type="button" name="button" id="history-btn">Historicami</button>
-			</div>
-			<div class="containerCollapse">
-				<p class="col col-headerElements"> Station Name </p>
-				<p class="col col-headerElements"> City </p>
-				<p class="col col-headerElements"> Region </p>
-				<p class="col col-headerElements"> Pressure </p>
-				<p class="col col-headerElements"> Humidity </p>
-				<p class="col col-headerElements"> Wind Strengh </p>
-				<p class="col col-headerElements"> Nation </p>
-				<p class="col col-headerElements"> Temperature </p>
-			</div>
-			<div id="collapsibleContainer">
 
+		<div class = "row">
+			<div class="col col-3">
+				<aside class="comunication-box">
+					<h2>Page informations</h2>
+					<div class="comunication-first">
+						<!--<img src="./img/cloud_load_img.png" alt="">-->
+						<h3>loading data</h3>
+						<div class="loading-box">
+							<div id="loading-percent">0%</div>
+						<!--</div>-->
+					</div>
+
+					<div class="other-comunications">
+						<div class="error-panel" style="display: none;">
+							<h2>Error!</h2>
+							<p>An error occured while trying to receive data from www.torinometeo.org
+								about the following stations:
+								<ul id="failed-stations-list">
+								</ul>
+								The shown data are received from JSONBlob and refer to</p>
+								<div class="jsonblob-date">
+										---- waiting for data from JBlob ----
+								</div>
+								<button type="button" name="button" id="close-error-panel-btn">Ok</button>
+						</div>
+					</div>
+				</aside>
+			</div>
+			<div class="col col-9">
+				<div class="history-box">
+					<label>Inserisci una data<input type="date" name="" value=""></label>
+					<button type="button" name="button" id="history-btn">Historicami</button>
+				</div>
+				<div class="containerCollapse">
+					<p class="col col-headerElements"> Station Name </p>
+					<p class="col col-headerElements"> City </p>
+					<p class="col col-headerElements"> Region </p>
+					<p class="col col-headerElements"> Pressure </p>
+					<p class="col col-headerElements"> Humidity </p>
+					<p class="col col-headerElements"> Wind Strengh </p>
+					<p class="col col-headerElements"> Nation </p>
+					<p class="col col-headerElements"> Temperature </p>
+				</div>
+				<div id="collapsibleContainer">
+
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
+    </div>
 
 	<!-- cuastomized script  -->
 	<script src="js/jquery.ajax-progress.js"></script>

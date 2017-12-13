@@ -175,18 +175,8 @@ function padNum(number)
  */
 $('#buttonstoprefresh').click(function (){
 
-if(manager.stoprefresh == 0){
-  clearInterval(manager.timeOut);
-  alert("Hai stoppato il refresh");
-  $('#buttonstoprefresh').html('START REFRESH');
-  manager.stoprefresh = 1;
-}
-else
-{
-  manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
-  $('#buttonstoprefresh').html('STOP REFRESH');
-  manager.stoprefresh = 0;
-}
+clearInterval(manager.timeOut);
+alert("Hai stoppato il refresh");
 
 });
 

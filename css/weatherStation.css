@@ -20,11 +20,9 @@ body{
 input{
   font-size:18px;
   display:block;
-  width:10%;
   border:none;
   border-bottom:1px solid #757575;
 }
-
 /* inizio grid */
 .container{
 	width: 100%;
@@ -117,6 +115,7 @@ input{
   padding: 10px;
   border: solid 3px blue;
   border-radius: 10px;
+  height: 600px;
 }
 
 .other-comunications {
@@ -140,6 +139,15 @@ aside h2 {
   font-size: 25px;
 }
 
+aside h3 {
+  text-align: center;
+  margin: 10px;
+  font-size: 25px;
+  color: #3b81f8;
+  width: 100%;
+  margin-top: 30px;
+}
+
 #divHeader{
 	color: #000000;
 	background-color: #ffffff;
@@ -153,13 +161,11 @@ aside h2 {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-
 #filter{
 	color: #fff;
 	background-color: #1bb6b2;
 	height: 70px;
 }
-
 /* inizio css collapsible */
 .panelHeader {
     background-color: #eee;
@@ -244,8 +250,11 @@ div.panelCollapsibleBody {
     border: solid 8px #c00;
     z-index: 5;
     height: 200px;
-    overflow: scroll;
+    overflow-y: scroll;
     padding: 10px;
+    margin-left: 20px;
+    margin-top: 20%;
+    border-radius: 10px;
 }
 
 .error-panel h2 {
@@ -258,17 +267,18 @@ div.panelCollapsibleBody {
 
 .loading-box {
     position: relative;
-    /* left: 50%; */
+    left: 15%;
     /* margin-left: -250px; */
-    top: 0;
-    width: 274px;
-    height: 280px;
+    top: 10px;
+    width: 240px;
+    height: 150px;
     text-align: center;
     background-position: -267px -140px;
     background-image: url(../img/cloud_load.gif);
-    background-color: white;
-    border: solid 4px #3c81f8;
-    border-radius: 30px;
+    background-position: -276px -169px;
+    /*background-color: white;*/
+  /*  border: solid 4px #3c81f8;
+    border-radius: 30px;*/
     color: #3c81f8;
     padding: 40px;
     font-size: 20px;
@@ -278,4 +288,8 @@ div.panelCollapsibleBody {
   position: relative;
   top: 45%;
   font-size: 25px;
+}
+
+.jsonBlob-error {
+  color: red;
 }
