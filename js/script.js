@@ -12,7 +12,7 @@
 var manager = {
 	allData : [],
 	collapsibleOpenedIndex : [],
-  collapsebody: [],
+    collapsebody: [],
 	loadimageoption: 0,
 	refreshtime: 30000,
 	loadedStations : 0,
@@ -40,7 +40,7 @@ function getAllStations() {
 		}
 	}
 	console.log(manager.allData);
-	DOM_Manipulation.fadeOutCollapse();
+
 		manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
 
 
