@@ -15,22 +15,18 @@
  	<![endif]-->
 </head>
 <body id="bodyid">
-<div class = "container">
-	<div class = "row">
-		<div class="col col-12">
-			<div id="divHeader">
-				<h1 id="title"> Real Time Weather Station </h1>
-			</div>
+
+	<header>
+		<div id="divHeader">
+			<h1 id="title"> Real Time Weather Station </h1>
 		</div>
-	</div>
-	<div class = "row" id="filter">
-		<div class="col col-3">
-			<div id="div-station-name">
-				<h3>Station name</h3>
-				<input type="text" name="station-name" id="input-station-name">
-			</div>
+	</header>
+	<div id="filter">
+		<div id="div-station-name">
+			<h3>Station name</h3>
+			<input type="text" name="station-name" id="input-station-name">
 		</div>
-		<div class="col col-3">
+		<div>
 			<h3>Country</h3>
 				<select id="select-country">
 					<option value="" id="-">-</option>
@@ -39,33 +35,32 @@
 					<option value="svizzera" id = "Svizzera">Switzerland</option>
 				</select>
 		</div>
-		<div class="col col-3">
-			<input type="text" id="refreshtime">
-			<button id="buttonsaverefresh">SAVE REFRESH TIME</button>
+
+				<input type="text" id="refreshtime" size="10">
+				<button id="buttonsaverefresh">SAVE REFRESH TIME</button>
+
+				<div id="date">
+					<p id="updatedate"></p>
+				</div>
+				<div id="stoprefresh">
+					<button id="buttonstoprefresh">STOP REFRESH</button>
+				</div>
 		</div>
-		<div class="col col-3">
-			<div id="date">
-				<p id="updatedate"></p>
-			</div>
-			<div id="stoprefresh">
-				<button id="buttonstoprefresh">STOP REFRESH</button>
-			</div>
-		</div>
-	</div>
+<div class = "container">
 	<div class = "row">
 		<div class="col col-3">
 			<aside class="comunication-box">
 				<h2>Page informations</h2>
 				<div class="comunication-first">
-					<img src="https://picsum.photos/274/274/?random" alt="">
+					<!--<img src="./img/cloud_load_img.png" alt="">-->
+					<h3>loading data</h3>
 					<div class="loading-box">
-						<h2>loading data</h2>
 						<div id="loading-percent">0%</div>
-					</div>
+					<!--</div>-->
 				</div>
 
 				<div class="other-comunications">
-					<div class="error-panel">
+					<div class="error-panel" style="display: none;">
 						<h2>Error!</h2>
 						<p>An error occured while trying to receive data from www.torinometeo.org
 							about the following stations:

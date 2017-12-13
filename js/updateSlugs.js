@@ -560,3 +560,42 @@ var slugs = [
   	blobId : 'beb04b65-dc6d-11e7-b106-ebec24afa076'
   }
 ];
+
+//chiama json meteo classico
+//cerca tutti gli slug nell'array slugs
+//se uno non c'è
+//postalo su jsonBlob
+//crea l'oggetto con id, slug e blobId
+//pushalo in slugs
+
+function postNewStationOnJsonBlob(i,stationObj) {
+  $.ajax({
+   method: 'POST',
+   url: 'https://jsonblob.com/api/jsonBlob',
+   headers: {
+       "Content-Type": "application/json; charset=utf8"
+   },
+   data: JSON.stringify(stationObj),
+   success: function(data,textStatus,jqXHR,bla) {
+    //console.log(jqXHR)
+    //console.log(bla)
+    }
+  }).done(function(msg,ba,bla){
+    console.log(msg,ba,bla)
+    console.log(bla.getAllResponseHeaders())
+    var blobId = bla.getAllResponseHeaders().slice(48,85);
+    console.log(blobId)
+    console.log(sli[i])
+
+    /*sli[i].blobId = bla.getAllResponseHeaders().slice(48,85);
+    var str = '';
+    sli.forEach(function(slug) {
+      str += '\n{\n\t id : \'' + slug.id + '\', \n\tslug : \'' + slug.slug + '\' \n\tblobId : \'' + slug.blobId + '\'\n},'
+    });
+    console.log(str)*/
+
+    }).fail(function(jqXHR, textStatus){
+      console.log(textStatus);
+      alert('Request failed: ' + textStatus);
+    });
+}
