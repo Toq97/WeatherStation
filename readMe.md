@@ -8,7 +8,27 @@
 The Wheather Station
 ========================
 
-
+L'applicazione permette di visualizzare le stazioni presenti nel sito
+torinometeo(tramite una chiamata API), per ogni stazione e' presente un header
+contenente: il nome della stazione, la città, la regione, la pressione,
+l'umidità, la forza del vento, la nazione(immagine della bandiera), la
+temperatura e il meteo relativo.
+E' possibile cliccare su una stazione per aprire il relativo body contenente la
+descrione della stazione, l'immagine della webcam della stazone e un link per
+visualizzare la posizione di essa.
+E' disponibile un sistema di ricerca tramite textbox e selectbox, nella
+textbox è possibile ricercare il nome della stazione mentre nella selectbox
+si possono filtrare le stazioni per nazione.
+La pagina si refresha ogni 30 secondi cosi da aggiornare costantemente i dati
+delle stazioni, inoltre è possibile visualizzare l'ultimo aggiornamento,
+modificare il tempo di refresh(tramite una texbox e relativo bottone) e
+stoppare gli aggiornamenti(tramite il relativo bottone).
+Inoltre è possibile scegliere una data passata(tramite la relativa datePicker
+e relativo pulsante Historicami) per andare e vedere i dati delle stazioni in
+quella data.
+Infine nella pagina è disponibile sulla sinistra la raccolta delle
+informazioni più rilevanti: stato del loading della pagina, resoconto dei
+possibili errori nella chiamata API.
 
 
 
@@ -16,7 +36,19 @@ The Wheather Station
 **WeatherStationManager**
 -----------------------
 
-descrizione manager
+
+	- allData: [all data of stations, it is update at the end of every calls]
+	- collapsibleOpenedIndex: [it is an index that manage the openings and the closure of a panel]
+  - collapsebody: [array used to manage the body of collapse]
+	- loadimageoption: [number used to the manage of image]
+	- refreshtime: [the time of the refresh]
+	- loadedStations: [it has the number of loaded station]
+	- slugs: [it is used to give the corrispondence of slug and jsonblob calls]
+	- jsonBlobCalls: [it is used for manage the jsonblobcalls]
+	- standardCallActive: [it is used to the calls]
+	- timeOut: [it is used to make the timeout of refresh]
+	- stoprefresh: [a count of the button of stop refresh]
+}
 
 
 
@@ -72,6 +104,7 @@ descrizione manager
         - filter: Pietro
         - filteringAtRefresh: Pietro
         - appendHeaderData: Pietro
+        - buttonstoprefresh: Tortone
 
     other:
         - post the jsonBlob backup jsons: Gianluca
@@ -90,22 +123,23 @@ All notable changes to this project will be documented in this file.
 
 ###**[2.1.0] - 2017-07-16 // al posto di questa l'ultima data**
 ### Added
-- getApiData: Gianluca 9/12/2018
-- assignCollapsibleClick: Toqir 2/12/2018
-- createAllCollapsiblePanel: Toqir 2/12/2018
-- createCollapsiblePanel: Toqir 2/12/2018
-- createPanelHeader: Toqir 2/12/2018
-- createPanelBody: Toqir 2/12/2018
-- getFlagNation: Toqir 2/12/2018
+- getApiData: Gianluca 9/12/2017
+- assignCollapsibleClick: Toqir 2/12/2017
+- createAllCollapsiblePanel: Toqir 2/12/2017
+- createCollapsiblePanel: Toqir 2/12/2017
+- createPanelHeader: Toqir 2/12/2017
+- createPanelBody: Toqir 2/12/2017
+- getFlagNation: Toqir 2/12/2017
 - createLinkforMaps: Tortone 4/12/2017
 - updateImageApi: Tortone  7/12/2017
 - managerpanelbodyimage: Tortone  7/12/2017
 - utilitiesformanageimage: Tortone  7/12/2017
 - dateutilities: Tortone 7/12/2017
 - PadNum: Tortone 7/12/2017
-- updateSlug.js: Gianluca 8/12/2f903418b776
+- updateSlug.js: Gianluca 8/12/2017
 - buttonsaverefresh: Tortone 11/12/2017
 - searchFilter.js: Pietro 11/12/2017
+- buttonstoprefresh: Tortone 12/12/2017
 
 ### Changed
 - createCollapsiblePanel: Pietro 11/12/2017 , ho cambiato l'id del collapse(mi serviva per la ricerca)

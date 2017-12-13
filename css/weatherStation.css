@@ -14,8 +14,15 @@
     box-sizing: border-box;
 }
 body{
+    background-color: rgb(192, 206, 208);
 	margin: 0 auto;
    	font-family: 'Calibri', sans-serif;
+}
+input{
+  font-size:18px;
+  display:block;
+  border:none;
+  border-bottom:1px solid #757575;
 }
 /* inizio grid */
 .container{
@@ -107,8 +114,13 @@ body{
 .comunication-box {
   margin: 2% 3%;
   padding: 10px;
-  border: solid 3px blue;
+  border-radius: 2px;
+  /*border: solid 3px blue;*/
   border-radius: 10px;
+  height: 600px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+
 }
 
 .other-comunications {
@@ -136,82 +148,32 @@ aside h3 {
   text-align: center;
   margin: 10px;
   font-size: 25px;
-  color: blue;
+  color: #3b81f8;
+  width: 100%;
+  margin-top: 30px;
 }
 
 #divHeader{
 	color: #000000;
 	background-color: #ffffff;
-	height: 100px;
+	/*height: 100px;*/
 	padding-left: 10px;
 }
 
 #title{
-	font-size: 70px;
-	text-align: center;
-	padding-top: 10px;
-	padding-bottom: 10px;
+  position: absolute;
+  top: 20px;
+  font-size: 70px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
 }
-
 #filter{
-	margin-top: 30px;
-	padding-top: 13px;
-	margin-left: 5%;
-	width: 90%;
 	color: #fff;
 	background-color: #1bb6b2;
 	height: 70px;
-	padding-left: 10px;
 }
-
-
-#div-station-name{
-  float: left;
-  margin-left: 15px;
-	margin-right: 20px;
-}
-
-#input-station-name{
-	margin-top: 5px;
-	width: 120px;
-}
-
-#select-country{
-	margin-top: 5px;
-	width: 120px;
-}
-
-#date{
-	margin-right: 125px;
-	margin-top: -20px;
-	float: right;
-}
-
-#stoprefresh{
-	margin-right: 10px;
-	margin-top: -20px;
-	float: right;
-}
-
-
-#refreshtime{
-
-  float: left;
-  margin-left: 150px;
-  margin-top: -20px;
-
-
-}
-
-#buttonsaverefresh{
-
-  float: left;
-  margin-left: 230px;
-  margin-top: -18px;
-
-
-}
-/* fine css inutile */
 /* inizio css collapsible */
 .panelHeader {
     background-color: #eee;
@@ -224,10 +186,18 @@ aside h3 {
     outline: none;
     font-size: 15px;
     transition: 2s;
+    -webkit-transition: all 250ms;
+    -moz-transition: all 250ms;
+    transition: all 250ms;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .panelHeader.active, .panelHeader:hover {
     background-color: #ccc;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    -webkit-transform: translateY(-5px);
+    -moz-transform: translateY(-5px);
+    transform: translateY(-5px);
 }
 
 div.panelCollapsibleBody {
@@ -235,6 +205,7 @@ div.panelCollapsibleBody {
     background-color: white;
     max-height: 0;
     overflow: hidden;
+    margin-bottom: 2%;
     transition: max-height 2s ease-out;
 }
 /* fine css collapsible*/
@@ -281,14 +252,16 @@ div.panelCollapsibleBody {
     position: fixed;*/
     padding: 30px;
     text-align: center;
-    background-color: coral;
     top: 30px;
     left: 40px;
     border: solid 8px #c00;
     z-index: 5;
     height: 200px;
-    overflow: scroll;
+    overflow-y: scroll;
     padding: 10px;
+    margin-left: 20px;
+    margin-top: 20%;
+    border-radius: 10px;
 }
 
 .error-panel h2 {
@@ -303,7 +276,7 @@ div.panelCollapsibleBody {
     position: relative;
     left: 15%;
     /* margin-left: -250px; */
-    top: 50px;
+    top: 10px;
     width: 240px;
     height: 150px;
     text-align: center;

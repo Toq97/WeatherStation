@@ -28,6 +28,11 @@ var createLinkforMaps = function(nameofLocation){
     return finalResult;
  }
 
+/**
+ * [Function that give the correct station for the correct panel]
+ * @param  {[String]} id [the slug of station]
+ * @return {[Object]}    [te object of the coprrect station]
+ */
 function getStationForClickedPanel(id){
  var detectedDataForSinglelocation = {};
     for (var item in manager.allData) {
@@ -57,9 +62,15 @@ function updateImageApi(id){
          //image of the place
          var collapsibleBodyImage = $('<img></img>');
          collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
-         collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
+         //collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
          collapsibleBodyImage.addClass("collapsibleImageStyle");
 
+        /* if (isImgOk(collapsibleBodyImage) == false)
+         {
+           collapsibleBodyImage.attr('src','./img/backgroundItaly.png');
+           //collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
+           collapsibleBodyImage.addClass("collapsibleImageStyle");
+         }*/
          //link to maps
          var collapsibleBodyMapsLink = $('<a></a>');
          collapsibleBodyMapsLink.attr('href',createLinkforMaps(detectedDataForSinglelocation.station.city));
@@ -166,12 +177,21 @@ function padNum(number)
 }
 
 /**
- * [function that stop the refresh]
+ * [function that stop/restart the refresh]
  */
 $('#buttonstoprefresh').click(function (){
 
-clearInterval(manager.timeOut);
-alert("Hai stoppato il refresh");
+if(manager.stoprefresh == 0){
+  clearInterval(manager.timeOut);
+  $('#buttonstoprefresh').html('START REFRESH');
+  alert("Hai stoppato il refresh");
+  manager.stoprefresh = 1;
+}else{
+  manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+  $('#buttonstoprefresh').html('STOP REFRESH');
+  manager.stoprefresh = 0;
+}
+
 
 });
 
@@ -194,3 +214,17 @@ if(newrefreshtime.value >= 15000){
 }
 
 });
+
+/*
+function isImgOk (img) {
+    //assuming it's ok
+    var isImageOk = true;
+    if (!img.complete)
+    isImageOk = false;
+
+    // naturalWidth is undefined or zero if there have been problems on loading.
+    if (typeof img.naturalWidth != undefined && img.naturalWidth == 0)
+    isImageOk = false;
+    return isImageOk;
+}
+*/

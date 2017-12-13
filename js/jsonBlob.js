@@ -172,7 +172,7 @@ function findBlobIdFromSlug(slug) {
  * [function that show the error panel]
  */
 function alertTorinoMeteoError() {
-  //$('.error-panel').show();
+  $('.error-panel').show();
 /*  $('#close-error-panel-btn').click(function() {
     $('.error-panel').hide();
   })*/
