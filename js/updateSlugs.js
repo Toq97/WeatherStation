@@ -561,7 +561,23 @@ var slugs = [
   }
 ];
 
-//chiama json meteo classico
+//call long json from torino meteor
+function keepSlugsUpdated() {
+  $.ajax({
+    url: 'https://www.torinometeo.org/api-realtime/',
+    type: 'GET',
+    dataType: 'JSON',
+  })
+  .done(function(data) {
+
+
+  })
+  .fail(function(error) {
+
+  })
+
+}
+
 //cerca tutti gli slug nell'array slugs
 //se uno non c'è
 //postalo su jsonBlob

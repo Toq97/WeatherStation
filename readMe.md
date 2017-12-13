@@ -105,6 +105,7 @@ possibili errori nella chiamata API.
         - filteringAtRefresh: Pietro
         - appendHeaderData: Pietro
         - buttonstoprefresh: Tortone
+				- sortAllDataArray: Gianluca
 
     other:
         - post the jsonBlob backup jsons: Gianluca
@@ -116,8 +117,7 @@ possibili errori nella chiamata API.
 
 **CHANGELOG:**
 --------------
-Gianluca: c'è un po' di codice commentato in getApiData(). Più o meno ho scritto nei commenti a cosa serviva e perchè non l'ho ancora
-          cancellato
+
 #
 All notable changes to this project will be documented in this file.
 

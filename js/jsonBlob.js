@@ -1,5 +1,3 @@
-//https://jsonblob.com/api/jsonBlob/0d2e6422-da8c-11e7-b7f1-f7bfe312a22e
-
 /**
  * [function that do the JSONBLob call]
  * @param  {String} blobId [string that contains the id of the single station in JSONBlob]
@@ -141,7 +139,6 @@ function keepJsonBlobUpdated() {
 
 }
 
-/** aggiungere manager. quando slug sarà in manager {} **/
 /**
  * [function that find the slug of the corrispondent station]
  * @param  {Object} station [object with the information of the station]
@@ -149,11 +146,11 @@ function keepJsonBlobUpdated() {
  *                          kebabCase and the blobId of the station]
  */
 function findSlugFromStation(station) {
-  var corrispSlug = slugs.filter(function(element) {
+  var corrispSlug = manager.slugs.filter(function(element) {
     return parseInt(element.id) === station.station.id;
   })[0];
-  var slugPosition = slugs.indexOf(corrispSlug);
-  return slugs[slugPosition];
+  var slugPosition = manager.slugs.indexOf(corrispSlug);
+  return manager.slugs[slugPosition];
 }
 
 /**
@@ -163,7 +160,7 @@ function findSlugFromStation(station) {
  * @return {String}      [string that contain the blobId of the station]
  */
 function findBlobIdFromSlug(slug) {
-  return slugs.filter(function(element) {
+  return manager.slugs.filter(function(element) {
     return element.slug === slug;
   })[0].blobId;
 }

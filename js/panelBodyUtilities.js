@@ -188,7 +188,7 @@ $('#buttonstoprefresh').click(function (){
 if(manager.stoprefresh == 0){
   clearInterval(manager.timeOut);
   $('#buttonstoprefresh').html('START REFRESH');
-  alert("Hai stoppato il refresh");
+  alert("Refresh stopped");
   manager.stoprefresh = 1;
 }else{
   manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
@@ -214,7 +214,7 @@ if(newrefreshtime.value >= 15000){
   manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
 
 }else{
-  alert("Hai inserito un valore troppo basso di refresh.");
+  alert("Refresh value too low. Minimum value is 15000ms");
 }
 
 });
