@@ -17,6 +17,14 @@ body{
 	margin: 0 auto;
    	font-family: 'Calibri', sans-serif;
 }
+input{
+  font-size:18px;
+  display:block;
+  width:10%;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+
 /* inizio grid */
 .container{
 	width: 100%;
@@ -147,27 +155,19 @@ aside h2 {
 }
 
 #filter{
-	margin-top: 30px;
-	padding-top: 13px;
-	margin-left: 5%;
-	width: 90%;
 	color: #fff;
 	background-color: #1bb6b2;
 	height: 70px;
-	padding-left: 10px;
 }
-
-
+/*
 #div-station-name{
   float: left;
   margin-left: 15px;
 	margin-right: 20px;
 }
 
-#input-station-name{
-	margin-top: 5px;
-	width: 120px;
-}
+
+
 
 #select-country{
 	margin-top: 5px;
@@ -203,7 +203,7 @@ aside h2 {
   margin-top: -18px;
 
 
-}
+}*/
 /* fine css inutile */
 /* inizio css collapsible */
 .panelHeader {
@@ -217,10 +217,18 @@ aside h2 {
     outline: none;
     font-size: 15px;
     transition: 2s;
+    -webkit-transition: all 250ms;
+    -moz-transition: all 250ms;
+    transition: all 250ms;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .panelHeader.active, .panelHeader:hover {
     background-color: #ccc;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    -webkit-transform: translateY(-5px);
+    -moz-transform: translateY(-5px);
+    transform: translateY(-5px);
 }
 
 div.panelCollapsibleBody {
@@ -228,6 +236,7 @@ div.panelCollapsibleBody {
     background-color: white;
     max-height: 0;
     overflow: hidden;
+    margin-bottom: 2%;
     transition: max-height 2s ease-out;
 }
 /* fine css collapsible*/

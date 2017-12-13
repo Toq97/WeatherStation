@@ -233,11 +233,11 @@ function createCollapsiblePanel(detectedDataForSinglelocation) {
 }
 
 function appendHeaderData(divPanelHeader, className, data){
-	if (data == null){
+	if (data == null || data == ""){
 		data = "NO Data";
 	}
 	var stationData = $('<p></p').addClass(className + " col col-headerElements")
-								 .html(data);
+								 .html(" " + data);
      divPanelHeader.append(stationData);
 }
 /**
@@ -252,7 +252,7 @@ function createPanelHeader(detectedDataForSinglelocation){
 								 .attr('id',detectedDataForSinglelocation.station.nation.name);
    appendTemperatureBox(detectedDataForSinglelocation, divPanelHeader);
    divPanelHeader.append(stationName);
-   appendHeaderData( divPanelHeader,'stationCity', detectedDataForSinglelocation.station.city );
+   appendHeaderData( divPanelHeader,'stationCity', detectedDataForSinglelocation.station.city);
    appendHeaderData( divPanelHeader, 'stationRegion',  detectedDataForSinglelocation.station.region.name);
    appendHeaderData( divPanelHeader, 'stationPressure', detectedDataForSinglelocation.pressure);
    appendHeaderData( divPanelHeader, 'stationHumidity', detectedDataForSinglelocation.relative_humidity);
@@ -298,7 +298,7 @@ function createTemperatureBox(temperature,urlIcon) {
 											'rgb' + temperatureColorUtilities.temperatureToRGB(temperature)),
 											})
 										.append($weatherIcon);
-										
+
 }
 
 /**
