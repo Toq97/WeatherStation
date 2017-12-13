@@ -69,6 +69,7 @@ descrizione mangaer
         - filter: Pietro
         - filteringAtRefresh: Pietro
         - appendHeaderData: Pietro
+        - buttonstoprefresh: Tortone
 
     other:
         - post the jsonBlob backup jsons: Gianluca
@@ -103,6 +104,7 @@ All notable changes to this project will be documented in this file.
 - updateSlug.js: Gianluca 8/12/2f903418b776
 - buttonsaverefresh: Tortone 11/12/2017
 - searchFilter.js: Pietro 11/12/2017
+- buttonstoprefresh: Tortone 12/12/2017
 
 ### Changed
 - createCollapsiblePanel: Pietro 11/12/2017 , ho cambiato l'id del collapse(mi serviva per la ricerca)
