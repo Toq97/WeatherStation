@@ -36,7 +36,6 @@ refresh(tramite relativo pulsante).
 **WeatherStationManager**
 -----------------------
 
-
 	- allData: [all data of stations, it is update at the end of every calls]
 	- collapsibleOpenedIndex: [it is an index that manage the openings and the closure of a panel]
     - collapsebody: [array used to manage the body of collapse]
@@ -50,13 +49,10 @@ refresh(tramite relativo pulsante).
 	- stoprefresh: [a count of the button of stop refresh]
 
 
-
-
-
-
-
-
-
+**filterManager**
+-----------------
+    -selectData: contain the filter data in the select
+	-textData: contain the filter data in the textbox
 
 **MANAGEMENT OF WORK:**
 -----------------------
@@ -103,12 +99,12 @@ refresh(tramite relativo pulsante).
         - filteringAtRefresh: Pietro
         - appendHeaderData: Pietro
         - buttonstoprefresh: Tortone
-				- sortAllDataArray: Gianluca
-				- getCompleteJsonFromTorinoMeteo: Gianluca
-				- postNewStationOnJsonBlob: Gianluca
-				- fadeInCollapse: Pietro
-				- fadeOutCollapse: Pietro
-
+		- sortAllDataArray: Gianluca
+		- getCompleteJsonFromTorinoMeteo: Gianluca
+	    - postNewStationOnJsonBlob: Gianluca
+	    - fadeInCollapse: Pietro
+	    - fadeOutCollapse: Pietro
+        
     other:
         - post the jsonBlob backup jsons: Gianluca
         - style:

@@ -168,10 +168,10 @@ var DOM_Manipulation = {
      divPanelHeader.append(stationName);
      DOM_Manipulation.appendHeaderData( divPanelHeader,'stationCity',
                                         detectedDataForSinglelocation.station.city, "");
+     DOM_Manipulation.appendHeaderData( divPanelHeader, 'stationProvince',
+                                       detectedDataForSinglelocation.station.province.name, "");
      DOM_Manipulation.appendHeaderData( divPanelHeader, 'stationRegion',
                                         detectedDataForSinglelocation.station.region.name, "");
-     DOM_Manipulation.appendHeaderData( divPanelHeader, 'stationPressure',
-                                        detectedDataForSinglelocation.pressure, " hPa");
      DOM_Manipulation.appendHeaderData( divPanelHeader, 'stationHumidity',
                                         detectedDataForSinglelocation.relative_humidity, " %");
      DOM_Manipulation.appendHeaderData( divPanelHeader, 'stationWind',

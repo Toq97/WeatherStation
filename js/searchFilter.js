@@ -8,11 +8,11 @@ var filterSearch = {
 	 * [function that save the filter search when there is a refresh]
 	 */
 	filteringAtRefresh: function(){
-		if( refreshManager.textData != "" && (refreshManager.selectData != "-" || refreshManager.selectData != "")){
+		if( filterManager.textData != "" && (filterManager.selectData != "-" || filterManager.selectData != "")){
 		   filterSearch.filter();
-	   } else if (refreshManager.textData != ""){
+	   } else if (filterManager.textData != ""){
 		   filterSearch.filter();
-	   } else if (refreshManager.selectData != "-" || refreshManager.selectData != ""){
+	   } else if (filterManager.selectData != "-" || filterManager.selectData != ""){
 		   filterSearch.filter();
 	   }
 	},
@@ -38,7 +38,7 @@ var filterSearch = {
 	  			$(this).closest(".collapse").hide();
 	  		}
 	   });
-	refreshManager.selectData = selectedOption;
-	refreshManager.textData = inputText;
+     filterManager.selectData = selectedOption;
+	 filterManager.textData = inputText;
 	}
 };

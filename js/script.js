@@ -23,7 +23,7 @@ var manager = {
  * [filterManager manager that saves the data for filtering at the refresh]
  * @type {Object}
  */
-var refreshManager = {
+var filterManager = {
 	selectData: "",
 	textData: ""
 }
