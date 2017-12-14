@@ -104,6 +104,8 @@ refresh(tramite relativo pulsante).
         - appendHeaderData: Pietro
         - buttonstoprefresh: Tortone
 				- sortAllDataArray: Gianluca
+				- getCompleteJsonFromTorinoMeteo: Gianluca
+				- postNewStationOnJsonBlob: Gianluca
 
     other:
         - post the jsonBlob backup jsons: Gianluca

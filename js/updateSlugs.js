@@ -539,11 +539,11 @@ var slugs = [
   	slug : 'versoix',
   	blobId : 'bf0ac77f-dc6d-11e7-b106-c18c7a892199'
   },
-  {
+  /*{
   	 id : '113',
   	slug : 'villanova-canavese',
   	blobId : 'bf31896a-dc6d-11e7-b106-a3cf55dde0ad'
-  },
+  },*/
   {
   	 id : '108',
   	slug : 'villar-focchiardo',
@@ -560,86 +560,3 @@ var slugs = [
   	blobId : 'beb04b65-dc6d-11e7-b106-ebec24afa076'
   }
 ];
-
-//call long json from torino meteor
-function keepSlugsUpdated() {
-  $.ajax({
-    url: 'https://www.torinometeo.org/api-realtime/',
-    type: 'GET',
-    dataType: 'JSON',
-  })
-  .done(function(data) {
-
-
-  })
-  .fail(function(error) {
-
-  })
-
-}
-
-//cerca tutti gli slug nell'array slugs
-//se uno non c'è
-//postalo su jsonBlob
-//crea l'oggetto con id, slug e blobId
-//pushalo in slugs
-
-function postNewStationOnJsonBlob(i,stationObj) {
-  $.ajax({
-   method: 'POST',
-   url: 'https://jsonblob.com/api/jsonBlob',
-   headers: {
-       "Content-Type": "application/json; charset=utf8"
-   },
-   data: JSON.stringify(stationObj),
-   success: function(data,textStatus,jqXHR,bla) {
-    //console.log(jqXHR)
-    //console.log(bla)
-    }
-  }).done(function(msg,ba,bla){
-    console.log(msg,ba,bla)
-    console.log(bla.getAllResponseHeaders())
-    var blobId = bla.getAllResponseHeaders().slice(48,85);
-    console.log(blobId)
-    console.log(sli[i])
-
-    /*sli[i].blobId = bla.getAllResponseHeaders().slice(48,85);
-    var str = '';
-    sli.forEach(function(slug) {
-      str += '\n{\n\t id : \'' + slug.id + '\', \n\tslug : \'' + slug.slug + '\' \n\tblobId : \'' + slug.blobId + '\'\n},'
-    });
-    console.log(str)*/
-
-    }).fail(function(jqXHR, textStatus){
-      console.log(textStatus);
-      alert('Request failed: ' + textStatus);
-    });
-}
-
-/**
- * [function that get the Json Data]
- */
-function getCompleteJsonFromTorinoMeteo() {
-	$.ajax({
-		url: 'https://www.torinometeo.org/api/v1/realtime/data/',
-		type: 'GET',
-		dataType: 'JSON',
-	})
-	.done(function(detectionData) {
-    //return an array containing
-    detectionData.filter(function(jsonElement) {
-      //search an element in slugs that correspond to the given json station
-      return manager.slugs.filter(function(slugElement){
-        return slugElement.slug === jsonElement.station.slug
-        //if found put it in the return array
-      }).length === -1;
-
-    })
-
-	})
-	.fail(function(error) {
-
-		console.log(error.statusText);
-
-	})
-}

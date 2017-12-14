@@ -116,34 +116,51 @@ var jsonBlobBackup = {
     return manager.slugs.filter(function(element) {
       return element.slug === slug;
     })[0].blobId;
+  },
+  postNewStationOnJsonBlob: function(stationObj) {
+    $.ajax({
+     method: 'POST',
+     url: 'https://jsonblob.com/api/jsonBlob',
+     headers: {
+         "Content-Type": "application/json; charset=utf8"
+     },
+     data: JSON.stringify(stationObj)
+    }).done(function(msg,ba,bla){
+      var blobId = bla.getAllResponseHeaders().slice(48,85);
+      //create the obj to push into the slugs array
+      var newSlug = {};
+      newSlug.id = stationObj.station.id;
+      newSlug.slug = stationObj.station.slug;
+      newSlug.blobId = blobId;
+      //push it into the array
+      manager.slugs.push(newSlug);
+      }).fail(function(jqXHR, textStatus){
+        console.log('Request failed: ' + textStatus);
+      });
+  },
+
+  /**
+   * [function that get the Json Data]
+   */
+  getCompleteJsonFromTorinoMeteo: function() {
+  	$.ajax({
+  		url: 'https://www.torinometeo.org/api/v1/realtime/data/',
+  		type: 'GET',
+  		dataType: 'JSON',
+  	})
+  	.done(function(detectionData) {
+      //for each station in the json
+      detectionData.forEach(function(jsonElement){
+        //search it in slugs
+        var found = manager.slugs.filter(function(slugsElement){
+          return jsonElement.station.slug === slugsElement.slug;
+        }).length === 0;
+        //if found post it in a proper jsonBlob
+        if(found) jsonBlobBackup.postNewStationOnJsonBlob(jsonElement);
+      })
+  	})
+  	.fail(function(error) {
+  		console.log(error.statusText);
+  	})
   }
 };
-
-
-
-/*
-function faiLeCOse(array) {
-  console.log(array[0])
-  sli = [];
-  for (var i = 0; i < array.length; i++) {
-    var stationObj = clone(array[i]);
-    sli.push({
-      id : stationObj.station.id,
-      slug: stationObj.station.slug,
-    });
-    cose(i, stationObj);
-
-  }
-
-  var str = '';
-  sli.forEach(function(slug) {
-    str += '\n{\n\t id : \'' + slug.id + '\', \n\tslug : \'' + slug.slug + '\' \n\tblobId : \'' + slug.blobId + '\'\n},'
-  });
-  console.log('********************')
-  console.log(sli)
-  console.log(str)
-}
-
-
-
-*/
