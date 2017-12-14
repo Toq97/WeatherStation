@@ -1,3 +1,9 @@
+/**
+ * @Author: gianluca abate
+ * Contains all the functions to manage the backup calls
+ * from and to JSONBLob
+ */
+
 var jsonBlobBackup = {
 
   /**

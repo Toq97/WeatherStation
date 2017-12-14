@@ -1,3 +1,8 @@
+/**
+ * @Author: gianluca abate
+ * Contains all the functions to show the loading status of the calls
+ */
+
 var loadingManager = {
   /**
    * [funtion that calculate the percent of the loading ]

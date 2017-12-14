@@ -25,6 +25,7 @@ var historicalMeteo = {
     .fail(function(error) {
     	console.log(error.status);
     	console.log(error.statusText);
+      $showError = $('<div>');
       $showError.addClass('jsonBlob-error')
                 .html('Request to historical data failed');
       $('.other-comunications').append($showError);

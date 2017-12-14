@@ -93,19 +93,25 @@ $('#history-btn').click(function() {
   var dateArray = inputDate.split('-');
   if(historicalMeteo.isValidDate(inputDate)) {
     //stop standard call
-    manager.standardCallActive = false;
+    manageStopRefresh();
     manager.allData = [];
     historicalMeteo.getHistoricalData(dateArray);
-  }
+  } else {
+		var $showError = $('<div>');
+		$showError.addClass('jsonBlob-error')
+							.html('Invalid Date. The date must be in the format yyyy-mm-dd and no more than 6 month ago.');
+		$('.other-comunications').append($showError);
+	}
 });
 
 
   /**
    * [function that stop/restart the refresh]
    */
-  $('#buttonstoprefresh').click(function (){
+  $('#buttonstoprefresh').click(manageStopRefresh);
 
-  if(manager.stoprefresh == 0){
+function manageStopRefresh() {
+	if(manager.stoprefresh == 0){
     clearInterval(manager.timeOut);
     $('#buttonstoprefresh').html('START REFRESH');
     alert("Refresh stopped");
@@ -115,9 +121,7 @@ $('#history-btn').click(function() {
     $('#buttonstoprefresh').html('STOP REFRESH');
     manager.stoprefresh = 0;
   }
-  });
-
-
+}
 
   //funzione che serve per impostare il refresh
   $('#buttonsaverefresh').click(function (){
