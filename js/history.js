@@ -1,7 +1,7 @@
-
-
-
-
+/**
+ * @Author: gianluca abate
+ * Contains all the functions to show histocal meteo data
+ */
 
 var historicalMeteo = {
   /**
@@ -10,7 +10,8 @@ var historicalMeteo = {
    */
   getHistoricalData: function(dateArray) {
     $.ajax({
-    	url: 'https://www.torinometeo.org/api/v1/realtime/history/' + dateArray[0] + '/' + dateArray[1] + '/' + dateArray[2] + '/',
+    	url: 'https://www.torinometeo.org/api/v1/realtime/history/'
+            + dateArray[0] + '/' + dateArray[1] + '/' + dateArray[2] + '/',
     	type: 'GET',
     	dataType: 'JSON',
     })
@@ -24,7 +25,9 @@ var historicalMeteo = {
     .fail(function(error) {
     	console.log(error.status);
     	console.log(error.statusText);
-      //TODO: manage error
+      $showError.addClass('jsonBlob-error')
+                .html('Request to historical data failed');
+      $('.other-comunications').append($showError);
     })
     .always(function() {
     	console.log("ajax historical call complete");

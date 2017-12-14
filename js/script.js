@@ -5,8 +5,6 @@
  * @Last modified time: 2017-12-12T15:23:13+01:00
  */
 
-
-
 //"use strict";
 
 var manager = {
@@ -59,6 +57,7 @@ function getApiData(slug) {
 		//console.log("success");
 	    manager.allData.push(detectionData);
 			loadingManager.updateLoading();
+			console.log('oalle')
 			if(manager.allData.length === manager.slugs.length) {
 				DOM_Manipulation.loadDataOnDOM(manager.allData);
 			}
@@ -71,7 +70,7 @@ function getApiData(slug) {
 		//display the error data into page
 		$('.error-panel').show();
 		//get the station from the backup API
-		getStationFromJSONBlob(findBlobIdFromSlug(slug));
+		jsonBlobBackup.getStationFromJSONBlob(jsonBlobBackup.findBlobIdFromSlug(slug));
 	})
 	.always(function() {
 		//console.log("ajax call complete");
@@ -80,22 +79,7 @@ function getApiData(slug) {
 		}
 		$('#refreshtime').attr('placeholder',manager.refreshtime);
 
-})
-.fail(function(error) {
-	console.log(error.status);
-	console.log(error.statusText);
-	//display the error data into page
-	$('.error-panel').show();
-	//get the station from the backup API
-	getStationFromJSONBlob(findBlobIdFromSlug(slug));
-})
-.always(function() {
-	//console.log("ajax call complete");
-	if(manager.allData.length === 111) {
-		console.log(manager.allData);
-	}
-
-});
+	});
    //update the data update
    panelBodyUtilities.dateutilities();
 }

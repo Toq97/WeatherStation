@@ -539,11 +539,11 @@ var slugs = [
   	slug : 'versoix',
   	blobId : 'bf0ac77f-dc6d-11e7-b106-c18c7a892199'
   },
-  /*{
+  {
   	 id : '113',
   	slug : 'villanova-canavese',
   	blobId : 'bf31896a-dc6d-11e7-b106-a3cf55dde0ad'
-  },*/
+  },
   {
   	 id : '108',
   	slug : 'villar-focchiardo',

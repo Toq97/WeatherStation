@@ -1,3 +1,8 @@
+/**
+ * @Author: group 05
+ * Contains all the function to manipulate the html DOM
+ */
+
 var DOM_Manipulation = {
   /**
   * [Load the json data on the page]

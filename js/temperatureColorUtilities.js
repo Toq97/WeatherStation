@@ -1,24 +1,26 @@
 /**
- * @Author: stefanotortone
- * @Date:   2017-12-07T11:10:26+01:00
- * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-08T00:08:55+01:00
+ * @Author: gianluca abate
+ * Contains all the function to calculate the color
+ * of the temperature box by the temperature value
  */
-
 
 var temperatureColorUtilities = {
     /*
-    * recalibrate the temperature range in order to take advantage of the linear section of the arctg function
+    * Recalibrate the temperature range in order to take advantage of the linear section of the arctg function
     * convert the [-5,45] interval into [-2;2]
     * 20° must be the central value
+    * @param {Number} celsiusT - the temperature value expressed in °C
+    * @return {Number} the refactored value
     */
     recalibrateXRange: function(celsiusT) {
         return celsiusT !== null ? (celsiusT - 20) * 2/25 : null;
     },
 
     /*
-    * recalibrate the y range of the arctg function (-Pi/2; Pi/2) in order to fit
+    * Recalibrate the y range of the arctg function (-Pi/2; Pi/2) in order to fit
     * the [0; 255] range of the RGB color code
+    * @param {Number} radiants - the result of arctg expressed in radiants
+    * @return {Number} the refactored value
     */
     recalibrateYRange: function(radiants) {
         return radiants !== null ? (radiants + (Math.PI/2)) / Math.PI * 255 : null;
@@ -26,6 +28,8 @@ var temperatureColorUtilities = {
 
     /*
     * Profit the arctg function as a inferiorly and superiorly limited function
+    * @param {Number} celsiusT - the temperature value expressed in °C
+    * @return {Number} the value in range [0;255]
     */
     temperatureToDecimalColor: function(celsiusT) {
         return celsiusT !== null ? Math.round(
@@ -36,7 +40,8 @@ var temperatureColorUtilities = {
     },
 
     /*
-    * green fixed to 0
+    * Convert temperature in css string
+    * @param {Number} celsiusT - the temperature value expressed in °C
     * return RGB bracket notation
     */
     temperatureToRGB: function(celsiusT) {
@@ -55,7 +60,8 @@ var temperatureColorUtilities = {
     },
 
     /*
-    * Needs JQuery
+    * Test temperatureToRGB function
+    * @param {Number} celsiusT - the temperature value expressed in °C
     */
     testTemperatureToRGB: function(celsiusT) {
         var $div = $('<div>');
@@ -65,7 +71,9 @@ var temperatureColorUtilities = {
                 'height' : '40px'
         }).html(celsiusT ? celsiusT : 'no T');
     },
-
+    /*
+    * Test the whole feature
+    */
     test: function() {
         temperatureColorUtilities.testTemperatures.forEach(function(celsiusT) {
             temperatureColorUtilities.testTemperatureToDecimalColor(celsiusT);

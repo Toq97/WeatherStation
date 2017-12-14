@@ -19,8 +19,8 @@ var jsonBlobBackup = {
             $('.jsonblob-date').html(response.datetime);
             $('#failed-stations-list').append(
               $('<li>').html(response.station.slug));
-            updateLoading();
-            if(loadingPercent() == 100) loadDataOnDOM(manager.allData);
+            loadingManager.updateLoading();
+            if(loadingManager.loadingPercent() == 100) DOM_Manipulation.loadDataOnDOM(manager.allData);
 
           },
           error: function(xhr, status, e) {
