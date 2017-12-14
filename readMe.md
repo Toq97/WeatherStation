@@ -94,6 +94,8 @@ refresh (via relative button).
 				- sortAllDataArray: Gianluca
 				- getCompleteJsonFromTorinoMeteo: Gianluca
 				- postNewStationOnJsonBlob: Gianluca
+				- fadeInCollapse: Pietro
+				- fadeOutCollapse: Pietro
 
     other:
         - style: whole group
@@ -138,6 +140,7 @@ All notable changes to this project will be documented in this file.
 - buttonsaverefresh: Tortone 11/12/2017
 - searchFilter.js: Pietro 11/12/2017
 - buttonstoprefresh: Tortone 12/12/2017
+- fade.js: Pietro 13/12/2017
 
 ### Changed
 - createCollapsiblePanel: Pietro 11/12/2017 , ho cambiato l'id del collapse(mi serviva per la ricerca)
