@@ -89,7 +89,7 @@ var meteoMainFunctions = {
 /**************************************************/
 /*         Add all the event listeners            */
 /**************************************************/
-//(function() {
+
 	//[the function of the historical button, it give the meteo conditions of a an date]
 	$('#history-btn').click(function() {
 	  var inputDate = $('.history-box input').val();
@@ -127,7 +127,7 @@ var meteoMainFunctions = {
 	$("#input-station-name").on("keyup", filterSearch.filter);
 	$('#select-country').on('click', filterSearch.filter);
 
-//})();
+
 
 /*****************************************************************/
 /*                              MAIN                             */
