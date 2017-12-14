@@ -112,16 +112,16 @@ $('#history-btn').click(function() {
   $('#buttonstoprefresh').click(manageStopRefresh);
 
 function manageStopRefresh() {
-	if(manager.stopRefresh == 0){
-    clearInterval(manager.timeOut);
-    $('#buttonstoprefresh').html('START REFRESH');
-    alert("Refresh stopped");
-    manager.stopRefresh = 1;
-  }else{
-    manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
-    $('#buttonstoprefresh').html('STOP REFRESH');
-    manager.stopRefresh = 0;
-  }
+	if(manager.stopRefresh == 0) {
+	    clearInterval(manager.timeOut);
+	    $('#buttonstoprefresh').html('START REFRESH');
+	    alert("Refresh stopped");
+	    manager.stopRefresh = 1;
+    } else {
+	    manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+	    $('#buttonstoprefresh').html('STOP REFRESH');
+	    manager.stopRefresh = 0;
+    }
 }
 
   //funzione che serve per impostare il refresh
