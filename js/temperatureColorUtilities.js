@@ -1,5 +1,5 @@
 /**
- * @Author: gianluca abate
+ * @author: group 05
  * Contains all the function to calculate the color
  * of the temperature box by the temperature value
  */

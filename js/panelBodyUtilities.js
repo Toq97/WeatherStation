@@ -1,5 +1,5 @@
 /**
- * @author: Stefano Tortone
+ * @author: group 05
  * Contains all the utilities for the creation of panel body
  */
 

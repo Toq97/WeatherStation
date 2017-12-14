@@ -1,5 +1,5 @@
 /**
- * @author: gianluca abate
+ * @author: group 05
  * Contains all the functions to manage the backup calls
  * from and to JSONBLob
  */
@@ -65,11 +65,7 @@ var jsonBlobBackup = {
           },
           data: newData
       }).done(function(msg){
-          console.log('Data Saved on JSONBlob: ' + msg);
-          /*if(manager.allData.length === manager.slugs.length) {
-      			loadDataOnDOM(manager.allData);
-      		}*/
-          //console.log(new Date());
+          console.log('Data Saved on JSONBlob: ' + msg + new Date());
       }).fail(function(jqXHR, textStatus){
           console.error('Request to upload JSONBlob failed: ' + textStatus);
       });
@@ -79,6 +75,7 @@ var jsonBlobBackup = {
    * [function that keep the JSONBlob updated]
    */
   keepJsonBlobUpdated: function() {
+    console.log('ci sono')
     var tryToCall = setInterval(function() {
       var dataNumber = manager.allData.length;
 

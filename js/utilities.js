@@ -1,3 +1,8 @@
+/**
+ * @author: group 05
+ * Contains some usefull functions to be called by the more specific functions
+ */
+
 var utilities = {
   /*
   * Deep copy an object into a new one

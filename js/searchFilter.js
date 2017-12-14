@@ -1,3 +1,8 @@
+/**
+ * @author: group 05
+ * Contains all the function to filter the meteo stations
+ */
+
 var filterSearch = {
 	/**
 	 * [function that save the filter search when there is a refresh]
@@ -11,6 +16,7 @@ var filterSearch = {
 		   filterSearch.filter();
 	   }
 	},
+
 	/**
 	 * [filter function to filter the collapse elements]
 	 */
@@ -35,5 +41,4 @@ var filterSearch = {
 	refreshManager.selectData = selectedOption;
 	refreshManager.textData = inputText;
 	}
-
 };
