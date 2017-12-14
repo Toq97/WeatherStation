@@ -59,10 +59,9 @@ var panelBodyUtilities = {
          collapsibleBodyImage.attr('src',"./img/immagine_default.jpeg");
          collapsibleBodyImage.addClass("collapsibleImageStyle");
      } else {
-         var collapsibleBodyImage = $('<img></img>');
-         collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
-         collapsibleBodyImage.attr('alt',"Errore nel caricamento dell'immagine");
-         collapsibleBodyImage.addClass("collapsibleImageStyle");
+             var collapsibleBodyImage = $('<img></img>');
+             collapsibleBodyImage.attr('src',detectedDataForSinglelocation.station.webcam);
+             collapsibleBodyImage.addClass("collapsibleImageStyle");
     }
 
      //link to maps

@@ -38,15 +38,16 @@ var DOM_Manipulation = {
 
   	for (var i = 0; i < acc.length; i++) {
   		acc[i].onclick = function() {
-  	    	this.classList.toggle("active");
   	    	var panel = this.nextElementSibling;
-  				var id = $(this).attr('id');
+			var id = $(this).attr('id');
   	    	if (panel.style.maxHeight){
   	        	panel.style.maxHeight = null;
   	       } else {
   			      panel.style.maxHeight = "350" + "px";
   	        }
   		    panelBodyUtilities.managerpanelbodyimage(id);
+            this.classList.toggle("active");
+
        	}
   	   }
 

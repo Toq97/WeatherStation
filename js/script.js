@@ -30,6 +30,7 @@ var refreshManager = {
 }
 
 function getAllStations() {
+	
 	if(manager.standardCallActive) {
 		manager.allData = [];
 		manager.jsonBlobCalls = 0;
@@ -40,7 +41,7 @@ function getAllStations() {
 	}
 	console.log(manager.allData);
 
-		manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+	manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
 
 
 }
