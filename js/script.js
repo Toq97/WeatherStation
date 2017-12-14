@@ -17,7 +17,8 @@ var manager = {
 	slugs: slugs,
 	jsonBlobCalls : 0,
 	standardCallActive: true,
-	timeOut: ""
+	timeOut: "",
+	stopRefresh: 0
 }
 /**
  * [filterManager manager that saves the data for filtering at the refresh]
@@ -111,15 +112,15 @@ $('#history-btn').click(function() {
   $('#buttonstoprefresh').click(manageStopRefresh);
 
 function manageStopRefresh() {
-	if(manager.stoprefresh == 0){
+	if(manager.stopRefresh == 0){
     clearInterval(manager.timeOut);
     $('#buttonstoprefresh').html('START REFRESH');
     alert("Refresh stopped");
-    manager.stoprefresh = 1;
+    manager.stopRefresh = 1;
   }else{
     manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
     $('#buttonstoprefresh').html('STOP REFRESH');
-    manager.stoprefresh = 0;
+    manager.stopRefresh = 0;
   }
 }
 
