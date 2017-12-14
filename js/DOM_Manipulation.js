@@ -1,5 +1,5 @@
 /**
- * @Author: group 05
+ * @author: group 05
  * Contains all the function to manipulate the html DOM
  */
 

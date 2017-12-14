@@ -1,5 +1,5 @@
 /**
- * @Author: gianluca abate
+ * @author: gianluca abate
  * Contains all the functions to show histocal meteo data
  */
 

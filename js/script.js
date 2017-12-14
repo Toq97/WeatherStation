@@ -54,7 +54,6 @@ function getApiData(slug) {
 		dataType: 'JSON',
 	})
 	.done(function(detectionData) {
-		//console.log("success");
 	    manager.allData.push(detectionData);
 			loadingManager.updateLoading();
 			console.log('oalle')
@@ -105,11 +104,11 @@ $('#history-btn').click(function() {
 });
 
 
-  /**
-   * [function that stop/restart the refresh]
-   */
-  $('#buttonstoprefresh').click(manageStopRefresh);
+$('#buttonstoprefresh').click(manageStopRefresh);
 
+/**
+ * [function that stop/restart the refresh]
+ */
 function manageStopRefresh() {
 	if(manager.stoprefresh == 0){
     clearInterval(manager.timeOut);
@@ -138,7 +137,6 @@ function manageStopRefresh() {
 
   });
 
-
 	//add events to the input text and the select
 	$("#input-station-name").on("keyup", filterSearch.filter);
 	$('#select-country').on('click', filterSearch.filter);
@@ -146,8 +144,6 @@ function manageStopRefresh() {
 jsonBlobBackup.keepJsonBlobUpdated();
 //keep slugs always synchronized to the data on torino meteo api
 jsonBlobBackup.getCompleteJsonFromTorinoMeteo();
-
-
 
 /*****************************************************************/
 /*                              MAIN                             */

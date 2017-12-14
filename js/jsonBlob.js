@@ -1,5 +1,5 @@
 /**
- * @Author: gianluca abate
+ * @author: gianluca abate
  * Contains all the functions to manage the backup calls
  * from and to JSONBLob
  */
