@@ -45,13 +45,10 @@ refresh (via relative button).
 	- stoprefresh: [a count of the button of stop refresh]
 
 
-<<<<<<< HEAD
 **filterManager**
 -----------------
     -selectData: contain the filter data in the select
 	-textData: contain the filter data in the textbox
-=======
->>>>>>> db3f487848a8ea068e4da892a221be83c98470d1
 
 **MANAGEMENT OF WORK:**
 -----------------------
@@ -103,11 +100,11 @@ refresh (via relative button).
 	    - postNewStationOnJsonBlob: Gianluca
 	    - fadeInCollapse: Pietro
 	    - fadeOutCollapse: Pietro
-        
+
     other:
         - style: whole group
         - animations: whole group
-
+        - bug searching : toqir 
 
 **Script files Description:**
 -----------------------
