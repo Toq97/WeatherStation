@@ -4,6 +4,7 @@ var DOM_Manipulation = {
   * @param {Object} data - [the data to be shown]
   */
   loadDataOnDOM: function(data) {
+    DOM_Manipulation.fadeOutCollapse();
   	utilities.sortAllDataArray();
   	//manager.allData = data;filterSearch.
   	$("#collapsibleContainer").empty();
