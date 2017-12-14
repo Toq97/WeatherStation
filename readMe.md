@@ -2,40 +2,35 @@
 ***JAVASCRIPT***
 **MEMBERS: *Toqir Nasir, Pietro Chiarva, Gianluca Abate, Stefano Tortone.***
 
-
-
-
 The Wheather Station
 ========================
 
-L'applicazione permette di visualizzare le stazioni presenti nel sito
-torinometeo(tramite una chiamata API), per ogni stazione e' presente un header
-contenente: il nome della stazione, la città, la regione, la pressione,
-l'umidità, la forza del vento, la nazione(immagine della bandiera), la
-temperatura e il meteo relativo.
-E' possibile cliccare su una stazione per aprire il relativo body contenente la
-descrione della stazione, l'immagine della webcam della stazone e un link per
-visualizzare la posizione di essa.
-E' disponibile un sistema di ricerca tramite textbox e selectbox, nella
-textbox è possibile ricercare il nome della stazione mentre nella selectbox
-si possono filtrare le stazioni per nazione.
-La pagina si refresha ogni 30 secondi cosi da aggiornare costantemente i dati
-delle stazioni, è possibile modificare il tempo di refresh(tramite una
-texbox e relativo bottone).
-Inoltre è possibile scegliere una data passata(tramite la relativa datePicker
-e relativo pulsante Historicami) per andare e vedere i dati delle stazioni in
-quella data.
-Infine nella pagina è disponibile sulla sinistra la raccolta delle
-informazioni più rilevanti: stato del loading della pagina, resoconto dei
-possibili errori nella chiamata API, ultimo aggiornamento e eventuale stop del
-refresh(tramite relativo pulsante).
-
+The application allows you to view the stations on the site
+torinometeo (via an API call), for each station there is a header
+containing: the name of the station, the city, the region, the pressure,
+the humidity, the wind force, the nation (image of the flag), the
+temperature and relative weather.
+It is possible to click on a station to open the relative body containing the
+description of the station, the image of the webcam of the stazone and a link to
+view the position of it.
+A search system is available via textbox and selectbox, in the
+textbox you can search for the station name while in the selectbox
+you can filter the stations by country.
+The page is refreshed every 30 seconds so as to constantly update the data
+of stations, you can change the refresh time (via a
+texbox and related button).
+Also you can choose a past date (via the related datePicker
+and relative Historicami button) to go and see the data of the stations in
+that date.
+Finally on the left the collection of the
+most relevant information: page loading status, report of the
+possible errors in the API call, last update and possible stop of the
+refresh (via relative button).
 
 
 
 **WeatherStationManager**
 -----------------------
-
 
 	- allData: [all data of stations, it is update at the end of every calls]
 	- collapsibleOpenedIndex: [it is an index that manage the openings and the closure of a panel]
@@ -48,13 +43,6 @@ refresh(tramite relativo pulsante).
 	- standardCallActive: [it is used to the calls]
 	- timeOut: [it is used to make the timeout of refresh]
 	- stoprefresh: [a count of the button of stop refresh]
-
-
-
-
-
-
-
 
 
 
@@ -108,12 +96,22 @@ refresh(tramite relativo pulsante).
 				- postNewStationOnJsonBlob: Gianluca
 
     other:
-        - post the jsonBlob backup jsons: Gianluca
-        - style:
-        - animations:
+        - style: whole group
+        - animations: whole group
 
 
-
+**Script files Description:**
+-----------------------
+ - DOM_Manipulation.js: Contains all the function to manipulate the html DOM
+ - historicalCall.js: Contains all the functions to show histocal meteo data
+ - jsonBlobBackup.js: Contains all the functions to manage the backup calls from and to JSONBLob
+ - panelBodyUtilities.js: Contains all the utilities for the creation of panel body
+ - searchFilter.js: Contains all the function to filter the meteo stations
+ - temperatureColorUtilities.js: Contains all the function to calculate the color of the temperature box by the temperature value
+ - slugs.js: Contains the relationship between jsonBlob and Torino Meteo
+ - loading.js: Contains all the functions to show the loading status of the calls
+ - utilities.js: Contains some usefull functions to be called by the more specific functions
+ - script.js: Main code to manage the page
 
 **CHANGELOG:**
 --------------
@@ -143,4 +141,5 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - createCollapsiblePanel: Pietro 11/12/2017 , ho cambiato l'id del collapse(mi serviva per la ricerca)
+- file structure redefined: Gianluca 14/12/2017
 ### Removed

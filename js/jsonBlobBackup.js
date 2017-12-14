@@ -75,7 +75,6 @@ var jsonBlobBackup = {
    * [function that keep the JSONBlob updated]
    */
   keepJsonBlobUpdated: function() {
-    console.log('ci sono')
     var tryToCall = setInterval(function() {
       var dataNumber = manager.allData.length;
 
