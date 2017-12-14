@@ -43,7 +43,6 @@ var meteoMainFunctions = {
 				meteoMainFunctions.getApiData(slugs[i].slug);
 			}
 		}
-		console.log(manager.allData);
 		manager.timeOut = setTimeout(meteoMainFunctions.getAllStations, manager.refreshtime);
 	},
 
@@ -58,11 +57,10 @@ var meteoMainFunctions = {
 		})
 		.done(function(detectionData) {
 		    manager.allData.push(detectionData);
-				loadingManager.updateLoading();
-				console.log('oalle')
-				if(manager.allData.length === manager.slugs.length) {
-					DOM_Manipulation.loadDataOnDOM(manager.allData);
-				}
+			loadingManager.updateLoading();
+			if(manager.allData.length === manager.slugs.length) {
+				DOM_Manipulation.loadDataOnDOM(manager.allData);
+			}
 		})
 		.fail(function(error) {
 			console.log(error.status);
@@ -72,13 +70,6 @@ var meteoMainFunctions = {
 			//get the station from the backup API
 			jsonBlobBackup.getStationFromJSONBlob(jsonBlobBackup.findBlobIdFromSlug(slug));
 		})
-		.always(function() {
-			//console.log("ajax call complete");
-			if(manager.allData.length === 111) {
-				console.log(manager.allData);
-			}
-
-		});
 	   //update the data update
 	   panelBodyUtilities.dateutilities();
 	}
