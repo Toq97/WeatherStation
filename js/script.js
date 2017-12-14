@@ -63,7 +63,6 @@ var meteoMainFunctions = {
 				if(manager.allData.length === manager.slugs.length) {
 					DOM_Manipulation.loadDataOnDOM(manager.allData);
 				}
-				$('#refreshtime').attr('placeholder',manager.refreshtime);
 		})
 		.fail(function(error) {
 			console.log(error.status);
@@ -78,7 +77,6 @@ var meteoMainFunctions = {
 			if(manager.allData.length === 111) {
 				console.log(manager.allData);
 			}
-			$('#refreshtime').attr('placeholder',manager.refreshtime);
 
 		});
 	   //update the data update
@@ -90,44 +88,45 @@ var meteoMainFunctions = {
 /*         Add all the event listeners            */
 /**************************************************/
 
-	//[the function of the historical button, it give the meteo conditions of a an date]
-	$('#history-btn').click(function() {
-	  var inputDate = $('.history-box input').val();
-	  console.log(inputDate)
-	  var dateArray = inputDate.split('-');
-	  if(historicalMeteo.isValidDate(inputDate)) {
-	    //stop standard call
-	    DOM_Manipulation.manageStopRefresh();
-	    manager.allData = [];
-	    historicalMeteo.getHistoricalData(dateArray);
-	  } else {
-			var $showError = $('<div>');
-			$showError.html('');
-			$showError.addClass('jsonBlob-error')
-								.html('Invalid Date. The date must be in the format yyyy-mm-dd and no more than 6 month ago.');
-			$('.other-comunications').append($showError);
-		}
-	});
+//[the function of the historical button, it give the meteo conditions of a an date]
+$('#history-btn').click(function() {
+  var inputDate = $('.history-box input').val();
+  console.log(inputDate)
+  var dateArray = inputDate.split('-');
+  if(historicalMeteo.isValidDate(inputDate)) {
+    //stop standard call
+    DOM_Manipulation.manageStopRefresh();
+    manager.allData = [];
+    historicalMeteo.getHistoricalData(dateArray);
+  } else {
+		var $showError = $('<div>');
+		$showError.html('');
+		$showError.addClass('jsonBlob-error')
+							.html('Invalid Date. The date must be in the format yyyy-mm-dd and no more than 6 month ago.');
+		$('.other-comunications').append($showError);
+	}
+});
 
 	//stop/refresh button
 	$('#buttonstoprefresh').click(DOM_Manipulation.manageStopRefresh);
 	  //Set the refresh
 	  $('#buttonsaverefresh').click(function (){
-	  var newrefreshtime = document.getElementById("refreshtime");
-	  if(newrefreshtime.value >= 15000) {
-	    manager.refreshtime = newrefreshtime.value;
-	    clearInterval(manager.timeOut);
-	    manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
-	  } else {
-	    alert("Refresh value too low. Minimum value is 15000ms");
-	  }
+		  var temporaryTime = document.getElementById("refreshtime").value;
+			var newRefreshTime = parseInt(temporaryTime) * 1000;
+		  if(newRefreshTime >= 15000) {
+		    manager.refreshtime = newRefreshTime;
+		    clearInterval(manager.timeOut);
+		    manager.timeOut = setTimeout(meteoMainFunctions.getAllStations, manager.refreshtime);
+		  } else {
+		    alert("Refresh value too low. Minimum value is 15s");
+		  }
 	});
 
 	//add events to the input text and the select
 	$("#input-station-name").on("keyup", filterSearch.filter);
 	$('#select-country').on('click', filterSearch.filter);
 
-
+//})();
 
 /*****************************************************************/
 /*                              MAIN                             */
