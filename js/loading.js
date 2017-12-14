@@ -1,5 +1,5 @@
 /**
- * @Author: gianluca abate
+ * @Author: group 05
  * Contains all the functions to show the loading status of the calls
  */
 

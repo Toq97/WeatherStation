@@ -1,11 +1,8 @@
 /**
- * @Author: stefanotortone
- * @Date:   2017-12-07T11:43:44+01:00
- * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-12T15:19:52+01:00
+ * @author: group 05
+ * Contains all the utilities for the creation of panel body
  */
 
-//file with utilities for the creation of panel body
 var panelBodyUtilities = {
   /**
    * [function that create the url of google maps]

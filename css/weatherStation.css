@@ -1,22 +1,16 @@
 /**
- * @Author: stefanotortone
- * @Date:   2017-12-03T11:46:15+01:00
- * @Last modified by:   stefanotortone
- * @Last modified time: 2017-12-08T17:42:59+01:00
+ * @author: group 05
+ * Contain the style of the meteo page
  */
 
-
-
-/* css inutile*/
 * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 body{
-  /*  background-color: rgb(192, 206, 208);*/
 	margin: 0 auto;
-   font-family: 'Calibri', sans-serif;
+  font-family: 'Calibri', sans-serif;
   overflow-x: hidden;
 }
 input{
@@ -25,7 +19,7 @@ input{
   border:none;
   border-bottom:1px solid #757575;
 }
-/* inizio grid */
+/* grid start */
 .container{
 	width: 100%;
 	margin: 0 auto;
@@ -124,12 +118,9 @@ input{
   margin: 2% 3%;
   padding: 10px;
   border-radius: 2px;
-  /*border: solid 3px blue;*/
   border-radius: 10px;
-  height: 600px;
+  height: 670px;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-
-
 }
 
 .other-comunications {
@@ -165,7 +156,6 @@ aside h3 {
 #divHeader{
 	color: #000000;
 	background-color: #ffffff;
-	/*height: 100px;*/
 	padding-left: 10px;
 }
 
@@ -178,13 +168,14 @@ aside h3 {
   padding-bottom: 10px;
   width: 100%;
 }
+
 #filter{
 	color: #fff;
 	background-color: rgb(59, 129, 248);
 	height: 80px;
     padding-top: 10px;
 }
-/* inizio css collapsible */
+/* css collapsible start */
 .panelHeader {
     background-color: #eee;
     color: #444;
@@ -218,7 +209,7 @@ div.panelCollapsibleBody {
     margin-bottom: 2%;
     transition: max-height 2s ease-out;
 }
-/* fine css collapsible*/
+/* css collapsible end */
 /* flag css */
 .flagIcon{
     width: 50px;
@@ -258,8 +249,6 @@ div.panelCollapsibleBody {
 }
 
 .error-panel {
-    /*display: none;
-    position: fixed;*/
     padding: 30px;
     text-align: center;
     top: 30px;
@@ -286,7 +275,6 @@ div.panelCollapsibleBody {
 .loading-box {
     position: relative;
     left: 15%;
-    /* margin-left: -250px; */
     top: 10px;
     width: 240px;
     height: 150px;
@@ -294,9 +282,6 @@ div.panelCollapsibleBody {
     background-position: -267px -140px;
     background-image: url(../img/cloud_load.gif);
     background-position: -276px -169px;
-    /*background-color: white;*/
-  /*  border: solid 4px #3c81f8;
-    border-radius: 30px;*/
     color: #3c81f8;
     padding: 40px;
     font-size: 20px;
@@ -310,6 +295,8 @@ div.panelCollapsibleBody {
 
 .jsonBlob-error {
   color: red;
+  padding: 10px;
+  font-weight: bold;
 }
 
 #collapsibleContainer {

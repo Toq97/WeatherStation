@@ -1,7 +1,7 @@
-/** quando ci sarà più ordine nel js principale questo array sarà da inserire nel manager  **/
-
-/** Gli slug di questo array sono pensati per poter fare le chiamate alle singole stazioni con
-*   le API di Torino meteo **/
+/**
+ * @author: group 05
+ * Contains the relationship between jsonBlob and Torino Meteo
+ */
 
 var slugs = [
   {

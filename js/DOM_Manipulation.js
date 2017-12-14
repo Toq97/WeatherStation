@@ -1,5 +1,5 @@
 /**
- * @Author: group 05
+ * @author: group 05
  * Contains all the function to manipulate the html DOM
  */
 
@@ -277,5 +277,20 @@ var DOM_Manipulation = {
    */
   fadeOutCollapse: function(){
     $("#collapsibleContainer").fadeOut("60000");
+  },
+  /**
+   * [function that stop/restart the refresh]
+   */
+  manageStopRefresh: function() {
+  	if(manager.stopRefresh == 0){
+      clearInterval(manager.timeOut);
+      $('#buttonstoprefresh').html('START REFRESH');
+      alert("Refresh stopped");
+      manager.stopRefresh = 1;
+    }else{
+      manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
+      $('#buttonstoprefresh').html('STOP REFRESH');
+      manager.stopRefresh = 0;
+    }
   }
 };
