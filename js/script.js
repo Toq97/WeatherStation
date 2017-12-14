@@ -28,41 +28,6 @@ var refreshManager = {
 	textData: ""
 }
 
-<<<<<<< HEAD
-function getAllStations() {
-	
-	if(manager.standardCallActive) {
-		manager.allData = [];
-		manager.jsonBlobCalls = 0;
-		loadingManager.initializeLoading();
-		for (var i = 0; i < slugs.length; i++) {
-			getApiData(slugs[i].slug);
-		}
-	}
-	console.log(manager.allData);
-
-	manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
-
-
-}
-
-/**
- * [function that get the Json Data]
- */
-function getApiData(slug) {
-	$.ajax({
-		url: 'https://www.torinometeo.org/api/v1/realtime/data/' + slug + '/',
-		type: 'GET',
-		dataType: 'JSON',
-	})
-	.done(function(detectionData) {
-		//console.log("success");
-	    manager.allData.push(detectionData);
-			loadingManager.updateLoading();
-			console.log('oalle')
-			if(manager.allData.length === manager.slugs.length) {
-				DOM_Manipulation.loadDataOnDOM(manager.allData);
-=======
 var meteoMainFunctions = {
 	/*
 	 * Get the data about the staions
@@ -112,7 +77,6 @@ var meteoMainFunctions = {
 			//console.log("ajax call complete");
 			if(manager.allData.length === 111) {
 				console.log(manager.allData);
->>>>>>> 9a669fae7328a12a54dcd83dc18bb2efea74800c
 			}
 			$('#refreshtime').attr('placeholder',manager.refreshtime);
 
@@ -120,28 +84,6 @@ var meteoMainFunctions = {
 	   //update the data update
 	   panelBodyUtilities.dateutilities();
 	}
-<<<<<<< HEAD
-});
-
-
-  /**
-   * [function that stop/restart the refresh]
-   */
-  $('#buttonstoprefresh').click(manageStopRefresh);
-
-function manageStopRefresh() {
-	if(manager.stopRefresh == 0) {
-	    clearInterval(manager.timeOut);
-	    $('#buttonstoprefresh').html('START REFRESH');
-	    alert("Refresh stopped");
-	    manager.stopRefresh = 1;
-    } else {
-	    manager.timeOut = setTimeout(getAllStations, manager.refreshtime);
-	    $('#buttonstoprefresh').html('STOP REFRESH');
-	    manager.stopRefresh = 0;
-    }
-=======
->>>>>>> 9a669fae7328a12a54dcd83dc18bb2efea74800c
 }
 
 /**************************************************/
